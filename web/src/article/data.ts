@@ -201,6 +201,12 @@ export const fleetWeek = fleetWeekJson as unknown as FleetWeek
 export const weekItems = fleetWeek.items
 export const weekSample = fleetWeek.desks.find((d) => d.name === WEEK_DESKS[2])?.sample_items ?? 0
 
+/**
+ * Props for links that leave the page. On its Space the page runs in a frame,
+ * and GitHub refuses to load in one, so these open in a new tab.
+ */
+export const NEW_TAB = { target: '_blank', rel: 'noopener noreferrer' } as const
+
 /** The public repository. */
 export const REPO = 'https://github.com/captv89/shore-watch'
 /** The tuning log, kept with the page on its Hugging Face Space. */

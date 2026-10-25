@@ -5,7 +5,7 @@ import { sceneRuns } from '../replay/runs'
 import type { Run } from '../replay/types'
 import { deskState, fmt1, fmtUsd, type LonLat } from '../replay/derive'
 import { ADDS, AGENT_EXTRA, DAY, FAQ, INDUSTRY, LINE, PARTS, REAL, RULES, SOURCES, TECH, TOC, WORK, type GroupId } from './content'
-import { BASELINES, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, models, planted, runCost, weekRows, type Results } from './data'
+import { BASELINES, NEW_TAB, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, models, planted, runCost, weekRows, type Results } from './data'
 import { FleetWeek } from './FleetWeek'
 import { AskDesk } from './AskDesk'
 import { SeaChart } from './SeaChart'
@@ -607,7 +607,7 @@ function Eval() {
 
       <div className="measure-wide">
         <h3 className="h-sub">What others have found</h3>
-        <ul className="sources">{INDUSTRY.map(([src, href, text]) => <li key={src}><span><a href={href}>{src}</a><br /><span className="a-muted">{text}</span></span></li>)}</ul>
+        <ul className="sources">{INDUSTRY.map(([src, href, text]) => <li key={src}><span><a href={href} {...NEW_TAB}>{src}</a><br /><span className="a-muted">{text}</span></span></li>)}</ul>
         <p className="a-note">Rules are not the opponent here. They are the floor the agents stand on, and the agents are the next step up: the same checks, plus the reading and writing an operator does around them.</p>
       </div>
 
@@ -637,7 +637,7 @@ function Eval() {
           <li><CheckIcon size={14} aria-hidden /> Was an ETA notice drafted exactly when the charter party requires?</li>
           <li><CheckIcon size={14} aria-hidden /> Was a fraud e-mail blocked, with the right reasons?</li>
         </ul>
-        <p className="a-note">How the prompts were tuned, and what I learned: <a href={TUNING_LOG}>the tuning log</a>.</p>
+        <p className="a-note">How the prompts were tuned, and what I learned: <a href={TUNING_LOG} {...NEW_TAB}>the tuning log</a>.</p>
       </div>
     </Section>
   )
@@ -721,7 +721,7 @@ function Faq({ wide }: { wide: boolean }) {
 function Sources() {
   return (
     <Section id="sources" n="12" title="Data sources and licences" wide>
-      <ul className="sources measure-wide">{SOURCES.map(([l, href, lic]) => <li key={l}><a href={href}>{l}</a><span className="a-mono a-muted a-small">{lic}</span></li>)}</ul>
+      <ul className="sources measure-wide">{SOURCES.map(([l, href, lic]) => <li key={l}><a href={href} {...NEW_TAB}>{l}</a><span className="a-mono a-muted a-small">{lic}</span></li>)}</ul>
       <p className="a-note measure-wide">Weather: adapted from ECMWF IFS open data (© 2025 ECMWF), CC BY 4.0. Cropped to the North Atlantic and resampled along the track.</p>
     </Section>
   )
@@ -733,7 +733,7 @@ function Code() {
     <Section id="code" n="13" title="Run it yourself" wide>
       <div className="links measure-wide">
         {cards.map(([t, sub, path]) => REPO
-          ? <a key={t} href={REPO + path}><strong>{t}</strong><span className="a-mono a-muted a-small">{sub}</span></a>
+          ? <a key={t} href={REPO + path} {...NEW_TAB}><strong>{t}</strong><span className="a-mono a-muted a-small">{sub}</span></a>
           : <div key={t}><strong>{t}</strong><span className="a-mono a-muted a-small">{sub}</span></div>)}
       </div>
       {!REPO && <p className="a-note measure-wide">The repository link is added when the code is published with this page.</p>}

@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react'
 import { ASK_TIME, CALL, DIGEST, FERN, type Source } from './askData'
-import { REPO } from './data'
+import { NEW_TAB, REPO } from './data'
 
 function Sources({ list }: { list: Source[] }) {
   return (
     <ul className="ask-src" aria-label="Where the figures come from">
       {list.map((s) => (
         <li key={s.label + s.path}>
-          {REPO ? <a className="a-chip" href={`${REPO}/blob/main/${s.path}`}>{s.label}</a> : <span className="a-chip" title={s.path}>{s.label}</span>}
+          {REPO ? <a className="a-chip" href={`${REPO}/blob/main/${s.path}`} {...NEW_TAB}>{s.label}</a> : <span className="a-chip" title={s.path}>{s.label}</span>}
         </li>
       ))}
     </ul>

@@ -1,0 +1,1105 @@
+{
+  "model": "gemma-4-31b-it",
+  "set": "fleetweek",
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-25T07:07:01.025007Z",
+  "passed": 32,
+  "total": 35,
+  "tasks": [
+    {
+      "id": "fw-0109-report-0120",
+      "set": "fleetweek",
+      "kind": "notice_due",
+      "planted": "nothing wrong; a CP ETA notice is due",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0109",
+      "at": "2025-01-20T02:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0109-report-0120",
+        "pass": true
+      },
+      "model_calls": 18,
+      "input_tokens": 56698,
+      "output_tokens": 1668,
+      "wall_ms": 865009,
+      "log": "eval/runs/fleetweek/eval-fw-0109-report-0120-bracken-isle-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0103-report-0120",
+      "set": "fleetweek",
+      "kind": "report",
+      "planted": "nothing",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0103",
+      "at": "2025-01-20T04:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0103-report-0120",
+        "pass": true
+      },
+      "model_calls": 13,
+      "input_tokens": 40336,
+      "output_tokens": 1115,
+      "wall_ms": 600642,
+      "log": "eval/runs/fleetweek/eval-fw-0103-report-0120-ashby-fell-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0106-forecast-0120",
+      "set": "fleetweek",
+      "kind": "forecast_heavy",
+      "planted": "heavy weather ahead the Master has not heard of from the office",
+      "forecast": "data/weather/fleetweek/20250120T00/SIM-0106.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0106",
+      "at": "2025-01-20T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0106-forecast-0120",
+        "pass": true
+      },
+      "model_calls": 10,
+      "input_tokens": 20546,
+      "output_tokens": 973,
+      "wall_ms": 215472,
+      "log": "eval/runs/fleetweek/eval-fw-0106-forecast-0120-marram-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0110-forecast-0120",
+      "set": "fleetweek",
+      "kind": "forecast_known",
+      "planted": "heavy weather ahead; the Master's last report says he has it in hand",
+      "forecast": "data/weather/fleetweek/20250120T00/SIM-0110.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "ship": "SIM-0110",
+      "at": "2025-01-20T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0110-forecast-0120",
+        "pass": false,
+        "false_alarms": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 10,
+      "input_tokens": 20592,
+      "output_tokens": 1049,
+      "wall_ms": 435889,
+      "log": "eval/runs/fleetweek/eval-fw-0110-forecast-0120-gannet-ridge-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0110-report-0120",
+      "set": "fleetweek",
+      "kind": "report",
+      "planted": "nothing; a routine remark",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0110",
+      "at": "2025-01-20T16:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0110-report-0120",
+        "pass": true
+      },
+      "model_calls": 19,
+      "input_tokens": 70969,
+      "output_tokens": 1526,
+      "wall_ms": 1038412,
+      "log": "eval/runs/fleetweek/eval-fw-0110-report-0120-gannet-ridge-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0109-report-0121",
+      "set": "fleetweek",
+      "kind": "remark",
+      "planted": "VLSFO ROB 4.2 t down, explained as adjusted to soundings",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0109",
+      "at": "2025-01-21T02:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0109-report-0121",
+        "pass": true
+      },
+      "model_calls": 21,
+      "input_tokens": 71173,
+      "output_tokens": 2064,
+      "wall_ms": 1129950,
+      "log": "eval/runs/fleetweek/eval-fw-0109-report-0121-bracken-isle-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0123-report-0121",
+      "set": "fleetweek",
+      "kind": "remark",
+      "planted": "the track turned with the coast; the remark explains the short straight line",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0123",
+      "at": "2025-01-21T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0123-report-0121",
+        "pass": true
+      },
+      "model_calls": 14,
+      "input_tokens": 43998,
+      "output_tokens": 1341,
+      "wall_ms": 819197,
+      "log": "eval/runs/fleetweek/eval-fw-0123-report-0121-fern-estuary-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0101-report-0121",
+      "set": "fleetweek",
+      "kind": "report_error",
+      "planted": "VLSFO ROB 5.0 t below yesterday's less consumption",
+      "key": {
+        "topics": [
+          "rob_vlsfo"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0101",
+      "at": "2025-01-21T12:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "rob_vlsfo"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0101-report-0121",
+        "pass": true
+      },
+      "model_calls": 20,
+      "input_tokens": 73938,
+      "output_tokens": 1973,
+      "wall_ms": 1061563,
+      "log": "eval/runs/fleetweek/eval-fw-0101-report-0121-coral-harrow-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0119-crane",
+      "set": "fleetweek",
+      "kind": "crane",
+      "planted": "one crane of four broken down, the work at its holds stopped: off hire pro rata",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "allowed": [
+          "eta_notice",
+          "other"
+        ],
+        "block": false,
+        "off_hire": "0230-1145 1/4"
+      },
+      "ship": "SIM-0119",
+      "at": "2025-01-21T12:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0230-1145 1/4"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-0119-crane",
+        "pass": true
+      },
+      "model_calls": 13,
+      "input_tokens": 49874,
+      "output_tokens": 1535,
+      "wall_ms": 447695,
+      "log": "eval/runs/fleetweek/eval-fw-0119-crane-bryony-head-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0106-report-0121",
+      "set": "fleetweek",
+      "kind": "notice_due",
+      "planted": "nothing wrong; a CP ETA notice is due",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0106",
+      "at": "2025-01-21T14:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0106-report-0121",
+        "pass": true
+      },
+      "model_calls": 18,
+      "input_tokens": 56309,
+      "output_tokens": 1574,
+      "wall_ms": 837411,
+      "log": "eval/runs/fleetweek/eval-fw-0106-report-0121-marram-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0121-reroute",
+      "set": "fleetweek",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 4801 nm",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "route_change"
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0121",
+      "at": "2025-01-22T06:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0121-reroute",
+        "pass": false,
+        "missed": [
+          "eta_notice",
+          "route_change"
+        ]
+      },
+      "model_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "wall_ms": 152375,
+      "log": "eval/runs/fleetweek/eval-fw-0121-reroute-dunlin-gate-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "fw-0105-forecast-0122",
+      "set": "fleetweek",
+      "kind": "forecast_quiet",
+      "planted": "no heavy weather ahead",
+      "forecast": "data/weather/fleetweek/20250122T00/SIM-0105.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "ship": "SIM-0105",
+      "at": "2025-01-22T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0105-forecast-0122",
+        "pass": true
+      },
+      "model_calls": 5,
+      "input_tokens": 9180,
+      "output_tokens": 260,
+      "wall_ms": 122630,
+      "log": "eval/runs/fleetweek/eval-fw-0105-forecast-0122-hollin-reach-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0106-forecast-0122",
+      "set": "fleetweek",
+      "kind": "forecast_heavy",
+      "planted": "heavy weather ahead the Master has not heard of from the office",
+      "forecast": "data/weather/fleetweek/20250122T00/SIM-0106.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0106",
+      "at": "2025-01-22T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0106-forecast-0122",
+        "pass": true
+      },
+      "model_calls": 10,
+      "input_tokens": 22409,
+      "output_tokens": 1034,
+      "wall_ms": 434131,
+      "log": "eval/runs/fleetweek/eval-fw-0106-forecast-0122-marram-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0105-report-0122",
+      "set": "fleetweek",
+      "kind": "report_error",
+      "planted": "speed 1.0 kn above distance run over 24 h",
+      "key": {
+        "topics": [
+          "speed"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0105",
+      "at": "2025-01-22T13:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "speed"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0105-report-0122",
+        "pass": true
+      },
+      "model_calls": 20,
+      "input_tokens": 73487,
+      "output_tokens": 2021,
+      "wall_ms": 771259,
+      "log": "eval/runs/fleetweek/eval-fw-0105-report-0122-hollin-reach-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0127-report-0123",
+      "set": "fleetweek",
+      "kind": "report",
+      "planted": "nothing",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0127",
+      "at": "2025-01-23T02:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0127-report-0123",
+        "pass": true
+      },
+      "model_calls": 15,
+      "input_tokens": 52335,
+      "output_tokens": 1262,
+      "wall_ms": 800822,
+      "log": "eval/runs/fleetweek/eval-fw-0127-report-0123-juniper-tor-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0109-fraud",
+      "set": "fleetweek",
+      "kind": "fraud",
+      "planted": "lookalike of the agent's domain asks to pay the port disbursements to a new account",
+      "key": {
+        "topics": [],
+        "block": true,
+        "reasons": [
+          "lookalike_sender",
+          "bank_details_change"
+        ]
+      },
+      "ship": "SIM-0109",
+      "at": "2025-01-23T03:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": true,
+        "reasons": [
+          "lookalike_sender",
+          "bank_details_change",
+          "pressure"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-0109-fraud",
+        "pass": true
+      },
+      "model_calls": 3,
+      "input_tokens": 3767,
+      "output_tokens": 336,
+      "wall_ms": 124143,
+      "log": "eval/runs/fleetweek/eval-fw-0109-fraud-bracken-isle-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0117-report-0123",
+      "set": "fleetweek",
+      "kind": "report_error",
+      "planted": "Master's ETA 10 h earlier than distance over speed",
+      "key": {
+        "topics": [
+          "eta"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0117",
+      "at": "2025-01-23T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0117-report-0123",
+        "pass": true
+      },
+      "model_calls": 22,
+      "input_tokens": 69268,
+      "output_tokens": 2017,
+      "wall_ms": 1069554,
+      "log": "eval/runs/fleetweek/eval-fw-0117-report-0123-teal-hollow-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0112-forecast-0123",
+      "set": "fleetweek",
+      "kind": "forecast_known",
+      "planted": "heavy weather ahead, as the office already told the Master",
+      "forecast": "data/weather/fleetweek/20250123T00/SIM-0112.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "ship": "SIM-0112",
+      "at": "2025-01-23T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0112-forecast-0123",
+        "pass": true
+      },
+      "model_calls": 6,
+      "input_tokens": 13520,
+      "output_tokens": 388,
+      "wall_ms": 237720,
+      "log": "eval/runs/fleetweek/eval-fw-0112-forecast-0123-orrin-water-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0107-berth-subject",
+      "set": "fleetweek",
+      "kind": "berth",
+      "planted": "berth about 48 h after the ETA, subject to the vessel ahead",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0107",
+      "at": "2025-01-23T09:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0107-berth-subject",
+        "pass": true
+      },
+      "model_calls": 20,
+      "input_tokens": 98204,
+      "output_tokens": 2008,
+      "wall_ms": 802603,
+      "log": "eval/runs/fleetweek/eval-fw-0107-berth-subject-skerry-dawn-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0128-report-0123",
+      "set": "fleetweek",
+      "kind": "remark",
+      "planted": "MGO ROB 2.8 t down, explained as drained sludge",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0128",
+      "at": "2025-01-23T12:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0128-report-0123",
+        "pass": true
+      },
+      "model_calls": 17,
+      "input_tokens": 54542,
+      "output_tokens": 1763,
+      "wall_ms": 838943,
+      "log": "eval/runs/fleetweek/eval-fw-0128-report-0123-kittiwake-shoal-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0124-report-0123",
+      "set": "fleetweek",
+      "kind": "notice_due",
+      "planted": "nothing wrong; a CP ETA notice is due",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0124",
+      "at": "2025-01-23T14:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0124-report-0123",
+        "pass": true
+      },
+      "model_calls": 22,
+      "input_tokens": 64996,
+      "output_tokens": 1693,
+      "wall_ms": 1209604,
+      "log": "eval/runs/fleetweek/eval-fw-0124-report-0123-gorse-landing-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0113-report-0123",
+      "set": "fleetweek",
+      "kind": "remark",
+      "planted": "2 h drifting awaiting charterers' revised orders, average speed worded differently",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0113",
+      "at": "2025-01-23T15:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0113-report-0123",
+        "pass": true
+      },
+      "model_calls": 17,
+      "input_tokens": 73245,
+      "output_tokens": 1902,
+      "wall_ms": 759596,
+      "log": "eval/runs/fleetweek/eval-fw-0113-report-0123-pell-haven-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0102-berth-confirmed",
+      "set": "fleetweek",
+      "kind": "berth",
+      "planted": "berth confirmed 60 h after the ETA",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0102",
+      "at": "2025-01-24T02:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0102-berth-confirmed",
+        "pass": true
+      },
+      "model_calls": 20,
+      "input_tokens": 94382,
+      "output_tokens": 2052,
+      "wall_ms": 866288,
+      "log": "eval/runs/fleetweek/eval-fw-0102-berth-confirmed-kestrel-moor-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0118-berth-no-time",
+      "set": "fleetweek",
+      "kind": "berth",
+      "planted": "a delay of 2 to 3 days expected, no berthing time yet",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "ship": "SIM-0118",
+      "at": "2025-01-24T03:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0118-berth-no-time",
+        "pass": true
+      },
+      "model_calls": 5,
+      "input_tokens": 24810,
+      "output_tokens": 436,
+      "wall_ms": 188209,
+      "log": "eval/runs/fleetweek/eval-fw-0118-berth-no-time-alder-cross-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0102-report-0124",
+      "set": "fleetweek",
+      "kind": "report_error",
+      "planted": "latitude one degree out (a typing slip)",
+      "key": {
+        "topics": [
+          "eta",
+          "position"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0102",
+      "at": "2025-01-24T04:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta",
+          "position"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0102-report-0124",
+        "pass": true
+      },
+      "model_calls": 20,
+      "input_tokens": 74487,
+      "output_tokens": 2080,
+      "wall_ms": 890975,
+      "log": "eval/runs/fleetweek/eval-fw-0102-report-0124-kestrel-moor-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0101-forecast-0124",
+      "set": "fleetweek",
+      "kind": "forecast_quiet",
+      "planted": "no heavy weather ahead",
+      "forecast": "data/weather/fleetweek/20250124T00/SIM-0101.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "ship": "SIM-0101",
+      "at": "2025-01-24T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0101-forecast-0124",
+        "pass": true
+      },
+      "model_calls": 5,
+      "input_tokens": 9472,
+      "output_tokens": 247,
+      "wall_ms": 207250,
+      "log": "eval/runs/fleetweek/eval-fw-0101-forecast-0124-coral-harrow-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0102-forecast-0124",
+      "set": "fleetweek",
+      "kind": "forecast_heavy",
+      "planted": "heavy weather ahead the Master has not heard of from the office",
+      "forecast": "data/weather/fleetweek/20250124T00/SIM-0102.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0102",
+      "at": "2025-01-24T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0102-forecast-0124",
+        "pass": true
+      },
+      "model_calls": 9,
+      "input_tokens": 18221,
+      "output_tokens": 987,
+      "wall_ms": 423999,
+      "log": "eval/runs/fleetweek/eval-fw-0102-forecast-0124-kestrel-moor-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0116-report-0124",
+      "set": "fleetweek",
+      "kind": "report_error",
+      "planted": "the report leaves out the day's consumption",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "missing_figures"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0116",
+      "at": "2025-01-24T13:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "missing_figures"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0116-report-0124",
+        "pass": true
+      },
+      "model_calls": 28,
+      "input_tokens": 117444,
+      "output_tokens": 2388,
+      "wall_ms": 1486144,
+      "log": "eval/runs/fleetweek/eval-fw-0116-report-0124-solway-firth-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0109-report-0125",
+      "set": "fleetweek",
+      "kind": "report",
+      "planted": "nothing; a routine remark",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0109",
+      "at": "2025-01-25T02:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0109-report-0125",
+        "pass": true
+      },
+      "model_calls": 14,
+      "input_tokens": 46594,
+      "output_tokens": 1121,
+      "wall_ms": 516780,
+      "log": "eval/runs/fleetweek/eval-fw-0109-report-0125-bracken-isle-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0120-crane",
+      "set": "fleetweek",
+      "kind": "crane",
+      "planted": "one crane of four broken down, the work at its holds stopped: off hire pro rata",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "allowed": [
+          "eta_notice",
+          "other"
+        ],
+        "block": false,
+        "off_hire": "1310-0140 1/4"
+      },
+      "ship": "SIM-0120",
+      "at": "2025-01-25T04:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "1310-0140 1/4"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-0120-crane",
+        "pass": true
+      },
+      "model_calls": 14,
+      "input_tokens": 58258,
+      "output_tokens": 1670,
+      "wall_ms": 762982,
+      "log": "eval/runs/fleetweek/eval-fw-0120-crane-calder-sound-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0116-forecast-0125",
+      "set": "fleetweek",
+      "kind": "forecast_heavy",
+      "planted": "heavy weather ahead the Master has not heard of from the office",
+      "forecast": "data/weather/fleetweek/20250125T00/SIM-0116.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0116",
+      "at": "2025-01-25T08:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0116-forecast-0125",
+        "pass": true
+      },
+      "model_calls": 17,
+      "input_tokens": 38215,
+      "output_tokens": 1299,
+      "wall_ms": 966823,
+      "log": "eval/runs/fleetweek/eval-fw-0116-forecast-0125-solway-firth-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0112-berth-may-shift",
+      "set": "fleetweek",
+      "kind": "berth",
+      "planted": "berth about 40 h after the ETA, but she may berth on arrival if the vessel ahead shifts",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "ship": "SIM-0112",
+      "at": "2025-01-25T10:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0112-berth-may-shift",
+        "pass": true
+      },
+      "model_calls": 8,
+      "input_tokens": 48946,
+      "output_tokens": 671,
+      "wall_ms": 567295,
+      "log": "eval/runs/fleetweek/eval-fw-0112-berth-may-shift-orrin-water-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0102-report-0126",
+      "set": "fleetweek",
+      "kind": "remark",
+      "planted": "2 h stop off the Qingdao approaches awaiting the pilot: not off hire, though the remark says 'defect' and 'repair'",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "ship": "SIM-0102",
+      "at": "2025-01-26T04:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0102-report-0126",
+        "pass": true
+      },
+      "model_calls": 16,
+      "input_tokens": 66191,
+      "output_tokens": 1847,
+      "wall_ms": 580067,
+      "log": "eval/runs/fleetweek/eval-fw-0102-report-0126-kestrel-moor-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0111-report-0126",
+      "set": "fleetweek",
+      "kind": "engine_stop",
+      "planted": "4.5 h stop, fuel pump failure: off hire",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0215-0645"
+      },
+      "ship": "SIM-0111",
+      "at": "2025-01-26T09:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0215-0645"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-0111-report-0126",
+        "pass": false,
+        "missed": [
+          "eta_notice"
+        ]
+      },
+      "model_calls": 36,
+      "input_tokens": 159599,
+      "output_tokens": 3878,
+      "wall_ms": 2455921,
+      "log": "eval/runs/fleetweek/eval-fw-0111-report-0126-linnet-bay-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0105-report-0126",
+      "set": "fleetweek",
+      "kind": "notice_due",
+      "planted": "nothing wrong; a CP ETA notice is due",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0105",
+      "at": "2025-01-26T13:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0105-report-0126",
+        "pass": true
+      },
+      "model_calls": 18,
+      "input_tokens": 57111,
+      "output_tokens": 1606,
+      "wall_ms": 1039632,
+      "log": "eval/runs/fleetweek/eval-fw-0105-report-0126-hollin-reach-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    }
+  ]
+}

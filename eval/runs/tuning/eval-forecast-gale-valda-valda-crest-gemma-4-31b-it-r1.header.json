@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-forecast-gale-valda-valda-crest-gemma-4-31b-it-r1",
+  "scene": "eval-forecast-gale-valda",
+  "model": "gemma-4-31b-it",
+  "recorded_at": "2026-10-24T17:10:20.621324Z",
+  "prompt_version": "staff-16",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "12 model calls. Synthetic data; operator actions are simulated."
+}

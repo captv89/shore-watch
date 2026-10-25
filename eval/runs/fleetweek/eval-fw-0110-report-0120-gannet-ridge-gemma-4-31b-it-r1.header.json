@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-fw-0110-report-0120-gannet-ridge-gemma-4-31b-it-r1",
+  "scene": "eval-fw-0110-report-0120",
+  "model": "gemma-4-31b-it",
+  "recorded_at": "2026-10-24T21:47:43.678317Z",
+  "prompt_version": "staff-17",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "19 model calls. Synthetic data; operator actions are simulated."
+}

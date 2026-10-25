@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "s4-weather-fleet-nvidia-nemotron-3-5-super-vl-120b-a12b-r3",
+  "scene": "s4-weather",
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "recorded_at": "2026-10-24T12:07:49.015487Z",
+  "prompt_version": "staff-15",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 3,
+  "total_attempts": 5,
+  "notes": "16 model calls. Synthetic data; operator actions are simulated."
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.3",
+  "run_id": "eval-notice-3day-valda-crest-nvidia-nemotron-3-super-120b-a12b-r1",
+  "scene": "eval-notice-3day",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "recorded_at": "2026-10-19T17:28:16.743545Z",
+  "prompt_version": "staff-9",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "45 model calls. Synthetic data; operator actions are simulated."
+}

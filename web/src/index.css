@@ -1,0 +1,71 @@
+/* Shore Watch: chart-room palette from the Claude Design handoff.
+   --faint is lifted from the handoff's #66787e to #7d9096 to pass WCAG AA (5.4:1). */
+:root {
+  --bg: #0a1013;
+  --panel: #0e1619;
+  --panel-2: #0f181b;
+  --map: #0e171b;
+  --band: #0d1518;
+  --raised: #152126;
+  --card: #121d21;
+  --well: #0b1316;
+  --line: #22323a;
+  --line-soft: #1c2a30;
+  --line-2: #2b3d45;
+  --line-3: #3a4f58;
+  --text: #dce4e5;
+  --text-hi: #eef2f2;
+  --text-2: #c3cfd1;
+  --muted: #93a5aa;
+  --faint: #7d9096;
+  --brass: #c9b68c;
+  --brass-hi: #e8dab8;
+  --brass-ink: #11191c;
+  --ok: #86c9a0;
+  --ok-line: #2f5242;
+  --warn: #e2b86a;
+  --warn-line: #5a4a2a;
+  --teal: #7fb0ab;
+  --fail: #e3907f;
+  --fail-line: #5c3a33;
+
+  --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100dvh; background: var(--bg); }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--brass); text-underline-offset: 3px; }
+a:hover { color: var(--brass-hi); }
+::selection { background: rgba(201, 182, 140, 0.35); color: var(--text-hi); }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+* { scrollbar-width: thin; scrollbar-color: var(--line-3) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--line-3); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

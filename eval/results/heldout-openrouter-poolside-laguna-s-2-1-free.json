@@ -1,0 +1,293 @@
+{
+  "model": "openrouter/poolside/laguna-s-2.1:free",
+  "set": "heldout",
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-25T09:39:12.63545Z",
+  "passed": 4,
+  "total": 9,
+  "tasks": [
+    {
+      "id": "forecast-storm-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Storm Éowyn head on; the office has not written",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-storm-tormar",
+        "pass": false,
+        "false_alarms": [
+          "eta_notice"
+        ]
+      },
+      "model_calls": 16,
+      "input_tokens": 38448,
+      "output_tokens": 6528,
+      "wall_ms": 187296,
+      "log": "eval/runs/heldout/eval-forecast-storm-tormar-tormar-spring-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "forecast-master-prepared-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Storm Éowyn ahead; the Master's report says he has it in hand",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-master-prepared-tormar",
+        "pass": true
+      },
+      "model_calls": 9,
+      "input_tokens": 14227,
+      "output_tokens": 1146,
+      "wall_ms": 49254,
+      "log": "eval/runs/heldout/eval-forecast-master-prepared-tormar-tormar-spring-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "forecast-new-low-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Éowyn easing as told; a new low on 27 and 28 Jan",
+      "forecast": "data/weather/s2-forecast-20250124T00.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-new-low-tormar",
+        "pass": false,
+        "missed": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 5,
+      "input_tokens": 10508,
+      "output_tokens": 1556,
+      "wall_ms": 47087,
+      "log": "eval/runs/heldout/eval-forecast-new-low-tormar-tormar-spring-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-later-confirmed",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth confirmed for 27 Jan 0600",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta",
+          "eta_notice",
+          "speed"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-confirmed",
+        "pass": false,
+        "false_alarms": [
+          "eta",
+          "speed"
+        ]
+      },
+      "model_calls": 20,
+      "input_tokens": 83961,
+      "output_tokens": 5248,
+      "wall_ms": 164760,
+      "log": "eval/runs/heldout/eval-berth-later-confirmed-valda-crest-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-delay-no-time",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth occupied, delay of 2 to 3 days, no berthing time yet",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-delay-no-time",
+        "pass": true
+      },
+      "model_calls": 5,
+      "input_tokens": 15031,
+      "output_tokens": 1282,
+      "wall_ms": 41181,
+      "log": "eval/runs/heldout/eval-berth-delay-no-time-valda-crest-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-may-shift",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth about 27 Jan 0600, but she may berth on arrival if the vessel ahead shifts",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta_notice",
+          "speed"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-may-shift",
+        "pass": false,
+        "false_alarms": [
+          "berth_delay",
+          "eta_notice",
+          "speed"
+        ]
+      },
+      "model_calls": 28,
+      "input_tokens": 100931,
+      "output_tokens": 8417,
+      "wall_ms": 284889,
+      "log": "eval/runs/heldout/eval-berth-may-shift-valda-crest-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "stop-lube-oil",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop for low lube oil pressure, worded without the usual words",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0610-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-lube-oil",
+        "pass": false,
+        "false_alarms": [
+          "eta_notice"
+        ]
+      },
+      "model_calls": 49,
+      "input_tokens": 224571,
+      "output_tokens": 15109,
+      "wall_ms": 448237,
+      "log": "eval/runs/heldout/eval-stop-lube-oil-tormar-spring-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "stop-split",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "stop on charterers' orders, then a breakdown on restart: off hire only for the breakdown",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0900-1140"
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-split",
+        "pass": true
+      },
+      "model_calls": 29,
+      "input_tokens": 151963,
+      "output_tokens": 18430,
+      "wall_ms": 432386,
+      "log": "eval/runs/heldout/eval-stop-split-tormar-spring-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "stop-steering-gear",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop to repair a steering gear leak",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0610-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-steering-gear",
+        "pass": true
+      },
+      "model_calls": 26,
+      "input_tokens": 115326,
+      "output_tokens": 6230,
+      "wall_ms": 192474,
+      "log": "eval/runs/heldout/eval-stop-steering-gear-tormar-spring-openrouter-poolside-laguna-s-2-1-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    }
+  ]
+}

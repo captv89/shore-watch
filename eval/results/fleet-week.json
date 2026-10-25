@@ -1,0 +1,893 @@
+{
+  "note": "Fleet-week, 30 ships, 20–26 Jan 2025. Rules desks: counted on every item. Agents: estimated from the recorded sample, kind by kind; see sample for what they did on the items they ran.",
+  "items": 374,
+  "items_by_kind": {
+    "berth": 6,
+    "crane": 2,
+    "engine_stop": 1,
+    "forecast_heavy": 31,
+    "forecast_known": 12,
+    "forecast_quiet": 135,
+    "fraud": 1,
+    "notice_due": 85,
+    "remark": 8,
+    "report": 75,
+    "report_error": 15,
+    "reroute": 3
+  },
+  "items_by_day": {
+    "2025-01-20": 49,
+    "2025-01-21": 54,
+    "2025-01-22": 58,
+    "2025-01-23": 58,
+    "2025-01-24": 57,
+    "2025-01-25": 54,
+    "2025-01-26": 44
+  },
+  "desks": [
+    {
+      "name": "rules-only",
+      "estimate": false,
+      "week": {
+        "items": 374,
+        "reached": 151,
+        "needed": 141,
+        "noise": 10,
+        "missed": 1,
+        "wrong": 6,
+        "prepared": 0,
+        "to_write": 155
+      },
+      "by_kind": {
+        "berth": {
+          "items": 6,
+          "reached": 3,
+          "needed": 2,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 2
+        },
+        "crane": {
+          "items": 2,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 1,
+          "wrong": 1,
+          "prepared": 0,
+          "to_write": 1
+        },
+        "engine_stop": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 2
+        },
+        "forecast_heavy": {
+          "items": 31,
+          "reached": 31,
+          "needed": 31,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 31
+        },
+        "forecast_known": {
+          "items": 12,
+          "reached": 3,
+          "needed": 0,
+          "noise": 3,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "forecast_quiet": {
+          "items": 135,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "fraud": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 1
+        },
+        "notice_due": {
+          "items": 85,
+          "reached": 85,
+          "needed": 85,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 85
+        },
+        "remark": {
+          "items": 8,
+          "reached": 8,
+          "needed": 2,
+          "noise": 6,
+          "missed": 0,
+          "wrong": 2,
+          "prepared": 0,
+          "to_write": 2
+        },
+        "report": {
+          "items": 75,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "report_error": {
+          "items": 15,
+          "reached": 15,
+          "needed": 15,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 24
+        },
+        "reroute": {
+          "items": 3,
+          "reached": 3,
+          "needed": 3,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 3,
+          "prepared": 0,
+          "to_write": 7
+        }
+      },
+      "by_day": {
+        "2025-01-20": {
+          "items": 49,
+          "reached": 21,
+          "needed": 19,
+          "noise": 2,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 20
+        },
+        "2025-01-21": {
+          "items": 54,
+          "reached": 17,
+          "needed": 16,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 2,
+          "prepared": 0,
+          "to_write": 16
+        },
+        "2025-01-22": {
+          "items": 58,
+          "reached": 27,
+          "needed": 27,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 3,
+          "prepared": 0,
+          "to_write": 33
+        },
+        "2025-01-23": {
+          "items": 58,
+          "reached": 24,
+          "needed": 21,
+          "noise": 3,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 0,
+          "to_write": 22
+        },
+        "2025-01-24": {
+          "items": 57,
+          "reached": 26,
+          "needed": 25,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 29
+        },
+        "2025-01-25": {
+          "items": 54,
+          "reached": 22,
+          "needed": 20,
+          "noise": 2,
+          "missed": 1,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 21
+        },
+        "2025-01-26": {
+          "items": 44,
+          "reached": 14,
+          "needed": 13,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 14
+        }
+      }
+    },
+    {
+      "name": "rules-coded",
+      "estimate": false,
+      "week": {
+        "items": 374,
+        "reached": 142,
+        "needed": 141,
+        "noise": 1,
+        "missed": 1,
+        "wrong": 4,
+        "prepared": 0,
+        "to_write": 155
+      },
+      "by_kind": {
+        "berth": {
+          "items": 6,
+          "reached": 3,
+          "needed": 2,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 2
+        },
+        "crane": {
+          "items": 2,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 1,
+          "wrong": 1,
+          "prepared": 0,
+          "to_write": 1
+        },
+        "engine_stop": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 2
+        },
+        "forecast_heavy": {
+          "items": 31,
+          "reached": 31,
+          "needed": 31,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 31
+        },
+        "forecast_known": {
+          "items": 12,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "forecast_quiet": {
+          "items": 135,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "fraud": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 1
+        },
+        "notice_due": {
+          "items": 85,
+          "reached": 85,
+          "needed": 85,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 85
+        },
+        "remark": {
+          "items": 8,
+          "reached": 2,
+          "needed": 2,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 2
+        },
+        "report": {
+          "items": 75,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "report_error": {
+          "items": 15,
+          "reached": 15,
+          "needed": 15,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 24
+        },
+        "reroute": {
+          "items": 3,
+          "reached": 3,
+          "needed": 3,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 3,
+          "prepared": 0,
+          "to_write": 7
+        }
+      },
+      "by_day": {
+        "2025-01-20": {
+          "items": 49,
+          "reached": 19,
+          "needed": 19,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 20
+        },
+        "2025-01-21": {
+          "items": 54,
+          "reached": 16,
+          "needed": 16,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 0,
+          "to_write": 16
+        },
+        "2025-01-22": {
+          "items": 58,
+          "reached": 27,
+          "needed": 27,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 3,
+          "prepared": 0,
+          "to_write": 33
+        },
+        "2025-01-23": {
+          "items": 58,
+          "reached": 21,
+          "needed": 21,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 22
+        },
+        "2025-01-24": {
+          "items": 57,
+          "reached": 25,
+          "needed": 25,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 29
+        },
+        "2025-01-25": {
+          "items": 54,
+          "reached": 21,
+          "needed": 20,
+          "noise": 1,
+          "missed": 1,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 21
+        },
+        "2025-01-26": {
+          "items": 44,
+          "reached": 13,
+          "needed": 13,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 14
+        }
+      }
+    },
+    {
+      "name": "gemma-4-31b-it",
+      "prompt_version": "staff-17",
+      "estimate": true,
+      "sample_items": 37,
+      "week": {
+        "items": 374,
+        "reached": 150.2,
+        "needed": 144.2,
+        "noise": 6,
+        "missed": 0,
+        "wrong": 1,
+        "prepared": 154.2,
+        "to_write": 1
+      },
+      "by_kind": {
+        "berth": {
+          "items": 6,
+          "reached": 3,
+          "needed": 3,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 3,
+          "to_write": 0
+        },
+        "crane": {
+          "items": 2,
+          "reached": 2,
+          "needed": 2,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 2,
+          "to_write": 0
+        },
+        "engine_stop": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 1,
+          "to_write": 1
+        },
+        "forecast_heavy": {
+          "items": 31,
+          "reached": 31,
+          "needed": 31,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 31,
+          "to_write": 0
+        },
+        "forecast_known": {
+          "items": 12,
+          "reached": 6,
+          "needed": 0,
+          "noise": 6,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "forecast_quiet": {
+          "items": 135,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "fraud": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 1,
+          "to_write": 0
+        },
+        "notice_due": {
+          "items": 85,
+          "reached": 85,
+          "needed": 85,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 85,
+          "to_write": 0
+        },
+        "remark": {
+          "items": 8,
+          "reached": 3.2,
+          "needed": 3.2,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 3.2,
+          "to_write": 0
+        },
+        "report": {
+          "items": 75,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "report_error": {
+          "items": 15,
+          "reached": 15,
+          "needed": 15,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 21,
+          "to_write": 0
+        },
+        "reroute": {
+          "items": 3,
+          "reached": 3,
+          "needed": 3,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 7,
+          "to_write": 0
+        }
+      },
+      "by_day": {
+        "2025-01-20": {
+          "items": 49,
+          "reached": 19.9,
+          "needed": 19.4,
+          "noise": 0.5,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 20.2,
+          "to_write": 0
+        },
+        "2025-01-21": {
+          "items": 54,
+          "reached": 16.3,
+          "needed": 15.8,
+          "noise": 0.5,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 16.6,
+          "to_write": 0
+        },
+        "2025-01-22": {
+          "items": 58,
+          "reached": 27,
+          "needed": 27,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 32.2,
+          "to_write": 0
+        },
+        "2025-01-23": {
+          "items": 58,
+          "reached": 21.7,
+          "needed": 20.7,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 21.5,
+          "to_write": 0
+        },
+        "2025-01-24": {
+          "items": 57,
+          "reached": 26.9,
+          "needed": 25.9,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 27.5,
+          "to_write": 0
+        },
+        "2025-01-25": {
+          "items": 54,
+          "reached": 23.5,
+          "needed": 22,
+          "noise": 1.5,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 22.8,
+          "to_write": 0
+        },
+        "2025-01-26": {
+          "items": 44,
+          "reached": 14.9,
+          "needed": 13.4,
+          "noise": 1.5,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 13.4,
+          "to_write": 1
+        }
+      },
+      "sample": {
+        "items": 37,
+        "reached": 25,
+        "needed": 24,
+        "noise": 1,
+        "missed": 0,
+        "wrong": 1,
+        "prepared": 30,
+        "to_write": 1
+      },
+      "sample_model_calls": 588,
+      "sample_input_tokens": 2167273,
+      "sample_output_tokens": 56636,
+      "sample_errors": 1
+    },
+    {
+      "name": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "prompt_version": "staff-17",
+      "estimate": true,
+      "sample_items": 37,
+      "week": {
+        "items": 374,
+        "reached": 150.2,
+        "needed": 144.2,
+        "noise": 6,
+        "missed": 0,
+        "wrong": 3,
+        "prepared": 155.2,
+        "to_write": 0
+      },
+      "by_kind": {
+        "berth": {
+          "items": 6,
+          "reached": 3,
+          "needed": 3,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 3,
+          "prepared": 3,
+          "to_write": 0
+        },
+        "crane": {
+          "items": 2,
+          "reached": 2,
+          "needed": 2,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 2,
+          "to_write": 0
+        },
+        "engine_stop": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 2,
+          "to_write": 0
+        },
+        "forecast_heavy": {
+          "items": 31,
+          "reached": 31,
+          "needed": 31,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 31,
+          "to_write": 0
+        },
+        "forecast_known": {
+          "items": 12,
+          "reached": 6,
+          "needed": 0,
+          "noise": 6,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "forecast_quiet": {
+          "items": 135,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "fraud": {
+          "items": 1,
+          "reached": 1,
+          "needed": 1,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 1,
+          "to_write": 0
+        },
+        "notice_due": {
+          "items": 85,
+          "reached": 85,
+          "needed": 85,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 85,
+          "to_write": 0
+        },
+        "remark": {
+          "items": 8,
+          "reached": 3.2,
+          "needed": 3.2,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 3.2,
+          "to_write": 0
+        },
+        "report": {
+          "items": 75,
+          "reached": 0,
+          "needed": 0,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 0
+        },
+        "report_error": {
+          "items": 15,
+          "reached": 15,
+          "needed": 15,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 21,
+          "to_write": 0
+        },
+        "reroute": {
+          "items": 3,
+          "reached": 3,
+          "needed": 3,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 7,
+          "to_write": 0
+        }
+      },
+      "by_day": {
+        "2025-01-20": {
+          "items": 49,
+          "reached": 19.9,
+          "needed": 19.4,
+          "noise": 0.5,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 20.2,
+          "to_write": 0
+        },
+        "2025-01-21": {
+          "items": 54,
+          "reached": 16.3,
+          "needed": 15.8,
+          "noise": 0.5,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 16.6,
+          "to_write": 0
+        },
+        "2025-01-22": {
+          "items": 58,
+          "reached": 27,
+          "needed": 27,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 32.2,
+          "to_write": 0
+        },
+        "2025-01-23": {
+          "items": 58,
+          "reached": 21.7,
+          "needed": 20.7,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 0.5,
+          "prepared": 21.5,
+          "to_write": 0
+        },
+        "2025-01-24": {
+          "items": 57,
+          "reached": 26.9,
+          "needed": 25.9,
+          "noise": 1,
+          "missed": 0,
+          "wrong": 1.5,
+          "prepared": 27.5,
+          "to_write": 0
+        },
+        "2025-01-25": {
+          "items": 54,
+          "reached": 23.5,
+          "needed": 22,
+          "noise": 1.5,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 22.8,
+          "to_write": 0
+        },
+        "2025-01-26": {
+          "items": 44,
+          "reached": 14.9,
+          "needed": 13.4,
+          "noise": 1.5,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 14.4,
+          "to_write": 0
+        }
+      },
+      "sample": {
+        "items": 37,
+        "reached": 25,
+        "needed": 24,
+        "noise": 1,
+        "missed": 0,
+        "wrong": 2,
+        "prepared": 31,
+        "to_write": 0
+      },
+      "sample_model_calls": 703,
+      "sample_input_tokens": 2647883,
+      "sample_output_tokens": 293323,
+      "sample_errors": 1
+    }
+  ]
+}

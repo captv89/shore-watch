@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.5",
+  "run_id": "s5-berth-valda-crest-openrouter-nvidia-nemotron-3-5-super-vl-free-r4",
+  "scene": "s5-berth",
+  "model": "openrouter/nvidia/nemotron-3.5-super-vl:free",
+  "recorded_at": "2026-10-24T07:24:09.807534Z",
+  "prompt_version": "staff-13",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 4,
+  "total_attempts": 5,
+  "notes": "25 model calls. Synthetic data; operator actions are simulated."
+}

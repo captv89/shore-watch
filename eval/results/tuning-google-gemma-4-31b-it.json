@@ -1,0 +1,66 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "set": "tuning",
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-25T08:52:56.294057Z",
+  "passed": 1,
+  "total": 2,
+  "tasks": [
+    {
+      "id": "forecast-gale-valda",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "a following gale in Biscay; the office has not written",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-gale-valda",
+        "pass": false,
+        "missed": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "wall_ms": 3373231,
+      "log": "eval/runs/tuning/eval-forecast-gale-valda-valda-crest-google-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "openai: call failed: OpenAI API error: 504 Gateway Timeout"
+    },
+    {
+      "id": "forecast-told-same-valda",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "the same gale the office already told the Master about",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-told-same-valda",
+        "pass": true
+      },
+      "model_calls": 6,
+      "input_tokens": 11345,
+      "output_tokens": 601,
+      "wall_ms": 5565172,
+      "log": "eval/runs/tuning/eval-forecast-told-same-valda-valda-crest-google-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    }
+  ]
+}

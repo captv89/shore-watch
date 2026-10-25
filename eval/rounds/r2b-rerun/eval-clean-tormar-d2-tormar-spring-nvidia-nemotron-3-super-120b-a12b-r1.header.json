@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.3",
+  "run_id": "eval-clean-tormar-d2-tormar-spring-nvidia-nemotron-3-super-120b-a12b-r1",
+  "scene": "eval-clean-tormar-d2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "recorded_at": "2026-10-19T22:07:39.067903Z",
+  "prompt_version": "staff-10",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "39 model calls. Synthetic data; operator actions are simulated."
+}

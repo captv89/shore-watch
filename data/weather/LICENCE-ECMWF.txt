@@ -1,0 +1,4 @@
+Weather data in this folder is adapted from ECMWF IFS open data (© 2025 ECMWF), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+Based on data and products of the European Centre for Medium-Range Weather Forecasts (ECMWF).
+Changes: cropped to the scene area and time window, wave values missing over land set to null, converted from GRIB2 to JSON (data/ecmwf/prepare.py).
+ECMWF does not accept any liability whatsoever for any error or omission in the data, their availability, or for any loss or damage arising from their use.

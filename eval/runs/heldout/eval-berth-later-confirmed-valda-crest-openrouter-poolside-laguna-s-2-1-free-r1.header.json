@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-berth-later-confirmed-valda-crest-openrouter-poolside-laguna-s-2-1-free-r1",
+  "scene": "eval-berth-later-confirmed",
+  "model": "openrouter/poolside/laguna-s-2.1:free",
+  "recorded_at": "2026-10-25T09:46:41.218318Z",
+  "prompt_version": "staff-17",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "20 model calls. Synthetic data; operator actions are simulated."
+}

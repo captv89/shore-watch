@@ -1,0 +1,270 @@
+{
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "set": "tuning",
+  "prompt_version": "staff-16",
+  "recorded_at": "2026-10-24T16:53:19.086728Z",
+  "passed": 7,
+  "total": 9,
+  "tasks": [
+    {
+      "id": "forecast-gale-valda",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "a following gale in Biscay; the office has not written",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-gale-valda",
+        "pass": true
+      },
+      "model_calls": 14,
+      "input_tokens": 33592,
+      "output_tokens": 4227,
+      "wall_ms": 173414,
+      "log": "eval/runs/tuning/eval-forecast-gale-valda-valda-crest-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "forecast-told-same-valda",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "the same gale the office already told the Master about",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-told-same-valda",
+        "pass": true
+      },
+      "model_calls": 6,
+      "input_tokens": 15129,
+      "output_tokens": 4585,
+      "wall_ms": 99327,
+      "log": "eval/runs/tuning/eval-forecast-told-same-valda-valda-crest-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "forecast-worse-than-told-tormar",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "Storm Éowyn much worse than the office told the Master",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-worse-than-told-tormar",
+        "pass": true
+      },
+      "model_calls": 12,
+      "input_tokens": 26444,
+      "output_tokens": 4133,
+      "wall_ms": 92776,
+      "log": "eval/runs/tuning/eval-forecast-worse-than-told-tormar-tormar-spring-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "berth-later-subject",
+      "set": "tuning",
+      "kind": "berth",
+      "planted": "berth about 27 Jan 0600, subject to the vessel ahead (Scene 5)",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta",
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-subject",
+        "pass": false,
+        "false_alarms": [
+          "eta"
+        ]
+      },
+      "model_calls": 23,
+      "input_tokens": 89150,
+      "output_tokens": 11206,
+      "wall_ms": 388389,
+      "log": "eval/runs/tuning/eval-berth-later-subject-valda-crest-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "berth-unchanged",
+      "set": "tuning",
+      "kind": "berth",
+      "planted": "line-up unchanged, berth on arrival",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-unchanged",
+        "pass": true
+      },
+      "model_calls": 6,
+      "input_tokens": 15866,
+      "output_tokens": 1785,
+      "wall_ms": 36454,
+      "log": "eval/runs/tuning/eval-berth-unchanged-valda-crest-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "berth-later-4h",
+      "set": "tuning",
+      "kind": "berth",
+      "planted": "berth free 4 h after the ETA",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-4h",
+        "pass": true
+      },
+      "model_calls": 7,
+      "input_tokens": 24269,
+      "output_tokens": 3960,
+      "wall_ms": 60814,
+      "log": "eval/runs/tuning/eval-berth-later-4h-valda-crest-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "stop-filters-choked",
+      "set": "tuning",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop, fuel filters choked (Scene 6)",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0610-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-filters-choked",
+        "pass": true
+      },
+      "model_calls": 29,
+      "input_tokens": 126967,
+      "output_tokens": 11003,
+      "wall_ms": 540252,
+      "log": "eval/runs/tuning/eval-stop-filters-choked-tormar-spring-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "stop-figures-disagree",
+      "set": "tuning",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop, but the speed over steaming time does not give the distance run",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "speed"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-figures-disagree",
+        "pass": false,
+        "missed": [
+          "speed"
+        ],
+        "false_alarms": [
+          "off_hire"
+        ]
+      },
+      "model_calls": 27,
+      "input_tokens": 131973,
+      "output_tokens": 20062,
+      "wall_ms": 1468276,
+      "log": "eval/runs/tuning/eval-stop-figures-disagree-tormar-spring-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "stop-charterers-orders",
+      "set": "tuning",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop drifting on charterers' orders: not off hire",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-charterers-orders",
+        "pass": true
+      },
+      "model_calls": 31,
+      "input_tokens": 145724,
+      "output_tokens": 12955,
+      "wall_ms": 341203,
+      "log": "eval/runs/tuning/eval-stop-charterers-orders-tormar-spring-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-16"
+    }
+  ]
+}

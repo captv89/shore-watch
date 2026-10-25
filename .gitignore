@@ -1,0 +1,34 @@
+.DS_Store
+.env
+.env.*
+*.local
+
+# Go
+/bin/
+
+# Web
+web/node_modules/
+web/dist/
+
+# Raw weather downloads stay out of git; prepared subsets in /data are committed
+*.grib
+*.grib2
+
+# Local CodeGraph index
+.codegraph/
+data/ecmwf/raw/
+eval/gemma-tuning.log
+eval/record-*.log
+eval/gemma-*.log
+.rec/
+
+# Fleet-week forecast cuts: rebuilt by cmd/fleetweek -jobs and
+# data/ecmwf/prepare.py --batch. Only the grids the recorded sample runs used
+# are committed (git add -f).
+data/weather/fleetweek/
+eval/*.log
+
+# Private working notes: kept locally, not published
+/docs/
+/CLAUDE.md
+/.superpowers/

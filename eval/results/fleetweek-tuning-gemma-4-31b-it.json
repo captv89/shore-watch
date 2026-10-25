@@ -1,0 +1,160 @@
+{
+  "model": "gemma-4-31b-it",
+  "set": "fleetweek-tuning",
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-24T19:17:39.996033Z",
+  "passed": 3,
+  "total": 4,
+  "tasks": [
+    {
+      "id": "fw-tune-0119-crane",
+      "set": "fleetweek-tuning",
+      "kind": "crane",
+      "planted": "one crane of four broken down, the work at its holds stopped: off hire pro rata",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "allowed": [
+          "eta_notice",
+          "other"
+        ],
+        "block": false,
+        "off_hire": "0115-0605 1/4"
+      },
+      "ship": "SIM-0119",
+      "at": "2025-01-20T09:00:00Z",
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-tune-0119-crane",
+        "pass": true
+      },
+      "model_calls": 6,
+      "input_tokens": 28486,
+      "output_tokens": 792,
+      "wall_ms": 770879,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0119-crane-bryony-head-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "fw-tune-0121-reroute-3",
+      "set": "fleetweek-tuning",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 4801 nm",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "route_change"
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0121",
+      "at": "2025-01-21T14:00:00Z",
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "route_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-tune-0121-reroute-3",
+        "pass": true
+      },
+      "model_calls": 37,
+      "input_tokens": 169766,
+      "output_tokens": 3219,
+      "wall_ms": 2940372,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0121-reroute-3-dunlin-gate-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-tune-0123-reroute-4",
+      "set": "fleetweek-tuning",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 4796 nm, and the VLSFO on board is 22 t short",
+      "key": {
+        "topics": [
+          "bunkers",
+          "eta_notice",
+          "route_change"
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0123",
+      "at": "2025-01-21T16:00:00Z",
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-tune-0123-reroute-4",
+        "pass": false,
+        "missed": [
+          "bunkers",
+          "eta_notice",
+          "route_change"
+        ]
+      },
+      "model_calls": 6,
+      "input_tokens": 38343,
+      "output_tokens": 747,
+      "wall_ms": 588308,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0123-reroute-4-fern-estuary-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "fw-tune-0120-crane",
+      "set": "fleetweek-tuning",
+      "kind": "crane",
+      "planted": "one crane of four broken down, the work at its holds stopped: off hire pro rata",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "allowed": [
+          "eta_notice",
+          "other"
+        ],
+        "block": false,
+        "off_hire": "1030-1650 1/4"
+      },
+      "ship": "SIM-0120",
+      "at": "2025-01-22T20:00:00Z",
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "1030-1650 1/4"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-tune-0120-crane",
+        "pass": true
+      },
+      "model_calls": 26,
+      "input_tokens": 93377,
+      "output_tokens": 2230,
+      "wall_ms": 1483423,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0120-crane-calder-sound-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    }
+  ]
+}

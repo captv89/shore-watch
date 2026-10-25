@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "s4-weather-fleet-openrouter-nvidia-nemotron-3-5-super-vl-free-r5",
+  "scene": "s4-weather",
+  "model": "openrouter/nvidia/nemotron-3.5-super-vl:free",
+  "recorded_at": "2026-10-24T12:04:16.61886Z",
+  "prompt_version": "staff-15",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 5,
+  "total_attempts": 5,
+  "notes": "19 model calls. Synthetic data; operator actions are simulated."
+}

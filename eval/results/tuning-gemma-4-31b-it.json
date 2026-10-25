@@ -1,0 +1,306 @@
+{
+  "model": "gemma-4-31b-it",
+  "set": "tuning",
+  "prompt_version": "staff-16",
+  "recorded_at": "2026-10-24T16:53:19.086771Z",
+  "passed": 6,
+  "total": 10,
+  "tasks": [
+    {
+      "id": "missing-consumption-tormar",
+      "set": "tuning",
+      "kind": "missing",
+      "planted": "no consumption figures",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "missing_figures"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "missing_figures"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "missing-consumption-tormar",
+        "pass": true
+      },
+      "model_calls": 22,
+      "input_tokens": 50011,
+      "output_tokens": 2079,
+      "wall_ms": 1470220,
+      "log": "eval/runs/tuning/eval-missing-consumption-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
+    },
+    {
+      "id": "forecast-gale-valda",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "a following gale in Biscay; the office has not written",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-gale-valda",
+        "pass": true
+      },
+      "model_calls": 12,
+      "input_tokens": 20509,
+      "output_tokens": 932,
+      "wall_ms": 1021452,
+      "log": "eval/runs/tuning/eval-forecast-gale-valda-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "forecast-told-same-valda",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "the same gale the office already told the Master about",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-told-same-valda",
+        "pass": true
+      },
+      "model_calls": 8,
+      "input_tokens": 17637,
+      "output_tokens": 637,
+      "wall_ms": 813706,
+      "log": "eval/runs/tuning/eval-forecast-told-same-valda-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "forecast-worse-than-told-tormar",
+      "set": "tuning",
+      "kind": "forecast",
+      "planted": "Storm Éowyn much worse than the office told the Master",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-worse-than-told-tormar",
+        "pass": false,
+        "missed": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 1,
+      "input_tokens": 877,
+      "output_tokens": 65,
+      "wall_ms": 505885,
+      "log": "eval/runs/tuning/eval-forecast-worse-than-told-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "berth-later-subject",
+      "set": "tuning",
+      "kind": "berth",
+      "planted": "berth about 27 Jan 0600, subject to the vessel ahead (Scene 5)",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-subject",
+        "pass": false,
+        "missed": [
+          "berth_delay"
+        ]
+      },
+      "model_calls": 1,
+      "input_tokens": 1165,
+      "output_tokens": 40,
+      "wall_ms": 143299,
+      "log": "eval/runs/tuning/eval-berth-later-subject-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "berth-unchanged",
+      "set": "tuning",
+      "kind": "berth",
+      "planted": "line-up unchanged, berth on arrival",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-unchanged",
+        "pass": true
+      },
+      "model_calls": 4,
+      "input_tokens": 12523,
+      "output_tokens": 304,
+      "wall_ms": 242698,
+      "log": "eval/runs/tuning/eval-berth-unchanged-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16"
+    },
+    {
+      "id": "berth-later-4h",
+      "set": "tuning",
+      "kind": "berth",
+      "planted": "berth free 4 h after the ETA",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-4h",
+        "pass": true
+      },
+      "model_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "wall_ms": 167878,
+      "log": "eval/runs/tuning/eval-berth-later-4h-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "stop-filters-choked",
+      "set": "tuning",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop, fuel filters choked (Scene 6)",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-filters-choked",
+        "pass": false,
+        "missed": [
+          "off_hire"
+        ]
+      },
+      "model_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "wall_ms": 262881,
+      "log": "eval/runs/tuning/eval-stop-filters-choked-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 503, Message: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later., Status: UNAVAILABLE, Details: []"
+    },
+    {
+      "id": "stop-figures-disagree",
+      "set": "tuning",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop, but the speed over steaming time does not give the distance run",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "speed"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0610-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-figures-disagree",
+        "pass": false,
+        "missed": [
+          "speed"
+        ],
+        "false_alarms": [
+          "off_hire"
+        ]
+      },
+      "model_calls": 24,
+      "input_tokens": 88565,
+      "output_tokens": 2682,
+      "wall_ms": 2731274,
+      "log": "eval/runs/tuning/eval-stop-figures-disagree-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    },
+    {
+      "id": "stop-charterers-orders",
+      "set": "tuning",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop drifting on charterers' orders: not off hire",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-charterers-orders",
+        "pass": true
+      },
+      "model_calls": 14,
+      "input_tokens": 54870,
+      "output_tokens": 1715,
+      "wall_ms": 1543315,
+      "log": "eval/runs/tuning/eval-stop-charterers-orders-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-16",
+      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+    }
+  ]
+}

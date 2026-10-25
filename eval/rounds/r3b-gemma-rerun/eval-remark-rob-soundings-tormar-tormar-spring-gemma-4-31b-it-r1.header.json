@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.3",
+  "run_id": "eval-remark-rob-soundings-tormar-tormar-spring-gemma-4-31b-it-r1",
+  "scene": "eval-remark-rob-soundings-tormar",
+  "model": "gemma-4-31b-it",
+  "recorded_at": "2026-10-20T10:30:08.940063Z",
+  "prompt_version": "staff-10",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "18 model calls. Synthetic data; operator actions are simulated."
+}

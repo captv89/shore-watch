@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-fw-0106-forecast-0122-marram-star-nvidia-nemotron-3-5-super-vl-120b-a12b-r1",
+  "scene": "eval-fw-0106-forecast-0122",
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "recorded_at": "2026-10-24T22:03:21.564409Z",
+  "prompt_version": "staff-17",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "12 model calls. Synthetic data; operator actions are simulated."
+}

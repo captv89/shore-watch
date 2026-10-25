@@ -1,0 +1,548 @@
+{
+  "model": "gemma-4-31b-it",
+  "set": "heldout",
+  "prompt_version": "staff-10",
+  "recorded_at": "2026-10-21T22:34:37.318532Z",
+  "passed": 20,
+  "total": 20,
+  "tasks": [
+    {
+      "id": "clean-valda-remark",
+      "set": "heldout",
+      "kind": "clean",
+      "planted": "nothing; a routine remark",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "clean-valda-remark",
+        "pass": true
+      },
+      "model_calls": 16,
+      "input_tokens": 42104,
+      "output_tokens": 1117,
+      "wall_ms": 1047112,
+      "log": "eval/runs/heldout/eval-clean-valda-remark-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "clean-valda-eta-1h",
+      "set": "heldout",
+      "kind": "clean",
+      "planted": "Master's ETA 1 h later, within the 2 h tolerance",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "clean-valda-eta-1h",
+        "pass": true
+      },
+      "model_calls": 14,
+      "input_tokens": 36329,
+      "output_tokens": 1127,
+      "wall_ms": 769791,
+      "log": "eval/runs/heldout/eval-clean-valda-eta-1h-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "eta-late-6h",
+      "set": "heldout",
+      "kind": "eta_inconsistent",
+      "planted": "Master's ETA 6 h later than distance over speed",
+      "key": {
+        "topics": [
+          "eta"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "eta-late-6h",
+        "pass": true
+      },
+      "model_calls": 18,
+      "input_tokens": 44068,
+      "output_tokens": 1469,
+      "wall_ms": 898476,
+      "log": "eval/runs/heldout/eval-eta-late-6h-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "notice-3day-and-change",
+      "set": "heldout",
+      "kind": "notice_due",
+      "planted": "3-day notice due and the ETA moved more than 12 h",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "notice-3day-and-change",
+        "pass": true
+      },
+      "model_calls": 18,
+      "input_tokens": 46231,
+      "output_tokens": 1596,
+      "wall_ms": 938620,
+      "log": "eval/runs/heldout/eval-notice-3day-and-change-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "rob-vlsfo-short",
+      "set": "heldout",
+      "kind": "rob",
+      "planted": "VLSFO ROB 4.0 t below yesterday's less consumption; a routine remark",
+      "key": {
+        "topics": [
+          "rob_vlsfo"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "rob_vlsfo"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "rob-vlsfo-short",
+        "pass": true
+      },
+      "model_calls": 22,
+      "input_tokens": 65698,
+      "output_tokens": 2161,
+      "wall_ms": 1542005,
+      "log": "eval/runs/heldout/eval-rob-vlsfo-short-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "rob-vlsfo-short-tormar",
+      "set": "heldout",
+      "kind": "rob",
+      "planted": "VLSFO ROB 6.0 t below yesterday's less consumption",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "rob_vlsfo"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "rob_vlsfo"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "rob-vlsfo-short-tormar",
+        "pass": true
+      },
+      "model_calls": 25,
+      "input_tokens": 69492,
+      "output_tokens": 2421,
+      "wall_ms": 1129676,
+      "log": "eval/runs/heldout/eval-rob-vlsfo-short-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "speed-mismatch-tormar",
+      "set": "heldout",
+      "kind": "speed",
+      "planted": "speed 13.4 kn against 288 nm in 24 h",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "speed"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "speed"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "speed-mismatch-tormar",
+        "pass": true
+      },
+      "model_calls": 24,
+      "input_tokens": 68426,
+      "output_tokens": 2307,
+      "wall_ms": 1197547,
+      "log": "eval/runs/heldout/eval-speed-mismatch-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "position-lat-typo",
+      "set": "heldout",
+      "kind": "position",
+      "planted": "latitude one degree out (a typed 1 for a 0)",
+      "key": {
+        "topics": [
+          "eta",
+          "position"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta",
+          "position"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "position-lat-typo",
+        "pass": true
+      },
+      "model_calls": 28,
+      "input_tokens": 94925,
+      "output_tokens": 2564,
+      "wall_ms": 2114982,
+      "log": "eval/runs/heldout/eval-position-lat-typo-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "missing-consumption",
+      "set": "heldout",
+      "kind": "missing",
+      "planted": "no consumption figures",
+      "key": {
+        "topics": [
+          "missing_figures"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "missing_figures"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "missing-consumption",
+        "pass": true
+      },
+      "model_calls": 16,
+      "input_tokens": 41798,
+      "output_tokens": 1409,
+      "wall_ms": 758310,
+      "log": "eval/runs/heldout/eval-missing-consumption-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "remark-engine-stop",
+      "set": "heldout",
+      "kind": "remarks",
+      "planted": "4 h engine stop; speed given over steaming time, explained in remarks",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "remark-engine-stop",
+        "pass": true
+      },
+      "model_calls": 19,
+      "input_tokens": 51025,
+      "output_tokens": 1848,
+      "wall_ms": 1040949,
+      "log": "eval/runs/heldout/eval-remark-engine-stop-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "remark-rob-soundings",
+      "set": "heldout",
+      "kind": "remarks",
+      "planted": "VLSFO ROB 4.2 t up; remarks: ROB corrected after soundings",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "remark-rob-soundings",
+        "pass": true
+      },
+      "model_calls": 15,
+      "input_tokens": 40530,
+      "output_tokens": 1407,
+      "wall_ms": 700788,
+      "log": "eval/runs/heldout/eval-remark-rob-soundings-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "remark-mgo-soundings",
+      "set": "heldout",
+      "kind": "remarks",
+      "planted": "MGO ROB 2.5 t up; remarks: ROB corrected after soundings",
+      "key": {
+        "topics": null,
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "remark-mgo-soundings",
+        "pass": true
+      },
+      "model_calls": 15,
+      "input_tokens": 40625,
+      "output_tokens": 1441,
+      "wall_ms": 802702,
+      "log": "eval/runs/heldout/eval-remark-mgo-soundings-valda-crest-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "weather-gale-over",
+      "set": "heldout",
+      "kind": "weather",
+      "planted": "consumption +18% in a gale; forecast puts the ETA at risk (Scene 2 D3)",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "forecast": "data/weather/s2-forecast-20250124T00.json",
+      "key": {
+        "topics": [
+          "eta_forecast"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_forecast"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "weather-gale-over",
+        "pass": true
+      },
+      "model_calls": 23,
+      "input_tokens": 72823,
+      "output_tokens": 2256,
+      "wall_ms": 940839,
+      "log": "eval/runs/heldout/eval-weather-gale-over-tormar-spring-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "weather-gale-on-warranty",
+      "set": "heldout",
+      "kind": "weather",
+      "planted": "consumption on warranty in a gale; forecast puts the ETA at risk",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "forecast": "data/weather/s2-forecast-20250124T00.json",
+      "key": {
+        "topics": [
+          "eta_forecast"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_forecast"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "weather-gale-on-warranty",
+        "pass": true
+      },
+      "model_calls": 21,
+      "input_tokens": 62665,
+      "output_tokens": 1869,
+      "wall_ms": 1035821,
+      "log": "eval/runs/heldout/eval-weather-gale-on-warranty-tormar-spring-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "fraud-lookalike-invoice",
+      "set": "heldout",
+      "kind": "fraud",
+      "planted": "lookalike domain; the invoice itself is ordinary",
+      "key": {
+        "topics": [],
+        "block": true,
+        "reasons": [
+          "lookalike_sender"
+        ]
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": true,
+        "reasons": [
+          "lookalike_sender"
+        ]
+      },
+      "grade": {
+        "task_id": "fraud-lookalike-invoice",
+        "pass": true
+      },
+      "model_calls": 3,
+      "input_tokens": 3753,
+      "output_tokens": 211,
+      "wall_ms": 161961,
+      "log": "eval/runs/heldout/eval-fraud-lookalike-invoice-ivelle-star-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "fraud-hacked-supplier-bank",
+      "set": "heldout",
+      "kind": "fraud",
+      "planted": "new bank account from the supplier's own address (hacked mailbox)",
+      "key": {
+        "topics": [
+          "payment_change"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "payment_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fraud-hacked-supplier-bank",
+        "pass": true
+      },
+      "model_calls": 4,
+      "input_tokens": 5623,
+      "output_tokens": 287,
+      "wall_ms": 399093,
+      "log": "eval/runs/heldout/eval-fraud-hacked-supplier-bank-ivelle-star-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "fraud-lookalike-charterer-docs",
+      "set": "heldout",
+      "kind": "fraud",
+      "planted": "lookalike charterer domain asks for documents to a new address",
+      "key": {
+        "topics": [],
+        "block": true,
+        "reasons": [
+          "lookalike_sender"
+        ]
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": true,
+        "reasons": [
+          "lookalike_sender",
+          "other"
+        ]
+      },
+      "grade": {
+        "task_id": "fraud-lookalike-charterer-docs",
+        "pass": true
+      },
+      "model_calls": 3,
+      "input_tokens": 3603,
+      "output_tokens": 296,
+      "wall_ms": 248719,
+      "log": "eval/runs/heldout/eval-fraud-lookalike-charterer-docs-ivelle-star-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "fraud-hacked-agent-pda",
+      "set": "heldout",
+      "kind": "fraud",
+      "planted": "port agent's own address asks to pay the advance to a new account",
+      "key": {
+        "topics": [
+          "payment_change"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "payment_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fraud-hacked-agent-pda",
+        "pass": true
+      },
+      "model_calls": 5,
+      "input_tokens": 6342,
+      "output_tokens": 245,
+      "wall_ms": 245013,
+      "log": "eval/runs/heldout/eval-fraud-hacked-agent-pda-ivelle-star-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "clean-agent-lineup",
+      "set": "heldout",
+      "kind": "clean_email",
+      "planted": "an ordinary berth line-up from the agent",
+      "key": {
+        "topics": [],
+        "allowed": [
+          "other",
+          "eta"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "other"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "clean-agent-lineup",
+        "pass": true
+      },
+      "model_calls": 6,
+      "input_tokens": 8509,
+      "output_tokens": 438,
+      "wall_ms": 236561,
+      "log": "eval/runs/heldout/eval-clean-agent-lineup-ivelle-star-gemma-4-31b-it-r1.jsonl"
+    },
+    {
+      "id": "clean-supplier-remittance",
+      "set": "heldout",
+      "kind": "clean_email",
+      "planted": "the supplier confirms a payment was received",
+      "key": {
+        "topics": [],
+        "allowed": [
+          "other"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "clean-supplier-remittance",
+        "pass": true
+      },
+      "model_calls": 2,
+      "input_tokens": 3040,
+      "output_tokens": 80,
+      "wall_ms": 96818,
+      "log": "eval/runs/heldout/eval-clean-supplier-remittance-ivelle-star-gemma-4-31b-it-r1.jsonl"
+    }
+  ]
+}

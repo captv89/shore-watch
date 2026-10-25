@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-stop-split-tormar-spring-nvidia-nemotron-3-5-super-vl-120b-a12b-r1",
+  "scene": "eval-stop-split",
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "recorded_at": "2026-10-25T08:47:09.837288Z",
+  "prompt_version": "staff-17",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "26 model calls. Synthetic data; operator actions are simulated."
+}

@@ -1,0 +1,162 @@
+{
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "set": "fleetweek-tuning",
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-24T19:17:39.997543Z",
+  "passed": 4,
+  "total": 4,
+  "tasks": [
+    {
+      "id": "fw-tune-0119-crane",
+      "set": "fleetweek-tuning",
+      "kind": "crane",
+      "planted": "one crane of four broken down, the work at its holds stopped: off hire pro rata",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "allowed": [
+          "eta_notice",
+          "other"
+        ],
+        "block": false,
+        "off_hire": "0115-0605 1/4"
+      },
+      "ship": "SIM-0119",
+      "at": "2025-01-20T09:00:00Z",
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0115-0605 1/4"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-tune-0119-crane",
+        "pass": true
+      },
+      "model_calls": 18,
+      "input_tokens": 70533,
+      "output_tokens": 6218,
+      "wall_ms": 504893,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0119-crane-bryony-head-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-tune-0121-reroute-3",
+      "set": "fleetweek-tuning",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 4801 nm",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "route_change"
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0121",
+      "at": "2025-01-21T14:00:00Z",
+      "decisions": {
+        "topics": [
+          "eta",
+          "eta_notice",
+          "route_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-tune-0121-reroute-3",
+        "pass": true
+      },
+      "model_calls": 24,
+      "input_tokens": 101293,
+      "output_tokens": 8633,
+      "wall_ms": 588352,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0121-reroute-3-dunlin-gate-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-tune-0123-reroute-4",
+      "set": "fleetweek-tuning",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 4796 nm, and the VLSFO on board is 22 t short",
+      "key": {
+        "topics": [
+          "bunkers",
+          "eta_notice",
+          "route_change"
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0123",
+      "at": "2025-01-21T16:00:00Z",
+      "decisions": {
+        "topics": [
+          "bunkers",
+          "eta",
+          "eta_notice",
+          "route_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-tune-0123-reroute-4",
+        "pass": true
+      },
+      "model_calls": 29,
+      "input_tokens": 140810,
+      "output_tokens": 13539,
+      "wall_ms": 612866,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0123-reroute-4-fern-estuary-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-tune-0120-crane",
+      "set": "fleetweek-tuning",
+      "kind": "crane",
+      "planted": "one crane of four broken down, the work at its holds stopped: off hire pro rata",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "allowed": [
+          "eta_notice",
+          "other"
+        ],
+        "block": false,
+        "off_hire": "1030-1650 1/4"
+      },
+      "ship": "SIM-0120",
+      "at": "2025-01-22T20:00:00Z",
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "1030-1650 1/4"
+        ]
+      },
+      "grade": {
+        "task_id": "fw-tune-0120-crane",
+        "pass": true
+      },
+      "model_calls": 16,
+      "input_tokens": 64561,
+      "output_tokens": 6967,
+      "wall_ms": 177327,
+      "log": "eval/runs/fleetweek-tuning/eval-fw-tune-0120-crane-calder-sound-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
+      "prompt_version": "staff-17"
+    }
+  ]
+}

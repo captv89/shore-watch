@@ -1,0 +1,40 @@
+{
+  "model": "gemma-4-31b-it",
+  "set": "tuning",
+  "prompt_version": "staff-10",
+  "recorded_at": "2026-10-21T15:48:24.215054Z",
+  "passed": 1,
+  "total": 1,
+  "tasks": [
+    {
+      "id": "missing-consumption-tormar",
+      "set": "tuning",
+      "kind": "missing",
+      "planted": "no consumption figures",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "eta_notice",
+          "missing_figures"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "missing_figures"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "missing-consumption-tormar",
+        "pass": true
+      },
+      "model_calls": 22,
+      "input_tokens": 50011,
+      "output_tokens": 2079,
+      "wall_ms": 1470220,
+      "log": "eval/runs/tuning/eval-missing-consumption-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl"
+    }
+  ]
+}

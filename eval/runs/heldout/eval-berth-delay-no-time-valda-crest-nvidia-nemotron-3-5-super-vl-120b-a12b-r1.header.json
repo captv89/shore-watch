@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-berth-delay-no-time-valda-crest-nvidia-nemotron-3-5-super-vl-120b-a12b-r1",
+  "scene": "eval-berth-delay-no-time",
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "recorded_at": "2026-10-25T08:24:01.106201Z",
+  "prompt_version": "staff-17",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "6 model calls. Synthetic data; operator actions are simulated."
+}

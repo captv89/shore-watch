@@ -1,0 +1,276 @@
+{
+  "model": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+  "set": "heldout",
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-25T07:51:24.838887Z",
+  "passed": 3,
+  "total": 9,
+  "tasks": [
+    {
+      "id": "forecast-storm-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Storm Éowyn head on; the office has not written",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-storm-tormar",
+        "pass": false,
+        "missed": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 94,
+      "input_tokens": 1226970,
+      "output_tokens": 41161,
+      "wall_ms": 1125324,
+      "log": "eval/runs/heldout/eval-forecast-storm-tormar-tormar-spring-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    },
+    {
+      "id": "forecast-master-prepared-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Storm Éowyn ahead; the Master's report says he has it in hand",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-master-prepared-tormar",
+        "pass": true
+      },
+      "model_calls": 87,
+      "input_tokens": 1242085,
+      "output_tokens": 36454,
+      "wall_ms": 862531,
+      "log": "eval/runs/heldout/eval-forecast-master-prepared-tormar-tormar-spring-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    },
+    {
+      "id": "forecast-new-low-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Éowyn easing as told; a new low on 27 and 28 Jan",
+      "forecast": "data/weather/s2-forecast-20250124T00.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-new-low-tormar",
+        "pass": false,
+        "missed": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 95,
+      "input_tokens": 1323987,
+      "output_tokens": 40803,
+      "wall_ms": 914181,
+      "log": "eval/runs/heldout/eval-forecast-new-low-tormar-tormar-spring-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    },
+    {
+      "id": "berth-later-confirmed",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth confirmed for 27 Jan 0600",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-confirmed",
+        "pass": false,
+        "missed": [
+          "berth_delay"
+        ]
+      },
+      "model_calls": 79,
+      "input_tokens": 1320091,
+      "output_tokens": 31583,
+      "wall_ms": 743029,
+      "log": "eval/runs/heldout/eval-berth-later-confirmed-valda-crest-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    },
+    {
+      "id": "berth-delay-no-time",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth occupied, delay of 2 to 3 days, no berthing time yet",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-delay-no-time",
+        "pass": true
+      },
+      "model_calls": 11,
+      "input_tokens": 38106,
+      "output_tokens": 1714,
+      "wall_ms": 53575,
+      "log": "eval/runs/heldout/eval-berth-delay-no-time-valda-crest-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-may-shift",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth about 27 Jan 0600, but she may berth on arrival if the vessel ahead shifts",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-may-shift",
+        "pass": true
+      },
+      "model_calls": 46,
+      "input_tokens": 638320,
+      "output_tokens": 22169,
+      "wall_ms": 599611,
+      "log": "eval/runs/heldout/eval-berth-may-shift-valda-crest-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "openai: response included no choices"
+    },
+    {
+      "id": "stop-lube-oil",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop for low lube oil pressure, worded without the usual words",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-lube-oil",
+        "pass": false,
+        "missed": [
+          "off_hire"
+        ]
+      },
+      "model_calls": 92,
+      "input_tokens": 974592,
+      "output_tokens": 31712,
+      "wall_ms": 805776,
+      "log": "eval/runs/heldout/eval-stop-lube-oil-tormar-spring-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    },
+    {
+      "id": "stop-split",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "stop on charterers' orders, then a breakdown on restart: off hire only for the breakdown",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0900-1140"
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-split",
+        "pass": false,
+        "missed": [
+          "off_hire"
+        ]
+      },
+      "model_calls": 95,
+      "input_tokens": 1295855,
+      "output_tokens": 27182,
+      "wall_ms": 621270,
+      "log": "eval/runs/heldout/eval-stop-split-tormar-spring-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    },
+    {
+      "id": "stop-steering-gear",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop to repair a steering gear leak",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "stop-steering-gear",
+        "pass": false,
+        "missed": [
+          "off_hire"
+        ]
+      },
+      "model_calls": 91,
+      "input_tokens": 1266172,
+      "output_tokens": 25075,
+      "wall_ms": 691019,
+      "log": "eval/runs/heldout/eval-stop-steering-gear-tormar-spring-openrouter-nvidia-nemotron-3-ultra-550b-a55b-free-r1.jsonl",
+      "prompt_version": "staff-17",
+      "error": "model call budget of 100 exceeded"
+    }
+  ]
+}

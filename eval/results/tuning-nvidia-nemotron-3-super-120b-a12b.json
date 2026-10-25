@@ -1,0 +1,66 @@
+{
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "set": "tuning",
+  "prompt_version": "staff-10",
+  "recorded_at": "2026-10-19T22:04:30.135935Z",
+  "passed": 2,
+  "total": 2,
+  "tasks": [
+    {
+      "id": "clean-tormar-d2",
+      "set": "tuning",
+      "kind": "clean",
+      "planted": "nothing; consumption 3% over warranty, within tolerance",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "clean-tormar-d2",
+        "pass": true
+      },
+      "model_calls": 39,
+      "input_tokens": 99908,
+      "output_tokens": 7199,
+      "wall_ms": 188937,
+      "log": "eval/runs/tuning/eval-clean-tormar-d2-tormar-spring-nvidia-nemotron-3-super-120b-a12b-r1.jsonl"
+    },
+    {
+      "id": "weather-good-day-over",
+      "set": "tuning",
+      "kind": "weather",
+      "planted": "consumption +15% on a good weather day (Scene 2 D1)",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "consumption"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "consumption"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "weather-good-day-over",
+        "pass": true
+      },
+      "model_calls": 50,
+      "input_tokens": 124363,
+      "output_tokens": 13044,
+      "wall_ms": 906214,
+      "log": "eval/runs/tuning/eval-weather-good-day-over-tormar-spring-nvidia-nemotron-3-super-120b-a12b-r1.jsonl"
+    }
+  ]
+}

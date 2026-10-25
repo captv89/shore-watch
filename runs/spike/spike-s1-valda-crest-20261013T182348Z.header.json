@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "run_id": "spike-s1-valda-crest-20261013T182348Z",
+  "scene": "s1-routine",
+  "model": "gemini-3.1-flash-lite",
+  "recorded_at": "2026-10-13T18:25:07.149057Z",
+  "prompt_version": "spike-1",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "seaRoute": "shorewatch@dcd6ddb"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "Phase 0 spike. 8 model calls. usd is 0: Gemini free tier."
+}

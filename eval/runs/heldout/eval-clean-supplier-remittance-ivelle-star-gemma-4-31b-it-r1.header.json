@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.3",
+  "run_id": "eval-clean-supplier-remittance-ivelle-star-gemma-4-31b-it-r1",
+  "scene": "eval-clean-supplier-remittance",
+  "model": "gemma-4-31b-it",
+  "recorded_at": "2026-10-21T20:24:34.560354Z",
+  "prompt_version": "staff-10",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "2 model calls. Synthetic data; operator actions are simulated."
+}

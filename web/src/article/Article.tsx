@@ -180,7 +180,7 @@ function Hero() {
 
   return (
     <header id="top" data-toc className="hero">
-      <div className="hero-strip a-mono"><span>Independent research note</span><span>October 2026</span><span>Not a product · not for sale</span></div>
+      <div className="hero-strip a-mono"><span>Independent research note</span><span>October 2026</span><span>Not a product</span></div>
       <div className="hero-head">
         <h1>Shore Watch</h1>
         <p className="hero-lede">A fleet grows from 10 ships to 30. Can the operator's desk keep up? I built Shore Watch, a desk of AI agents, to find out: what they do, where they stop, and every action on the record.</p>

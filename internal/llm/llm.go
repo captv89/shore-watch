@@ -57,6 +57,46 @@ func (n noThoughts) GenerateContent(ctx context.Context, req *model.LLMRequest, 
 	return n.LLM.GenerateContent(ctx, &out, stream)
 }
 
+// retryEmpty asks again when an OpenAI-compatible endpoint answers 200
+// with no choices. OpenRouter's free endpoints do this under load (six runs
+// stopped by it on 2026-10-26); the client retries only 429 and 5xx. Only
+// the first item can carry that error, so nothing has reached the caller.
+type retryEmpty struct{ model.LLM }
+
+const emptyTries = 5
+
+// pause is the wait before the second try; it doubles each time.
+var pause = 5 * time.Second
+
+func (r retryEmpty) GenerateContent(ctx context.Context, req *model.LLMRequest, stream bool) iter.Seq2[*model.LLMResponse, error] {
+	return func(yield func(*model.LLMResponse, error) bool) {
+		wait := pause
+		for try := 1; ; try++ {
+			first, empty := true, false
+			for resp, err := range r.LLM.GenerateContent(ctx, req, stream) {
+				if first && err != nil && strings.Contains(err.Error(), "no choices") && try < emptyTries {
+					empty = true
+					break
+				}
+				first = false
+				if !yield(resp, err) {
+					return
+				}
+			}
+			if !empty {
+				return
+			}
+			select {
+			case <-ctx.Done():
+				yield(nil, ctx.Err())
+				return
+			case <-time.After(wait):
+			}
+			wait *= 2
+		}
+	}
+}
+
 // paced spaces model calls at least `every` apart.
 type paced struct {
 	model.LLM
@@ -97,10 +137,14 @@ func newModel(ctx context.Context, modelID string) (model.LLM, error) {
 		if key == "" {
 			return nil, fmt.Errorf("OPEN_ROUTER_API_KEY is not set")
 		}
-		return openaimodel.NewModel(ctx, name, &openaimodel.ClientConfig{
+		m, err := openaimodel.NewModel(ctx, name, &openaimodel.ClientConfig{
 			APIKey: key, BaseURL: openRouterBaseURL, API: openaimodel.APIChatCompletions,
 			Options: []option.RequestOption{option.WithMaxRetries(10)},
 		})
+		if err != nil {
+			return nil, err
+		}
+		return retryEmpty{m}, nil
 	}
 	if strings.Contains(modelID, "/") {
 		key := os.Getenv("NVIDIA_API_KEY")
@@ -109,10 +153,14 @@ func newModel(ctx context.Context, modelID string) (model.LLM, error) {
 		}
 		// NIM speaks Chat Completions only, not the Responses API. ADK's
 		// adapter carries token usage, including reasoning tokens.
-		return openaimodel.NewModel(ctx, modelID, &openaimodel.ClientConfig{
+		m, err := openaimodel.NewModel(ctx, modelID, &openaimodel.ClientConfig{
 			APIKey: key, BaseURL: nimBaseURL, API: openaimodel.APIChatCompletions,
 			Options: []option.RequestOption{option.WithMaxRetries(10)},
 		})
+		if err != nil {
+			return nil, err
+		}
+		return retryEmpty{m}, nil
 	}
 	key := os.Getenv("GOOGLE_API_KEY")
 	if key == "" {

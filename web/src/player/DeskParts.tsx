@@ -80,12 +80,14 @@ function Rose({ s, colour }: { s: WxSample; colour: 0 | 1 | 2 }) {
   )
 }
 
-/** Fuel against the CP warranty, with where the figure sits against the desk's tolerance. */
+/** Fuel against the CP warranty, with where the figure sits against the "about" margin (older logs: the desk's tolerance). */
 export function FuelFlag() {
   const { desk } = usePlayer()
   const c = desk.consumption
   if (!c) return null
-  const tol = c.warrantedT * (1 + c.tolerancePct / 100)
+  const about = c.allowedT !== undefined
+  const limit = c.allowedT ?? c.warrantedT * (1 + c.tolerancePct / 100)
+  const fuelOver = c.fuelFlagged ?? c.flagged
   // Scale from 8% under the warranty to 25% over it.
   const lo = c.warrantedT * 0.92
   const hi = c.warrantedT * 1.25
@@ -94,18 +96,27 @@ export function FuelFlag() {
     <div className={`fuel-flag ${c.flagged ? 'tone-warn' : 'tone-ok'}`}>
       <div className="fuel-line">
         <span className="callout-icon" aria-hidden="true">{c.flagged ? <WarningIcon size={11} weight="bold" /> : <CheckIcon size={11} weight="bold" />}</span>
-        <span>
-          <strong>{c.flagged ? 'Over the warranty.' : 'Within the warranty.'}</strong> VLSFO <Num k="fuel" />, <Num k="excess" /> against the CP warranted <Num k="warranted" />.
-        </span>
+        {about ? (
+          <span>
+            <strong>{fuelOver ? 'Over the warranty.' : 'Within the warranty.'}</strong> VLSFO <Num k="fuel" />
+            {fuelOver ? <>, <Num k="overAllowed" /> over the <Num k="allowed" /> allowed</> : <>, within the <Num k="allowed" /> allowed</>}
+            {' '}(<Num k="excess" /> on the CP warranted <Num k="warranted" />).
+            {c.speedFlagged && <> Speed <Num k="speed" />, below the <Num k="minSpeed" /> allowed.</>}
+          </span>
+        ) : (
+          <span>
+            <strong>{c.flagged ? 'Over the warranty.' : 'Within the warranty.'}</strong> VLSFO <Num k="fuel" />, <Num k="excess" /> against the CP warranted <Num k="warranted" />.
+          </span>
+        )}
       </div>
-      <div className="fuel-scale" role="img" aria-label={`Warranted ${fmt1(c.warrantedT)} t, desk tolerance ${fmt1(tol)} t, reported ${fmt1(c.reportedT)} t: ${c.flagged ? 'above' : 'within'} the tolerance.`}>
+      <div className="fuel-scale" role="img" aria-label={`Warranted ${fmt1(c.warrantedT)} t, ${about ? 'allowed' : 'desk tolerance'} ${fmt1(limit)} t, reported ${fmt1(c.reportedT)} t: ${fuelOver ? 'above' : 'within'} the ${about ? 'allowed figure' : 'tolerance'}.`}>
         <div className="fuel-rail" />
-        <div className="fuel-band" style={{ left: at(c.warrantedT), width: `calc(${at(tol)} - ${at(c.warrantedT)})` }} />
-        <div className="fuel-over" style={{ left: at(tol) }} />
+        <div className="fuel-band" style={{ left: at(c.warrantedT), width: `calc(${at(limit)} - ${at(c.warrantedT)})` }} />
+        <div className="fuel-over" style={{ left: at(limit) }} />
         <div className="fuel-tick" style={{ left: at(c.warrantedT) }} />
-        <div className="fuel-tick is-warn" style={{ left: at(tol) }} />
+        <div className="fuel-tick is-warn" style={{ left: at(limit) }} />
         <span className="fuel-tick-label" style={{ left: at(c.warrantedT) }}>{fmt1(c.warrantedT)} CP</span>
-        <span className="fuel-tick-label is-warn" style={{ left: at(tol) }}>+{c.tolerancePct}% desk</span>
+        <span className="fuel-tick-label is-warn" style={{ left: at(limit) }}>{about ? `${fmt1(limit)} allowed` : `+${c.tolerancePct}% desk`}</span>
         <span className="fuel-marker" style={{ left: at(c.reportedT) }} />
         <span className="fuel-marker-label" style={{ left: at(c.reportedT) }}>{fmt1(c.reportedT)} t</span>
       </div>

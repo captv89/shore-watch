@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fmtWeek, weekRows, type FleetWeek, type WeekTotals } from './data'
+import { bookRows, fmtWeek, weekRows, type FleetWeek, type WeekTotals } from './data'
 
 const week = (over: Partial<WeekTotals> = {}): WeekTotals => ({ items: 374, reached: 151, needed: 141, noise: 10, missed: 1, wrong: 6, prepared: 0, to_write: 155, ...over })
 
@@ -34,5 +34,25 @@ describe('weekRows', () => {
   })
   it('renders nothing for an empty file', () => {
     expect(weekRows({ items: 0, desks: [] })).toEqual([])
+  })
+})
+
+describe('bookRows', () => {
+  const fw: FleetWeek = {
+    items: 374,
+    books: [10, 30],
+    desks: [
+      { name: 'rules-only', estimate: false, week: week(), by_book: { '10': week({ items: 139, reached: 63, to_write: 62 }), '30': week() } },
+      { name: 'nvidia/nemotron-3.5-super-vl-120b-a12b', estimate: true, week: week(), by_book: { '10': week({ prepared: 61.7, to_write: 0 }), '30': week({ prepared: 155.2, to_write: 0 }) } },
+    ],
+  }
+  it('gives a day of the week for each book, rules against the agent desk', () => {
+    expect(bookRows(fw)).toEqual([
+      { ships: 10, items: 20, reached: 9, rulesToWrite: 9, agentPrepared: 9, agentToWrite: 0 },
+      { ships: 30, items: 53, reached: 22, rulesToWrite: 22, agentPrepared: 22, agentToWrite: 0 },
+    ])
+  })
+  it('renders nothing for a file without books', () => {
+    expect(bookRows({ items: 0, desks: [] })).toEqual([])
   })
 })

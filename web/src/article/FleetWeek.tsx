@@ -1,4 +1,4 @@
-import { fleetWeek, weekItems, weekRows, weekSample, type WeekRow } from './data'
+import { bookRows, fleetWeek, weekItems, weekRows, weekSample, type WeekRow } from './data'
 
 // Fleet-week figure: what reached the operator in the week,
 // and who wrote the follow-up. Fill, outline and hatch carry the meaning, as
@@ -58,6 +58,39 @@ export function FleetWeek() {
       </div>
       <figcaption>
         One operator, 30 ships, 20–26 January 2025: {weekItems} items in the week (noon reports, forecasts, e-mails and port news). The rules desks are counted on every item. The agent figures are an estimate, scaled from {weekSample} items the agents ran, chosen across every kind of item; a zero means none in the sample. The agent desk is shown on two models: Nemotron 3.5 Super, which recorded the scenes, and Gemma 4 31B.
+      </figcaption>
+    </figure>
+  )
+}
+
+const books = bookRows(fleetWeek)
+
+/** The same week cut by book size: one operator with 10 ships, then 20, then 30. */
+export function BookTable() {
+  if (!books.length) return null
+  return (
+    <figure className="figure wk-books">
+      <div className="table-wrap">
+        <table className="table">
+          <thead>
+            <tr><th>Book</th><th>Items a day</th><th>Reach the operator</th><th>Rules desk: left to write</th><th>Agent desk: ready to approve</th><th>Agent desk: left to write</th></tr>
+          </thead>
+          <tbody>
+            {books.map((b) => (
+              <tr key={b.ships}>
+                <td>{b.ships} ships</td>
+                <td className="a-mono">{b.items}</td>
+                <td className="a-mono">{b.reached}</td>
+                <td className="a-mono">{b.rulesToWrite}</td>
+                <td className="a-mono">about {b.agentPrepared}</td>
+                <td className="a-mono">{b.agentToWrite === 0 ? '0 in the sample' : `about ${b.agentToWrite}`}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <figcaption>
+        The same week, cut by book size: the first 10, 20 and 30 ships by number. Figures are a day, averaged over the 7 days. Rules: the first rules desk, counted on every item. Agents: Nemotron 3.5 Super, estimated from the sample. The first 10 ships happen to be busier than the fleet's average.
       </figcaption>
     </figure>
   )

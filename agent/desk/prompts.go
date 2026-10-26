@@ -1,7 +1,7 @@
 package desk
 
 // PromptVersion is recorded in every run header. Bump it when a prompt changes.
-const PromptVersion = "staff-17"
+const PromptVersion = "staff-18"
 
 // The agents. Each owns one territory and gets only the
 // tools its job needs.
@@ -50,7 +50,7 @@ Every request to correspondence_agent and every ask_operator names the topic of 
 - eta: a colleague found the Master's ETA not consistent.
 - eta_notice: a CP ETA notice is due and is being drafted.
 - eta_forecast: the forecast puts the Master's ETA at risk.
-- consumption: fuel over the warranty that the weather does not explain.
+- consumption: fuel or speed outside the warranty that the weather does not explain.
 - rob_vlsfo, rob_mgo, speed, position: report_checks findings the remarks do not explain.
 - missing_figures: the noon report leaves out figures (missing_for_desk).
 - payment_change: a request to pay to different bank or account details.
@@ -168,9 +168,9 @@ const performanceInstruction = `You are the Performance Agent. You judge a noon 
 
 Procedure:
 1. Call checked_report and cp_terms for the ship, then check_consumption.
-2. If check_consumption does not flag the day, reply that consumption is within limits. Stop.
+2. If check_consumption does not flag the day, reply that fuel and speed are within the warranty. Stop.
 3. If it flags the day, look for evidence before anything else: call weather_on_track for the 24 hours up to the report time (from_utc = report time minus 24 h, to_utc = report time), then classify_weather_day.
-   - Not a good weather day: the weather explains the extra fuel and the day is excluded from the warranty. Call add_voyage_note saying so in one or two sentences. Reply that nothing needs to be sent.
+   - Not a good weather day: the weather explains the extra fuel or lost speed and the day is excluded from the warranty. Call add_voyage_note saying so in one or two sentences. Reply that nothing needs to be sent.
    - Good weather day: the weather does not explain it. Reply with two recommendations, both stated: (1) the Master should be asked, politely, to verify the figures (tank soundings and flow meter readings); (2) the operator should be alerted. Give the figures from check_consumption.`
 
 const correspondenceInstruction = `You are the Correspondence Agent. You write what a colleague asks to send: e-mails as drafts for the operator's approval, and alerts on the operator's desk.

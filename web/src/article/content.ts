@@ -11,7 +11,7 @@ export const TOC: [id: string, n: string, label: string][] = [
   ['scene-4', '4.4', 'Heavy weather ahead'],
   ['scene-5', '4.5', 'Berth not ready'],
   ['scene-6', '4.6', 'Main engine stopped'],
-  ['week', '5', 'One operator, 30 ships'],
+  ['week', '5', 'One operator, from 10 ships to 30'],
   ['ask', '6', 'One point of access'],
   ['built', '7', "How it's built"],
   ['eval', '8', 'How it was tested'],
@@ -33,7 +33,7 @@ export const TECH: Record<string, { text: string; skip: boolean }> = {
 export const DAY = [
   { time: '1200 ship time', title: 'Noon reports', text: 'Each ship reports position, speed, fuel and ETA. Check the figures add up.', scene: 'Scene 1 · Scene 2', href: '#scene-1' },
   { time: 'As the CP requires', title: 'ETA notices', text: "Pass the Master's ETA to port agents and cargo interests when the charter party says a notice is due.", scene: 'Scene 1', href: '#scene-1' },
-  { time: 'Daily', title: 'Fuel against the warranty', text: 'Compare consumption with the warranty, and know whether the weather counts.', scene: 'Scene 2', href: '#scene-2' },
+  { time: 'Daily', title: 'Speed and fuel against the warranty', text: 'Compare speed and consumption with the warranty, allowing for "about", and know whether the weather counts.', scene: 'Scene 2', href: '#scene-2' },
   { time: 'Twice a day', title: 'New forecasts', text: 'See what the weather holds for each ship, and stand behind the Master.', scene: 'Scene 4', href: '#scene-4' },
   { time: 'As news comes in', title: 'Port calls and hire', text: 'A later berth, a stop at sea: what they mean for speed, notices and the hire statement.', scene: 'Scene 5 · Scene 6', href: '#scene-5' },
   { time: 'All day', title: 'Invoices and e-mail', text: 'Owners, port agents, suppliers. Pay the right people, and spot the ones pretending.', scene: 'Scene 3', href: '#scene-3' },
@@ -148,7 +148,7 @@ export const FAQ: [string, string][] = [
   ['Is this real data?', 'The ships, reports and e-mails are invented. The weather and the shipping-lane network are real. Section 10 lists every layer.'],
   ['Is this weather routing?', 'No. The agent reads the weather to explain fuel and the ETA, and to decide what to tell the Master. It never plans a route.'],
   ['Why not just write rules?', 'For checking figures, rules are enough, and Section 8 shows it. The agents earn their place where context changes the answer, such as a remark that explains a figure, and in the work around the check: the notice, the query to the Master, the question to the operator. Section 5 shows what that work adds up to over a week.'],
-  ['Does it work for a whole fleet?', 'Section 5 runs 30 ships through one week. The agents handle one message at a time, so the design stays the same; the cost grows with the number of messages.'],
+  ['Does it work for a whole fleet?', 'Section 5 runs 30 ships through one week, and cuts it at 10, 20 and 30 ships for an operator who takes them on in steps. The agents handle one message at a time, so the design stays the same; the cost grows with the number of messages.'],
 ]
 
 export const SOURCES: [label: string, href: string, licence: string][] = [

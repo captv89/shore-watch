@@ -619,14 +619,19 @@ func (r *run) checkConsumption(ctx agent.Context, _ reportIn) (map[string]any, e
 	if err := decode(cpRes.output, &cp); err != nil {
 		return nil, err
 	}
-	res, err := checker.CheckConsumption(rep.ConsVLSFOt, cp.WarrantedVLSFOPerDayT)
+	res, err := checker.CheckConsumption(rep.ConsVLSFOt, cp.WarrantedVLSFOPerDayT, rep.AvgSpeedKn, cp.WarrantedSpeedKn)
 	if err != nil {
 		return nil, err
 	}
 	r.known.AddValue(res)
-	summary := fmt.Sprintf("Consumption within limits: %.1f t VLSFO against %.1f t warranted (%+.1f%%)", res.ReportedT, res.WarrantedT, res.ExcessPct)
-	if res.Flagged {
-		summary = fmt.Sprintf("Consumption flagged: %.1f t VLSFO is %+.1f%% against the CP warranted %.1f t a day (desk limit +%.0f%%)", res.ReportedT, res.ExcessPct, res.WarrantedT, res.TolerancePct)
+	summary := fmt.Sprintf("Within the warranty: %.1f t VLSFO against %.1f t allowed (about %.1f t)", res.ReportedT, res.AllowedT, res.WarrantedT)
+	switch {
+	case res.FuelFlagged && res.SpeedFlagged:
+		summary = fmt.Sprintf("Fuel and speed flagged: %.1f t VLSFO is %.1f t over the %.1f t allowed (%+.1f%% on the CP warranted %.1f t); %.1f kn is below the %.1f kn allowed", res.ReportedT, res.OverAllowedT, res.AllowedT, res.ExcessPct, res.WarrantedT, res.ReportedKn, res.MinSpeedKn)
+	case res.FuelFlagged:
+		summary = fmt.Sprintf("Consumption flagged: %.1f t VLSFO is %.1f t over the %.1f t allowed (%+.1f%% on the CP warranted %.1f t)", res.ReportedT, res.OverAllowedT, res.AllowedT, res.ExcessPct, res.WarrantedT)
+	case res.SpeedFlagged:
+		summary = fmt.Sprintf("Speed flagged: %.1f kn is below the %.1f kn allowed (CP warranted about %.1f kn)", res.ReportedKn, res.MinSpeedKn, res.WarrantedKn)
 	}
 	r.emit(eventlog.Event{Actor: eventlog.ActorChecker, Type: eventlog.TypeCheck, Summary: summary,
 		Detail: map[string]any{"result": res, "passed": !res.Flagged}, SourceRefs: []string{ref, cpRes.ref, r.reportRef}})

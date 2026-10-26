@@ -24,6 +24,8 @@ export interface SceneMeta {
   title: string
   /** Scenes whose weather is real ECMWF data get a tag saying so. */
   realWeather?: boolean
+  /** The run the player opens on, by attempt number (default: the first). */
+  openRun?: number
 }
 
 // With several players on the page, the keyboard drives the one used last
@@ -44,17 +46,19 @@ function useReducedMotion() {
 }
 
 /** Reads ?scene=2&run=2&event=25&view=Inside so a step can be linked to (and captured for video). */
-function fromUrl(runs: Run[], scene: number) {
+function fromUrl(runs: Run[], scene: number, openRun?: number) {
   const q = new URLSearchParams(window.location.search)
-  if (Number(q.get('scene') ?? 1) !== scene) return { run: 0, seq: 1, view: 'Split' as View, presenter: false, linked: false }
-  const run = Math.max(0, runs.findIndex((r) => r.header.attempt === Number(q.get('run'))))
+  const first = Math.max(0, runs.findIndex((r) => r.header.attempt === openRun))
+  if (Number(q.get('scene') ?? 1) !== scene) return { run: first, seq: 1, view: 'Split' as View, presenter: false, linked: false }
+  const asked = runs.findIndex((r) => r.header.attempt === Number(q.get('run')))
+  const run = asked >= 0 ? asked : first
   const view = VIEWS.find((v) => v.toLowerCase() === q.get('view')?.toLowerCase()) ?? 'Split'
   return { run, seq: Number(q.get('event')) || 1, view, presenter: q.has('presenter'), linked: q.has('scene') }
 }
 
 export function Player({ runs, meta }: { runs: Run[]; meta: SceneMeta }) {
   const [me] = useState(() => Symbol('player'))
-  const init = useMemo(() => fromUrl(runs, meta.number), [runs, meta.number])
+  const init = useMemo(() => fromUrl(runs, meta.number, meta.openRun), [runs, meta.number, meta.openRun])
   if (init.linked) activePlayer ??= me
   useEffect(() => { activePlayer ??= me }, [me])
   const [runIndex, setRunIndexRaw] = useState(init.run)

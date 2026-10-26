@@ -27,6 +27,14 @@ type staff struct {
 	// skipQuestion makes the Ops Agent send the ETA review straight to the
 	// Correspondence Agent, as a live model once did, without asking the operator.
 	skipQuestion bool
+	// skipColleagues makes the Ops Agent say a noon report was checked
+	// without calling anyone, as a live model once did (Scene 2, run 1),
+	// until code sends it back.
+	skipColleagues bool
+	// skipEntry makes the Voyage Agent report the off-hire entry proposed
+	// without calling propose_entry, once, as a live model did (Scene 6,
+	// runs 3 and 4).
+	skipEntry, skippedEntry bool
 	// stringFindings makes the first report_findings call send its findings
 	// as a JSON string, which the tool's schema rejects before it runs, as a
 	// live model once did.
@@ -187,6 +195,9 @@ func (s *staff) ops(req *model.LLMRequest) ([]*genai.Part, error) {
 	if strings.Contains(prompt, "A new forecast run is out") {
 		return s.opsForecast(req)
 	}
+	if s.skipColleagues && !strings.Contains(lastUserText(req), "Code check:") && len(responses(req, reportsName)) == 0 {
+		return []*genai.Part{text("The noon report has been processed through all three checks.")}, nil
+	}
 	id := regexp.MustCompile(`E-mail ID: (\S+)`).FindStringSubmatch(prompt)[1]
 	ship := regexp.MustCompile(`Ship ID: (\S+)`).FindStringSubmatch(prompt)[1]
 	ask := func(agent, request string) []*genai.Part {
@@ -199,6 +210,10 @@ func (s *staff) ops(req *model.LLMRequest) ([]*genai.Part, error) {
 	missing := strings.Contains(fmt.Sprint(response(req, reportsName)), "missing_for_desk")
 	perf, _ := response(req, performanceName)["result"].(string)
 	switch {
+	case strings.Contains(lastUserText(req), "Code check:") && strings.Contains(lastUserText(req), "off-hire entry") && len(responses(req, voyageName)) == 2:
+		first, _ := responses(req, voyageName)[0]["result"].(string)
+		stop := regexp.MustCompile(`stopped (\d\d \w{3} \d{4}) to (\d{4}) UTC`).FindStringSubmatch(first)
+		return ask(voyageName, "The operator agreed to the off-hire: propose the off-hire entry for "+stop[1]+" to "+stop[2]+" UTC. Topics: off_hire"), nil
 	case response(req, reportsName) == nil:
 		return ask(reportsName, "Extract the noon report."), nil
 	case response(req, voyageName) == nil:
@@ -266,6 +281,12 @@ func (s *staff) reports(req *model.LLMRequest) ([]*genai.Part, error) {
 func (s *staff) voyage(req *model.LLMRequest, sys string) ([]*genai.Part, error) {
 	request := firstUserText(req)
 	if strings.Contains(request, "operator agreed to the off-hire") {
+		// s.mu is held by GenerateContent.
+		skip := s.skipEntry && !s.skippedEntry
+		s.skippedEntry = s.skippedEntry || skip
+		if skip {
+			return []*genai.Part{text("Off-hire entry proposed; it waits for the operator.")}, nil
+		}
 		if response(req, "propose_entry") == nil {
 			m := regexp.MustCompile(`for (\d\d) Jan (\d\d)(\d\d) to (\d\d)(\d\d) UTC`).FindStringSubmatch(request)
 			at := func(h, mi string) string { return fmt.Sprintf("2025-01-%sT%s:%s:00Z", m[1], h, mi) }

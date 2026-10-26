@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"slices"
+	"strconv"
 	"strings"
 	"time"
 
@@ -17,6 +18,7 @@ import (
 type result struct {
 	ID        string         `json:"id"`
 	Kind      string         `json:"kind"`
+	Ship      string         `json:"ship"`
 	At        time.Time      `json:"at"`
 	Sample    bool           `json:"sample"`
 	Key       eval.Key       `json:"key"`
@@ -122,6 +124,9 @@ type Desk struct {
 	Week          Tally            `json:"week"`
 	ByKind        map[string]Tally `json:"by_kind"`
 	ByDay         map[string]Tally `json:"by_day"`
+	// ByBook is the week for the first 10, 20 and 30 ships, by ship ID:
+	// one operator's book at one, two and three times the usual 10 ships.
+	ByBook map[string]Tally `json:"by_book"`
 	// Sample is the agents' own record on the sample items, not scaled.
 	Sample       *Tally `json:"sample,omitempty"`
 	ModelCalls   int    `json:"sample_model_calls,omitempty"`
@@ -141,7 +146,10 @@ type Summary struct {
 	Items  int            `json:"items"`
 	ByKind map[string]int `json:"items_by_kind"`
 	ByDay  map[string]int `json:"items_by_day"`
-	Desks  []Desk         `json:"desks"`
+	// Books are the book sizes in by_book; BookShips the ships in each.
+	Books     []int               `json:"books"`
+	BookShips map[string][]string `json:"book_ships"`
+	Desks     []Desk              `json:"desks"`
 }
 
 func load(path string) (results, error) {
@@ -151,6 +159,32 @@ func load(path string) (results, error) {
 		return r, err
 	}
 	return r, json.Unmarshal(b, &r)
+}
+
+// Books are the book sizes the page shows: one operator with the usual 10
+// ships, then two and three times that (a phased introduction).
+var Books = []int{10, 20, 30}
+
+// bookShips gives the first n ships by ship ID for each book size.
+func bookShips(tasks []result) (map[int][]string, error) {
+	var ships []string
+	for _, t := range tasks {
+		if t.Ship == "" {
+			return nil, fmt.Errorf("%s: no ship", t.ID)
+		}
+		if !slices.Contains(ships, t.Ship) {
+			ships = append(ships, t.Ship)
+		}
+	}
+	slices.Sort(ships)
+	out := map[int][]string{}
+	for _, n := range Books {
+		if n > len(ships) {
+			return nil, fmt.Errorf("book of %d ships, but the week has %d", n, len(ships))
+		}
+		out[n] = ships[:n]
+	}
+	return out, nil
 }
 
 func dayOf(t time.Time) string { return t.UTC().Format("2006-01-02") }
@@ -172,12 +206,30 @@ func summarise() error {
 		s.ByKind[t.Kind]++
 		s.ByDay[dayOf(t.At)]++
 	}
+	books, err := bookShips(week.Tasks)
+	if err != nil {
+		return err
+	}
+	s.Books, s.BookShips = Books, map[string][]string{}
+	for _, n := range Books {
+		s.BookShips[strconv.Itoa(n)] = books[n]
+	}
+	// addBooks adds an item's tally to every book its ship is in.
+	addBooks := func(d *Desk, t result, o Tally) {
+		for _, n := range Books {
+			if slices.Contains(books[n], t.Ship) {
+				b := d.ByBook[strconv.Itoa(n)]
+				b.add(o, 1)
+				d.ByBook[strconv.Itoa(n)] = b
+			}
+		}
+	}
 	for _, b := range []string{eval.RulesOnly, eval.RulesCoded} {
 		r, err := load(filepath.Join("eval", "results", "fleetweek-"+b+".json"))
 		if err != nil {
 			return err
 		}
-		d := Desk{Name: b, ByKind: map[string]Tally{}, ByDay: map[string]Tally{}}
+		d := Desk{Name: b, ByKind: map[string]Tally{}, ByDay: map[string]Tally{}, ByBook: map[string]Tally{}}
 		for _, t := range r.Tasks {
 			o := tallyOne(t, false)
 			d.Week.add(o, 1)
@@ -185,6 +237,7 @@ func summarise() error {
 			k.add(o, 1)
 			dy.add(o, 1)
 			d.ByKind[t.Kind], d.ByDay[dayOf(t.At)] = k, dy
+			addBooks(&d, t, o)
 		}
 		s.Desks = append(s.Desks, d)
 	}
@@ -199,7 +252,7 @@ func summarise() error {
 		if err != nil {
 			return err
 		}
-		d := Desk{Name: r.Model, PromptVersion: r.PromptVersion, Estimate: true, ByKind: map[string]Tally{}, ByDay: map[string]Tally{}, Sample: &Tally{}}
+		d := Desk{Name: r.Model, PromptVersion: r.PromptVersion, Estimate: true, ByKind: map[string]Tally{}, ByDay: map[string]Tally{}, ByBook: map[string]Tally{}, Sample: &Tally{}}
 		// The sample's average outcome for each kind.
 		perKind := map[string]Tally{}
 		n := map[string]int{}
@@ -239,6 +292,7 @@ func summarise() error {
 			k.add(o, 1)
 			dy.add(o, 1)
 			d.ByKind[t.Kind], d.ByDay[dayOf(t.At)] = k, dy
+			addBooks(&d, t, o)
 		}
 		d.Sample.round()
 		s.Desks = append(s.Desks, d)
@@ -254,6 +308,10 @@ func summarise() error {
 		for k, v := range d.ByDay {
 			v.round()
 			d.ByDay[k] = v
+		}
+		for k, v := range d.ByBook {
+			v.round()
+			d.ByBook[k] = v
 		}
 	}
 	b, err := json.MarshalIndent(s, "", "  ")

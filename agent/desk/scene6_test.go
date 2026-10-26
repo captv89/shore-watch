@@ -18,6 +18,26 @@ import (
 // prices the off-hire; the operator decides; then the off-hire entry and the
 // e-mail to the owner wait at the Approval gate. No query to the Master.
 func TestScene6Pipeline(t *testing.T) {
+	scene6Pipeline(t, &staff{})
+}
+
+// TestScene6SkippedEntry: a Voyage Agent that reports the off-hire entry
+// proposed without proposing it is caught by the Follow-through check, and
+// the entry then reaches the queue.
+func TestScene6SkippedEntry(t *testing.T) {
+	events := scene6Pipeline(t, &staff{skipEntry: true})
+	var sentBack, closed bool
+	for _, e := range events {
+		sentBack = sentBack || strings.HasPrefix(e.Summary, "Follow-through check: the operator said yes, but not in the approval queue: the off-hire entry")
+		closed = closed || e.Summary == "Follow-through check: everything the operator agreed to is now in the approval queue"
+	}
+	if !sentBack || !closed {
+		t.Errorf("sent back %v, closed %v: want both", sentBack, closed)
+	}
+}
+
+func scene6Pipeline(t *testing.T, m *staff) []eventlog.Event {
+	t.Helper()
 	scene1(t) // loads the graph
 	sc, err := sim.Scene6(graph)
 	if err != nil {
@@ -27,7 +47,6 @@ func TestScene6Pipeline(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	m := &staff{}
 	res, err := Record(context.Background(), Config{
 		Episodes: []sim.Scene{sc}, Graph: graph, Weather: wx, Model: m, ModelID: "scripted", Attempt: 1, TotalAttempts: 1, OutDir: t.TempDir(), MaxModelCalls: 60,
 	})
@@ -86,4 +105,5 @@ func TestScene6Pipeline(t *testing.T) {
 			t.Errorf("a draft to the Master: the remark explains the figures")
 		}
 	}
+	return events
 }

@@ -24,6 +24,79 @@
     "2025-01-25": 54,
     "2025-01-26": 44
   },
+  "books": [
+    10,
+    20,
+    30
+  ],
+  "book_ships": {
+    "10": [
+      "SIM-0101",
+      "SIM-0102",
+      "SIM-0103",
+      "SIM-0104",
+      "SIM-0105",
+      "SIM-0106",
+      "SIM-0107",
+      "SIM-0108",
+      "SIM-0109",
+      "SIM-0110"
+    ],
+    "20": [
+      "SIM-0101",
+      "SIM-0102",
+      "SIM-0103",
+      "SIM-0104",
+      "SIM-0105",
+      "SIM-0106",
+      "SIM-0107",
+      "SIM-0108",
+      "SIM-0109",
+      "SIM-0110",
+      "SIM-0111",
+      "SIM-0112",
+      "SIM-0113",
+      "SIM-0114",
+      "SIM-0115",
+      "SIM-0116",
+      "SIM-0117",
+      "SIM-0118",
+      "SIM-0119",
+      "SIM-0120"
+    ],
+    "30": [
+      "SIM-0101",
+      "SIM-0102",
+      "SIM-0103",
+      "SIM-0104",
+      "SIM-0105",
+      "SIM-0106",
+      "SIM-0107",
+      "SIM-0108",
+      "SIM-0109",
+      "SIM-0110",
+      "SIM-0111",
+      "SIM-0112",
+      "SIM-0113",
+      "SIM-0114",
+      "SIM-0115",
+      "SIM-0116",
+      "SIM-0117",
+      "SIM-0118",
+      "SIM-0119",
+      "SIM-0120",
+      "SIM-0121",
+      "SIM-0122",
+      "SIM-0123",
+      "SIM-0124",
+      "SIM-0125",
+      "SIM-0126",
+      "SIM-0127",
+      "SIM-0128",
+      "SIM-0129",
+      "SIM-0130"
+    ]
+  },
   "desks": [
     {
       "name": "rules-only",
@@ -230,6 +303,38 @@
           "wrong": 0,
           "prepared": 0,
           "to_write": 14
+        }
+      },
+      "by_book": {
+        "10": {
+          "items": 139,
+          "reached": 63,
+          "needed": 60,
+          "noise": 3,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 0,
+          "to_write": 62
+        },
+        "20": {
+          "items": 253,
+          "reached": 109,
+          "needed": 104,
+          "noise": 5,
+          "missed": 1,
+          "wrong": 2,
+          "prepared": 0,
+          "to_write": 112
+        },
+        "30": {
+          "items": 374,
+          "reached": 151,
+          "needed": 141,
+          "noise": 10,
+          "missed": 1,
+          "wrong": 6,
+          "prepared": 0,
+          "to_write": 155
         }
       }
     },
@@ -439,6 +544,38 @@
           "prepared": 0,
           "to_write": 14
         }
+      },
+      "by_book": {
+        "10": {
+          "items": 139,
+          "reached": 60,
+          "needed": 60,
+          "noise": 0,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 0,
+          "to_write": 62
+        },
+        "20": {
+          "items": 253,
+          "reached": 105,
+          "needed": 104,
+          "noise": 1,
+          "missed": 1,
+          "wrong": 1,
+          "prepared": 0,
+          "to_write": 112
+        },
+        "30": {
+          "items": 374,
+          "reached": 142,
+          "needed": 141,
+          "noise": 1,
+          "missed": 1,
+          "wrong": 4,
+          "prepared": 0,
+          "to_write": 155
+        }
       }
     },
     {
@@ -647,6 +784,38 @@
           "missed": 0,
           "wrong": 1,
           "prepared": 13.4,
+          "to_write": 1
+        }
+      },
+      "by_book": {
+        "10": {
+          "items": 139,
+          "reached": 62.3,
+          "needed": 59.3,
+          "noise": 3,
+          "missed": 0,
+          "wrong": 0,
+          "prepared": 61.7,
+          "to_write": 0
+        },
+        "20": {
+          "items": 253,
+          "reached": 110.7,
+          "needed": 105.7,
+          "noise": 5,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 110.5,
+          "to_write": 1
+        },
+        "30": {
+          "items": 374,
+          "reached": 150.2,
+          "needed": 144.2,
+          "noise": 6,
+          "missed": 0,
+          "wrong": 1,
+          "prepared": 154.2,
           "to_write": 1
         }
       },
@@ -873,6 +1042,38 @@
           "missed": 0,
           "wrong": 0,
           "prepared": 14.4,
+          "to_write": 0
+        }
+      },
+      "by_book": {
+        "10": {
+          "items": 139,
+          "reached": 62.3,
+          "needed": 59.3,
+          "noise": 3,
+          "missed": 0,
+          "wrong": 1.5,
+          "prepared": 61.7,
+          "to_write": 0
+        },
+        "20": {
+          "items": 253,
+          "reached": 110.7,
+          "needed": 105.7,
+          "noise": 5,
+          "missed": 0,
+          "wrong": 2.5,
+          "prepared": 111.5,
+          "to_write": 0
+        },
+        "30": {
+          "items": 374,
+          "reached": 150.2,
+          "needed": 144.2,
+          "noise": 6,
+          "missed": 0,
+          "wrong": 3,
+          "prepared": 155.2,
           "to_write": 0
         }
       },

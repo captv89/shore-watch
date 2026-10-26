@@ -65,7 +65,7 @@ func TestScene2Story(t *testing.T) {
 		if n.Due {
 			t.Errorf("episode %d: notice due: %v", i, n.Reasons)
 		}
-		cons, err := checker.CheckConsumption(rep.ConsVLSFO, ep.Voyage.CP.WarrantedVLSFOPerDayT)
+		cons, err := checker.CheckConsumption(rep.ConsVLSFO, ep.Voyage.CP.WarrantedVLSFOPerDayT, rep.SpeedKn, ep.Voyage.CP.WarrantedSpeedKn)
 		if err != nil {
 			t.Fatal(err)
 		}

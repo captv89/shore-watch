@@ -28,7 +28,7 @@ func TestScene6Story(t *testing.T) {
 	if len(ids) != 1 || ids[0] != "speed" {
 		t.Errorf("report checks flag %v, want only speed", ids)
 	}
-	if c, _ := checker.CheckConsumption(rep.ConsVLSFO, sc.Voyage.CP.WarrantedVLSFOPerDayT); c.Flagged {
+	if c, _ := checker.CheckConsumption(rep.ConsVLSFO, sc.Voyage.CP.WarrantedVLSFOPerDayT, rep.SpeedKn, sc.Voyage.CP.WarrantedSpeedKn); c.Flagged {
 		t.Errorf("consumption flagged: %+v", c)
 	}
 	n := checker.CheckNotices(rep.Time, rep.MasterETA, sc.Voyage.CP, sc.Voyage.Notices)

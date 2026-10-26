@@ -1,10 +1,10 @@
 {
-  "schema_version": "1.5",
+  "schema_version": "1.6",
   "run_id": "s6-offhire-tormar-spring-nvidia-nemotron-3-5-super-vl-120b-a12b-r2",
   "scene": "s6-offhire",
   "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
-  "recorded_at": "2026-10-24T09:20:32.122883Z",
-  "prompt_version": "staff-15",
+  "recorded_at": "2026-10-26T19:58:03.156456Z",
+  "prompt_version": "staff-18",
   "tool_versions": {
     "adk-go": "v2.6.0",
     "network": "Eurostat marnet_plus_5km",
@@ -13,5 +13,5 @@
   "seed": 0,
   "attempt": 2,
   "total_attempts": 5,
-  "notes": "31 model calls. Synthetic data; operator actions are simulated."
+  "notes": "28 model calls. Synthetic data; operator actions are simulated."
 }

@@ -308,7 +308,7 @@ export interface DeskState {
   day: number
   /** Event at which each e-mail so far arrived. */
   dayStarts: number[]
-  consumption?: { ref: string; reportedT: number; warrantedT: number; excessPct: number; tolerancePct: number; flagged: boolean }
+  consumption?: { ref: string; reportedT: number; warrantedT: number; excessPct: number; tolerancePct: number; flagged: boolean; allowedT?: number; overAllowedT?: number; overAllowedPct?: number; fuelFlagged?: boolean; speedKn?: number; minSpeedKn?: number; warrantedKn?: number; speedFlagged?: boolean }
   weather?: {
     ref: string
     seq: number
@@ -441,7 +441,10 @@ export function deskState(events: RunEvent[], seq: number): DeskState {
           s.notices = { ref: first, due: r.due === true, daysToEta: num(r.days_to_eta) ?? 0, thresholdDays: num(r.threshold_due_days), movedH: num(r.eta_moved_hours) ?? 0, limitH: num(r.change_limit_hours) ?? 0, lastNoticeEta: str(r.last_notice_eta) }
         } else if (first.startsWith('tool:check_consumption')) {
           const r = obj(d.result)
-          s.consumption = { ref: first, reportedT: num(r.reported_vlsfo_t) ?? 0, warrantedT: num(r.warranted_vlsfo_t) ?? 0, excessPct: num(r.excess_pct) ?? 0, tolerancePct: num(r.tolerance_pct) ?? 0, flagged: r.flagged === true }
+          s.consumption = { ref: first, reportedT: num(r.reported_vlsfo_t) ?? 0, warrantedT: num(r.warranted_vlsfo_t) ?? 0, excessPct: num(r.excess_pct) ?? 0, tolerancePct: num(r.tolerance_pct) ?? 0, flagged: r.flagged === true,
+            // Since decision 109: the "about" margins. Older logs have none of these.
+            allowedT: num(r.allowed_vlsfo_t), overAllowedT: num(r.over_allowed_t), overAllowedPct: num(r.over_allowed_pct), fuelFlagged: r.fuel_flagged === undefined ? undefined : r.fuel_flagged === true,
+            speedKn: num(r.reported_speed_kn), minSpeedKn: num(r.min_speed_kn), warrantedKn: num(r.warranted_speed_kn), speedFlagged: r.speed_flagged === true }
         } else if (first.startsWith('tool:classify_weather_day')) {
           const r = obj(d.result)
           s.weatherDay = { ref: first, classified: r.classified === true, good: r.good_weather_day === true, maxBf: num(r.max_beaufort) ?? 0, maxDouglas: num(r.max_douglas) ?? 0, limitBf: num(r.limit_beaufort) ?? 0, limitDouglas: num(r.limit_douglas) ?? 0 }
@@ -778,6 +781,7 @@ export function draftNumbers(s: DeskState): [string, number][] {
   if (s.report?.speedKn !== undefined) out.push(['speed', s.report.speedKn])
   if (s.eta) out.push(['diff', Math.abs(s.eta.differenceH)])
   if (s.consumption) out.push(['fuel', s.consumption.reportedT], ['warranted', s.consumption.warrantedT], ['excess', Math.abs(s.consumption.excessPct)])
+  if (s.consumption?.allowedT !== undefined) out.push(['allowed', s.consumption.allowedT], ['overAllowed', s.consumption.overAllowedT ?? 0])
   if (s.forecast) out.push(['fcDiff', Math.abs(s.forecast.differenceH)])
   if (s.advice) out.push(['adviceKn', s.advice.speedKn], ['anchorH', s.advice.anchorH], ['fuelSaved', s.advice.vlsfoSavedT], ['baseKn', s.advice.baseKn], ['pilotH', s.advice.pilotH])
   if (s.stoppage) out.push(['stopH', s.stoppage.stopH], ['steamH', s.stoppage.steamingH])
@@ -847,7 +851,16 @@ export function numberSources(s: DeskState): Record<string, NumberSource> {
   if (s.consumption) {
     const c = s.consumption
     out.fuel = { label: 'VLSFO used, last 24 h', value: `${fmt1(c.reportedT)} t`, ref: s.report?.ref ?? c.ref, field: `cons_vlsfo_t = ${c.reportedT}`, plain: 'Reported by the Master in the noon report. The Reports Agent copied it, and code checked it against the e-mail.' }
-    out.excess = { label: 'Over the CP warranty', value: `${c.excessPct > 0 ? '+' : ''}${fmt1(c.excessPct)}%`, ref: c.ref, field: `excess_pct = ${c.excessPct}`, plain: `Worked out in code: (${fmt1(c.reportedT)} − ${fmt1(c.warrantedT)}) ÷ ${fmt1(c.warrantedT)}. The desk looks into anything over +${c.tolerancePct}%.` }
+    out.excess = { label: 'Over the CP warranty', value: `${c.excessPct > 0 ? '+' : ''}${fmt1(c.excessPct)}%`, ref: c.ref, field: `excess_pct = ${c.excessPct}`, plain: c.allowedT === undefined
+      ? `Worked out in code: (${fmt1(c.reportedT)} − ${fmt1(c.warrantedT)}) ÷ ${fmt1(c.warrantedT)}. The desk looks into anything over +${c.tolerancePct}%.`
+      : `Worked out in code: (${fmt1(c.reportedT)} − ${fmt1(c.warrantedT)}) ÷ ${fmt1(c.warrantedT)}, against the warranted figure itself. A claim starts from the allowed figure instead.` }
+    if (c.allowedT !== undefined) {
+      out.allowed = { label: 'Allowed under "about"', value: `${fmt1(c.allowedT)} t a day`, ref: c.ref, field: `allowed_vlsfo_t = ${c.allowedT}`, plain: `The CP says about ${fmt1(c.warrantedT)} t. English law reads "about" as a margin of ${c.tolerancePct}% in the owner's favour (The Al Bida, 1987), so ${fmt1(c.warrantedT)} × ${1 + c.tolerancePct / 100}.` }
+      out.overAllowed = { label: 'Over the allowed figure', value: `${fmt1(c.overAllowedT ?? 0)} t (${fmt1(c.overAllowedPct ?? 0)}%)`, ref: c.ref, field: `over_allowed_t = ${c.overAllowedT ?? 0}`, plain: `Worked out in code: ${fmt1(c.reportedT)} − ${fmt1(c.allowedT)}. This is the figure a performance claim would start from.` }
+    }
+    if (c.minSpeedKn !== undefined) {
+      out.minSpeed = { label: 'Lowest speed allowed', value: `${fmt1(c.minSpeedKn)} kn`, ref: c.ref, field: `min_speed_kn = ${c.minSpeedKn}`, plain: `The CP says about ${fmt1(c.warrantedKn ?? 0)} kn. "About" allows 0.5 kn less. Reported: ${fmt1(c.speedKn ?? 0)} kn.` }
+    }
     out.warranted = { label: 'CP warranted consumption', value: `${fmt1(c.warrantedT)} t a day`, ref: c.ref, field: `warranted_vlsfo_t = ${c.warrantedT}`, plain: 'From the fictional charter party terms: VLSFO a day in good weather, in ballast.' }
   }
   if (s.weatherDay) {
@@ -971,7 +984,15 @@ function resultLine(tool: string, d: Obj): { line: string; tone?: Tone } {
     case 'add_voyage_note': return { line: 'Note filed in the voyage file' }
     case 'check_eta': return r.consistent ? { line: `ETA consistent (${fmtSignedH(num(r.difference_hours) ?? 0)})`, tone: 'ok' } : { line: `ETA off (${fmtSignedH(num(r.difference_hours) ?? 0)})`, tone: 'warn' }
     case 'check_notices': return r.due ? { line: `Notice due (${num(r.threshold_due_days) ?? ''}-day)`, tone: 'warn' } : { line: 'No notice due', tone: 'ok' }
-    case 'check_consumption': return r.flagged ? { line: `Fuel ${fmt1(num(r.excess_pct) ?? 0)}% over warranty`, tone: 'warn' } : { line: 'Fuel within limits', tone: 'ok' }
+    case 'check_consumption': {
+      // Logs before decision 109 checked fuel only, against a 10% desk limit.
+      if (num(r.allowed_vlsfo_t) === undefined) return r.flagged ? { line: `Fuel ${fmt1(num(r.excess_pct) ?? 0)}% over warranty`, tone: 'warn' } : { line: 'Fuel within limits', tone: 'ok' }
+      if (!r.flagged) return { line: 'Fuel and speed within the warranty', tone: 'ok' }
+      const fuel = r.fuel_flagged ? `Fuel ${fmt1(num(r.over_allowed_t) ?? 0)} t over the allowed` : ''
+      const speed = r.speed_flagged ? `speed under the warranty` : ''
+      const line = [fuel, speed].filter(Boolean).join('; ')
+      return { line: line.charAt(0).toUpperCase() + line.slice(1), tone: 'warn' }
+    }
     case 'classify_weather_day': return r.good_weather_day ? { line: 'Good weather day', tone: 'warn' } : { line: 'Not a good weather day', tone: 'ok' }
     case 'report_checks': {
       const f = (d.flagged as string[] | undefined) ?? []

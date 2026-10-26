@@ -80,8 +80,8 @@ func checkScene2(t *testing.T, events []eventlog.Event, res Result, m *staff) {
 		return slices.ContainsFunc(events, func(e eventlog.Event) bool { return strings.HasPrefix(e.Summary, prefix) })
 	}
 	for _, want := range []string{
-		"Consumption flagged: 27.6 t VLSFO is +15.0%", "Good weather day under the CP", "Alert to the operator:",
-		"Operator edits the draft", "Consumption flagged: 28.3 t VLSFO is +17.9%", "Not a good weather day under the CP", "Note in MV TORMAR SPRING's voyage file:",
+		"Consumption flagged: 27.6 t VLSFO is 2.4 t over the 25.2 t allowed", "Good weather day under the CP", "Alert to the operator:",
+		"Operator edits the draft", "Fuel and speed flagged: 28.3 t VLSFO is 3.1 t over the 25.2 t allowed", "Not a good weather day under the CP", "Note in MV TORMAR SPRING's voyage file:",
 		"Forecast ETA at risk:", "Question to the operator: The forecast puts", "Operator answers",
 	} {
 		if !has(want) {

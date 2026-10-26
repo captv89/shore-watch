@@ -50,8 +50,10 @@ func Build(g *route.Graph, root string) ([]Task, error) {
 
 	// VALDA CREST, with the consumption the report leaves out in Scene 1.
 	// Scene 1's CP gives no warranty; the eval adds her service figures,
-	// about 13.0 kn on about 26 t VLSFO a day, for the Performance Agent.
-	s1.Voyage.CP.WarrantedSpeedKn, s1.Voyage.CP.WarrantedVLSFOPerDayT = 13.0, 26.0
+	// about 12.5 kn on about 26 t VLSFO a day, for the Performance Agent.
+	// Her 12.4 kn is inside the 0.5 kn "about" margin, so the clean tasks
+	// stay clean.
+	s1.Voyage.CP.WarrantedSpeedKn, s1.Voyage.CP.WarrantedVLSFOPerDayT = 12.5, 26.0
 	vb := withReport(s1, func(r *sim.NoonReport) { r.ConsVLSFO, r.ConsMGO = 26.0, 0.2 })
 	// The same, with the 3-day notice already sent at yesterday's report on
 	// today's ETA: no notice due.
@@ -194,7 +196,7 @@ func reportKey(r reportTask, g *route.Graph, wx *weather.Grid) (Task, error) {
 		t.Weather = WeatherS2
 	}
 	if rep.ConsVLSFO > 0 && v.CP.WarrantedVLSFOPerDayT > 0 {
-		c, err := checker.CheckConsumption(rep.ConsVLSFO, v.CP.WarrantedVLSFOPerDayT)
+		c, err := checker.CheckConsumption(rep.ConsVLSFO, v.CP.WarrantedVLSFOPerDayT, rep.SpeedKn, v.CP.WarrantedSpeedKn)
 		if err != nil {
 			return Task{}, err
 		}

@@ -283,6 +283,7 @@ html[data-theme] body { background: var(--a-bg); }
 @media (max-width: 700px) { .eval-row { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
 /* Fleet-week: one shared scale across both bars, so equal work is equal length. */
 .wk { max-width: 1040px; }
+.wk-books { max-width: 1040px; margin-block: 8px 32px; }
 .wk-head, .wk-row { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 1fr) 110px; gap: 24px; align-items: center; }
 .wk-head { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--a-muted); padding-bottom: 8px; border-bottom: 2px solid var(--a-strong); }
 .wk-row { padding: 18px 8px 18px 0; border-bottom: 1px solid var(--a-rule); }

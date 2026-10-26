@@ -168,8 +168,10 @@ export interface WeekDesk {
   name: string; estimate: boolean; sample_items?: number; week: WeekTotals
   // The sample's model calls and tokens scaled to the week, as the tallies are.
   week_model_calls?: number; week_input_tokens?: number; week_output_tokens?: number
+  // The week for the first 10, 20 and 30 ships: one operator's book, phased in.
+  by_book?: Record<string, WeekTotals>
 }
-export interface FleetWeek { items: number; desks: WeekDesk[] }
+export interface FleetWeek { items: number; desks: WeekDesk[]; books?: number[] }
 export interface WeekRow {
   model: string; name: string; note: string; estimate: boolean
   reached: string; needed: string; noise: string; missed: string; wrong: string; prepared: string; toWrite: string
@@ -208,6 +210,20 @@ export const weekUse = WEEK_DESKS.flatMap((m) => {
   const d = fleetWeek.desks.find((x) => x.name === m)
   return d?.estimate && d.week_input_tokens ? [{ model: m, calls: d.week_model_calls ?? 0, input: d.week_input_tokens, output: d.week_output_tokens ?? 0 }] : []
 })
+
+/** One operator's book, phased in: 10 ships, then 20, then 30. Figures a day, over the 7-day week. */
+export interface BookRow { ships: number; items: number; reached: number; rulesToWrite: number; agentPrepared: number; agentToWrite: number }
+export function bookRows(fw: FleetWeek): BookRow[] {
+  const rules = fw.desks.find((d) => d.name === WEEK_DESKS[0])
+  const agent = fw.desks.find((d) => d.name === WEEK_DESKS[2])
+  if (!rules?.by_book || !agent?.by_book) return []
+  const day = (v: number) => Math.round(v / 7)
+  return (fw.books ?? []).flatMap((n) => {
+    const r = rules.by_book?.[n], a = agent.by_book?.[n]
+    if (!r || !a) return []
+    return [{ ships: n, items: day(r.items), reached: day(r.reached), rulesToWrite: day(r.to_write), agentPrepared: day(a.prepared), agentToWrite: day(a.to_write) }]
+  })
+}
 
 export const weekSample = fleetWeek.desks.find((d) => d.name === WEEK_DESKS[2])?.sample_items ?? 0
 

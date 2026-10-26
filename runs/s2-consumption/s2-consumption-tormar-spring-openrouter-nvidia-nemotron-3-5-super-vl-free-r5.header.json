@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "s2-consumption-tormar-spring-openrouter-nvidia-nemotron-3-5-super-vl-free-r5",
+  "scene": "s2-consumption",
+  "model": "openrouter/nvidia/nemotron-3.5-super-vl:free",
+  "recorded_at": "2026-10-26T19:02:58.806836Z",
+  "prompt_version": "staff-18",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 5,
+  "total_attempts": 5,
+  "notes": "46 model calls. Synthetic data; operator actions are simulated."
+}

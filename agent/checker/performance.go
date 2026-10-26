@@ -2,40 +2,83 @@ package checker
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/captv89/shorewatch/sim"
 )
 
-// ConsumptionTolerancePct is how far a day's fuel may run over the CP
-// warranted figure before the desk looks into it. Fictional company rule.
-const ConsumptionTolerancePct = 10.0
+// AboutSpeedKn and AboutConsumptionPct are the margins English law reads
+// into "about" in a speed and consumption warranty: 0.5 kn off the speed,
+// 5% on top of the consumption (The "Al Bida" [1987] 1 Lloyd's Rep 124).
+// A tribunal may allow other margins; these are the usual ones.
+const (
+	AboutSpeedKn        = 0.5
+	AboutConsumptionPct = 5.0
+)
 
-// ConsumptionResult compares a day's fuel with the CP warranty.
+// ConsumptionResult compares a day's fuel and speed with the CP warranty
+// of about this speed on about this much fuel, "about" both times.
 type ConsumptionResult struct {
-	ReportedT      float64 `json:"reported_vlsfo_t"`
-	WarrantedT     float64 `json:"warranted_vlsfo_t"`
-	ExcessPct      float64 `json:"excess_pct"`
-	TolerancePct   float64 `json:"tolerance_pct"`
+	ReportedT  float64 `json:"reported_vlsfo_t"`
+	WarrantedT float64 `json:"warranted_vlsfo_t"`
+	// ExcessPct is against the warranted figure itself.
+	ExcessPct    float64 `json:"excess_pct"`
+	TolerancePct float64 `json:"tolerance_pct"`
+	// AllowedT is the warranted figure with the "about" margin; a claim
+	// starts from it.
+	AllowedT       float64 `json:"allowed_vlsfo_t"`
+	OverAllowedT   float64 `json:"over_allowed_t"`
+	OverAllowedPct float64 `json:"over_allowed_pct"`
+	FuelFlagged    bool    `json:"fuel_flagged"`
+	// Speed, when the report and the CP both give one.
+	ReportedKn     float64 `json:"reported_speed_kn,omitempty"`
+	WarrantedKn    float64 `json:"warranted_speed_kn,omitempty"`
+	MinSpeedKn     float64 `json:"min_speed_kn,omitempty"`
+	SpeedFlagged   bool    `json:"speed_flagged"`
 	Flagged        bool    `json:"flagged"`
 	Interpretation string  `json:"interpretation"`
 }
 
-// CheckConsumption compares the VLSFO used in the last 24 h with the CP
-// warranted daily figure.
-func CheckConsumption(reportedT, warrantedT float64) (ConsumptionResult, error) {
+// CheckConsumption compares the VLSFO used and the speed made in the last
+// 24 h with the CP warranty, allowing the "about" margins. The warranty
+// holds on good weather days only; classify_weather_day settles that.
+func CheckConsumption(reportedT, warrantedT, reportedKn, warrantedKn float64) (ConsumptionResult, error) {
 	if warrantedT <= 0 {
 		return ConsumptionResult{}, fmt.Errorf("the CP gives no warranted consumption")
 	}
+	allowed := round1(warrantedT * (1 + AboutConsumptionPct/100))
 	r := ConsumptionResult{
-		ReportedT: reportedT, WarrantedT: warrantedT, TolerancePct: ConsumptionTolerancePct,
+		ReportedT: reportedT, WarrantedT: warrantedT, TolerancePct: AboutConsumptionPct,
 		ExcessPct: round1((reportedT - warrantedT) / warrantedT * 100),
+		AllowedT:  allowed,
 	}
-	r.Flagged = r.ExcessPct > ConsumptionTolerancePct
-	if r.Flagged {
-		r.Interpretation = fmt.Sprintf("Consumption is %.1f%% above the CP warranted figure, more than the %.0f%% the desk accepts. Look for a cause before accepting it.", r.ExcessPct, ConsumptionTolerancePct)
+	if reportedT > allowed {
+		r.FuelFlagged = true
+		r.OverAllowedT = round1(reportedT - allowed)
+		r.OverAllowedPct = round1((reportedT - allowed) / allowed * 100)
+	}
+	if reportedKn > 0 && warrantedKn > 0 {
+		r.ReportedKn, r.WarrantedKn, r.MinSpeedKn = reportedKn, warrantedKn, round1(warrantedKn-AboutSpeedKn)
+		r.SpeedFlagged = reportedKn < r.MinSpeedKn
+	}
+	r.Flagged = r.FuelFlagged || r.SpeedFlagged
+
+	var parts []string
+	if r.FuelFlagged {
+		parts = append(parts, fmt.Sprintf("Consumption is %.1f t, %+.1f%% on the CP warranted %.1f t and %.1f t (%.1f%%) over the %.1f t that \"about\" allows (+%.0f%%).",
+			reportedT, r.ExcessPct, warrantedT, r.OverAllowedT, r.OverAllowedPct, allowed, AboutConsumptionPct))
 	} else {
-		r.Interpretation = fmt.Sprintf("Consumption is within %.0f%% of the CP warranted figure.", ConsumptionTolerancePct)
+		parts = append(parts, fmt.Sprintf("Consumption is %.1f t, within the %.1f t that \"about\" allows on the CP warranted %.1f t (+%.0f%%).", reportedT, allowed, warrantedT, AboutConsumptionPct))
 	}
+	if r.SpeedFlagged {
+		parts = append(parts, fmt.Sprintf("Speed %.1f kn is below the %.1f kn that \"about\" allows on the CP warranted %.1f kn (-%.1f kn).", reportedKn, r.MinSpeedKn, warrantedKn, AboutSpeedKn))
+	} else if r.MinSpeedKn > 0 {
+		parts = append(parts, fmt.Sprintf("Speed %.1f kn is within the warranty (at least %.1f kn).", reportedKn, r.MinSpeedKn))
+	}
+	if r.Flagged {
+		parts = append(parts, "The warranty holds on good weather days only. Look for a cause before accepting it.")
+	}
+	r.Interpretation = strings.Join(parts, " ")
 	return r, nil
 }
 

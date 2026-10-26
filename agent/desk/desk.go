@@ -136,6 +136,8 @@ type run struct {
 	report    *Report
 	reportRef string
 	results   map[string]toolResult
+	// ran is every tool that has run without error, for the Coverage check.
+	ran       map[string]bool
 	drafts    []Draft
 	questions []Question
 	// decide is set when a check leaves a decision to the operator; until
@@ -299,6 +301,7 @@ func (r *run) start(ep sim.Scene) {
 	r.decide, r.decided = "", false
 	r.findings, r.findingsRef = nil, ""
 	r.results = map[string]toolResult{}
+	r.ran = map[string]bool{}
 	r.epCalls = 0
 	r.log.SimTime = ep.SimTime
 }
@@ -381,6 +384,9 @@ func (r *run) execute(ctx context.Context) error {
 	if err := r.consume(rn.Run(ctx, "operator", sess, msg, agent.RunConfig{})); err != nil {
 		return err
 	}
+	if err := r.coverage(ctx, rn, sess); err != nil {
+		return err
+	}
 	r.reviewQueue()
 
 	// Questions wait for the operator. On a yes, the Ops Agent picks the
@@ -399,6 +405,9 @@ func (r *run) execute(ctx context.Context) error {
 		r.known.AddText(a.Note)
 		reply := genai.NewContentFromText(fmt.Sprintf("The operator answers your question (%s): %s", q.Question, a.Note), genai.RoleUser)
 		if err := r.consume(rn.Run(ctx, "operator", sess, reply, agent.RunConfig{})); err != nil {
+			return err
+		}
+		if err := r.followThrough(ctx, rn, sess, q); err != nil {
 			return err
 		}
 		r.reviewQueue()
@@ -697,6 +706,11 @@ var logOnly = []string{"path", "samples", "grid_ref"}
 func (r *run) afterTool(ctx agent.Context, t tool.Tool, args, result map[string]any, err error) (map[string]any, error) {
 	if err != nil || result == nil {
 		return nil, nil
+	}
+	if _, failed := result["error"]; !failed {
+		r.mu.Lock()
+		r.ran[t.Name()] = true
+		r.mu.Unlock()
 	}
 	out, ok := result["output"]
 	if !ok {

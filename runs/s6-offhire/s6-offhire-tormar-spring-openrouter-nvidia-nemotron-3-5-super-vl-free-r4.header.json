@@ -1,10 +1,10 @@
 {
-  "schema_version": "1.5",
+  "schema_version": "1.6",
   "run_id": "s6-offhire-tormar-spring-openrouter-nvidia-nemotron-3-5-super-vl-free-r4",
   "scene": "s6-offhire",
   "model": "openrouter/nvidia/nemotron-3.5-super-vl:free",
-  "recorded_at": "2026-10-24T09:02:39.083462Z",
-  "prompt_version": "staff-15",
+  "recorded_at": "2026-10-26T18:46:30.640495Z",
+  "prompt_version": "staff-18",
   "tool_versions": {
     "adk-go": "v2.6.0",
     "network": "Eurostat marnet_plus_5km",
@@ -13,5 +13,5 @@
   "seed": 0,
   "attempt": 4,
   "total_attempts": 5,
-  "notes": "32 model calls. Synthetic data; operator actions are simulated."
+  "notes": "30 model calls. Synthetic data; operator actions are simulated."
 }

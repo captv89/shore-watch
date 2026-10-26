@@ -107,7 +107,7 @@ const runs2 = sceneRuns('s2-consumption')
 describe('recorded Scene 2 runs', () => {
   it('has recorded runs from the named agents', () => {
     expect(runs2.length).toBeGreaterThanOrEqual(4)
-    for (const r of runs2) expect(r.header.prompt_version).toBe('staff-10')
+    for (const r of runs2) expect(r.header.prompt_version).toBe('staff-18')
   })
 
   for (const run of runs2) {
@@ -117,15 +117,25 @@ describe('recorded Scene 2 runs', () => {
       const end = deskState(events, events.length)
       const d3 = end.dayStarts[1]
       const d1 = deskState(events, d3 - 1)
+      // Run 1's Ops Agent said D1 was checked without calling anyone, so
+      // nothing ran on D1; the page says so (decision 111).
+      const missedD1 = run.header.attempt === 1
 
       it('holds two noon reports, two days apart', () => {
         expect(end.dayStarts).toHaveLength(2)
         expect(end.inbox).toHaveLength(2)
-        expect(end.past).toHaveLength(1)
+        expect(end.past).toHaveLength(missedD1 ? 0 : 1)
       })
 
       it('D1: flagged, a good weather day, a query and an alert', () => {
+        if (missedD1) {
+          expect(d1.consumption).toBeUndefined()
+          expect(d1.alert).toBeUndefined()
+          return
+        }
         expect(d1.consumption?.flagged).toBe(true)
+        expect(d1.consumption?.allowedT).toBe(25.2)
+        expect(d1.consumption?.overAllowedT).toBe(2.4)
         expect(d1.consumption?.excessPct).toBe(15)
         expect(d1.weatherDay?.good).toBe(true)
         expect(d1.weather?.samples).toHaveLength(8)
@@ -145,9 +155,8 @@ describe('recorded Scene 2 runs', () => {
         expect(end.forecast?.atRisk).toBe(true)
         expect(end.forecast?.differenceH).toBe(17.8)
         expect(end.forecast?.samples.length).toBeGreaterThan(100)
-        // Run 4's Correspondence Agent, asked for an alert, also wrote a
-        // second query to the Master; the page says so.
-        expect(end.queue).toHaveLength(run.header.attempt === 4 ? 3 : 2)
+        expect(end.consumption?.speedFlagged).toBe(true)
+        expect(end.queue).toHaveLength(missedD1 ? 1 : 2)
       })
 
       it('starts D3 fresh: nothing from D1 shows as current', () => {
@@ -155,7 +164,7 @@ describe('recorded Scene 2 runs', () => {
         expect(start.report).toBeUndefined()
         expect(start.weather).toBeUndefined()
         expect(start.draft).toBeUndefined()
-        expect(start.past[0].weatherDay?.good).toBe(true)
+        if (!missedD1) expect(start.past[0].weatherDay?.good).toBe(true)
       })
 
       it('links every number on screen to a logged source', () => {
@@ -327,6 +336,13 @@ describe('recorded Scene 6 runs', () => {
         expect(numberSources(end).totalUsd.plain).toMatch(/Made up for this simulation/)
       })
       it('queues the off-hire entry and the e-mail to the owner', () => {
+        expect(end.queue.find((q) => q.kind === 'email')?.to).toEqual(['technical@tormar-bulk.example'])
+        // Runs 3 and 4: the Voyage Agent reported the entry proposed but
+        // never called propose_entry; the page says so.
+        if ([3, 4].includes(run.header.attempt)) {
+          expect(end.queue.find((q) => q.kind === 'entry')).toBeUndefined()
+          return
+        }
         const entry = end.queue.find((q) => q.kind === 'entry')!
         expect(entry.entry?.kind).toBe('off_hire')
         expect(entry.entry?.from).toBe('2025-01-26T06:10:00Z')

@@ -6,7 +6,7 @@ import type { Run } from '../replay/types'
 import { deskState, fmt1, fmtUsd, type LonLat } from '../replay/derive'
 import { ADDS, AGENT_EXTRA, DAY, FAQ, INDUSTRY, LINE, PARTS, REAL, RULES, SOURCES, TECH, TOC, WORK, type GroupId } from './content'
 import { BASELINES, NEW_TAB, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, models, planted, runCost, weekItems, weekRows, weekUse, type Results } from './data'
-import { FleetWeek } from './FleetWeek'
+import { BookTable, FleetWeek } from './FleetWeek'
 import { AskDesk } from './AskDesk'
 import { SeaChart } from './SeaChart'
 import { useTheme } from './theme'
@@ -28,7 +28,9 @@ const tormar4 = s4?.ahead.find((a) => a.shipId === 'SIM-0002')
 const valda4 = s4?.ahead.find((a) => a.shipId === 'SIM-0001')
 
 const valda = fromRun(scene1[0], 'VALDA CREST', 1)
-const tormar = fromRun(scene2[0], 'TORMAR SPRING', 2)
+// Scene 2 opens on run 2: run 1 missed its first report (decision 111).
+const scene2Shown = scene2.find((r) => r.header.attempt === 2) ?? scene2[0]
+const tormar = fromRun(scene2Shown, 'TORMAR SPRING', 2)
 const ivelle = fromRun(scene3[0], 'IVELLE STAR', 3)
 const SHIPS = [valda.ship, tormar.ship].filter((s) => s !== undefined)
 // The hero follows the week through all six scenes: each ship on every
@@ -181,7 +183,7 @@ function Hero() {
       <div className="hero-strip a-mono"><span>Independent research note</span><span>October 2026</span><span>Not a product · not for sale</span></div>
       <div className="hero-head">
         <h1>Shore Watch</h1>
-        <p className="hero-lede">An assistant for the operator with 30 ships: what AI agents do in ship operations, where they stop, and every step on the record.</p>
+        <p className="hero-lede">An assistant that lets one operator take on more ships, from 10 to 30 in steps: what AI agents do in ship operations, where they stop, and every action on the record.</p>
         <div className="a-chips"><span className="a-chip">Synthetic data</span><span className="a-chip">Recorded runs</span><span className="a-chip">Nothing is sent</span></div>
         <p className="byline">By Vishnu Ravendranathan, independent researcher. Co-developed with Claude Code.</p>
       </div>
@@ -236,7 +238,7 @@ function Job() {
     <Section id="job" n="1" title="The job">
       <div className="measure prose">
         <p>Take a vessel operator today, without any AI. Working on the charterer's side, the operator looks after a fleet of two or three dozen ships. In this project each operator has 30. Every day at noon each ship sends a <em>noon report</em>: position, speed, fuel used, fuel remaining on board (ROB) and the Master's estimated time of arrival (ETA). The operator checks that the figures hold together and passes the ETA on when the charter party (CP) says a notice is due. The CP is the contract with the shipowner, or with the cargo interests.</p>
-        <p>Fuel is watched against the <em>warranty</em>, the consumption the owner promised in good weather. Forecasts arrive twice a day. Owners, port agents, cargo interests and suppliers write all day, and now and then someone who only pretends to be one of them.</p>
+        <p>Speed and fuel are watched against the <em>warranty</em>, the speed and consumption the owner promised in good weather. The charter says "about", which by usual English practice allows 0.5 kn less speed and 5% more fuel. Forecasts arrive twice a day. Owners, port agents, cargo interests and suppliers write all day, and now and then someone who only pretends to be one of them.</p>
         <p>Most of that day is reading, checking and moving figures from one system to another. The decisions are the operator's, and so is the phone call when something goes wrong.</p>
         <p>This piece covers part of that job. A berth delay and an off-hire are shown once each. Laytime and demurrage, bunker planning, emissions reporting and the shore side of an emergency are left out. Read the scenes as a sample of the work, not a map of all of it.</p>
       </div>
@@ -347,12 +349,12 @@ function LazyPlayer({ runs, meta, poster }: { runs: Run[]; meta: SceneMeta; post
   )
 }
 
-function RunLine({ runs, scene }: { runs: Run[]; scene: string }) {
+function RunLine({ runs, scene, openRun }: { runs: Run[]; scene: string; openRun?: number }) {
   if (!runs.length) return null
-  const h = runs[0].header
+  const h = (runs.find((r) => r.header.attempt === openRun) ?? runs[0]).header
   return (
     <p className="run-line a-mono">
-      Showing recorded run {h.attempt} of {h.total_attempts} with {h.model} on {fmtDate(h.recorded_at)}, prompt {h.prompt_version}. The player opens on the first run; switch runs in its menu. Every run: <code>runs/{scene}/</code>
+      Showing recorded run {h.attempt} of {h.total_attempts} with {h.model} on {fmtDate(h.recorded_at)}, prompt {h.prompt_version}. The player opens on {h.attempt === 1 ? 'the first run' : `run ${h.attempt}`}; switch runs in its menu. Every run: <code>runs/{scene}/</code>
     </p>
   )
 }
@@ -370,7 +372,7 @@ function Scene({ id, n, kicker, title, children, runs, meta, poster, folder, cal
       </div>
       <LazyPlayer runs={runs} meta={meta} poster={poster} />
       <div className="measure">
-        <RunLine runs={runs} scene={folder} />
+        <RunLine runs={runs} scene={folder} openRun={meta.openRun} />
         <blockquote>{callout}</blockquote>
         <div className="shows"><span className="a-mono label">What this shows</span><span>{shows}</span></div>
         {notes && total && (
@@ -406,11 +408,11 @@ function Scenes() {
       </Scene>
 
       <Scene id="scene-2" n="4.2" kicker="Agents look for evidence and escalate; they don't hide problems." title="Consumption is up: questioned, then explained" runs={scene2} folder="s2-consumption"
-        meta={{ number: 2, title: 'Consumption is up', realWeather: true }} poster="TORMAR SPRING, 22 and 24 January: the same symptom on a calm day and in Storm Éowyn."
+        meta={{ number: 2, title: 'Consumption is up', realWeather: true, openRun: 2 }} poster="TORMAR SPRING, 22 and 24 January: the same symptom on a calm day and in Storm Éowyn."
         callout="Same symptom, two different answers, because the evidence changed."
         shows="The agent asks what explains a number before it raises it, and raises it when nothing does."
-        notes={<p>The five runs reach the same decisions with one slip. In run 4 the Correspondence Agent was asked to raise an alert and also wrote a second query to the Master, much like the first. Both waited for the operator, as every draft does, and a real operator would reject the copy.</p>}>
-        <p>On 22 January TORMAR SPRING reports fuel well over the warranty. The agent fetches the real weather along her track from the European Centre for Medium-Range Weather Forecasts (ECMWF): light winds and small seas. That is a good weather day, so the weather does not explain the fuel. The agent drafts a query to the Master and alerts the operator.</p>
+        notes={<><p>Four of the five runs reach the same decisions. Run 1 does not. On the first report the Ops Agent wrote that its colleagues had done their checks, but it never asked them. Nothing was checked and the query about the fuel was missed. It handled the second report correctly. This is the failure an operator cannot see from the drafts, because nothing arrives. The log shows it: no check ran on that report. Every run gives material to improve, and this one led to a new check in code: the desk now confirms that each noon report really went through its checks, sends the Ops Agent back if not, and alerts the operator if it still has not. Three more runs of the same model were recorded with the check in place (<code>eval/runs/coverage-check/</code>): every check ran on all six reports, and the check had nothing to catch. In one of them the Performance Agent sent back empty replies on the first report, so the operator got the fuel alert but no draft query to the Master.</p><p>In run 2 the Performance Agent asked for the report before it was ready; the tool refused, and the agent went back a step. In run 3 the agent also raised an alert about the ETA, beside its question to the operator. Run 5 was stopped once by the model provider, which sent back an empty reply, and was run again.</p></>}>
+        <p>On 22 January TORMAR SPRING reports 27.6 t of fuel. Her charter warrants about 24 t a day, and "about" allows up to 25.2 t, so she is 2.4 t over. The agent fetches the real weather along her track from the European Centre for Medium-Range Weather Forecasts (ECMWF): light winds and small seas. That is a good weather day, so the weather does not explain the fuel. The agent drafts a query to the Master and alerts the operator.</p>
         <p>Two days later she reports more fuel again, this time in Storm Éowyn, with head seas of several metres. Now the day is not a good weather day, so it is left out of the warranty check. A note goes on the voyage file and no query is sent. The forecast also puts the Master's ETA at risk, so the agent asks the operator whether the Master should review it. Every figure is in the player, linked to the tool that produced it.</p>
       </Scene>
 
@@ -448,7 +450,7 @@ function Scenes() {
         meta={{ number: 6, title: 'Main engine stopped: off-hire' }} poster="TORMAR SPRING's noon report of 26 January: main engine stopped 0610–1140 UTC, fuel filters choked."
         callout="The Master wrote one line in the remarks. The agent turned it into an off-hire claim: code checked the Master's figures, and the voyage management system priced it."
         shows="The agent reads a remark against the charter party and the hire statement; code checks only the Master's facts."
-        notes={<p>All five runs flag the stop, raise the point about the fuel and queue both items. In every run the number guard refused a stated reason that turned the position into decimal degrees, figures no tool gave. In run 4 the Ops Agent asked for the checked report before the Reports Agent had made it. The tool refused, and the agent went back a step.</p>}>
+        notes={<><p>All five runs flag the stop, raise the point about the fuel and ask the operator. Three queue both items. In runs 3 and 4 the Voyage Agent, asked for the off-hire entry, said it would propose it and then reported it done, but never did; only the e-mail to the owner reached the queue. It is the same kind of miss as in Scene 2: a step reported done that never ran, visible only in the log. It led to a second check in code: after the operator says yes, the desk confirms that everything agreed reached the approval queue, sends the Ops Agent back if not, and alerts the operator if it still has not.</p><p>Three more runs of the same model were recorded with the check in place (<code>eval/runs/follow-through-check/</code>). In one of them the Voyage Agent made the same miss again. This time code caught it: the Ops Agent was sent back, the entry reached the queue, and the check closed. On the way back the Ops Agent also asked for the owner's e-mail again, so a second copy waited for the operator; code now asks only for what is missing.</p><p>In four runs the number guard refused a stated reason that turned the position into decimal degrees, figures no tool gave. Runs 2 and 3 were stopped by the model provider, which sent back empty replies, and were run again.</p></>}>
         <p>TORMAR SPRING's noon report of 26 January comes two days after Storm Éowyn. Code flags the speed: the distance run over 24 hours does not match the average speed reported. The Master's remark explains it. The main engine stopped from 0610 to 1140 UTC, its fuel filters choked with sludge stirred up in the heavy weather. So nobody queries the Master about the figures.</p>
         <p>A stop for a machinery breakdown is <em>off-hire</em> under the CP: the ship earns no hire for the time lost. The Voyage Agent reads the clause, modelled on clause 17 of the New York Produce Exchange form (NYPE 1993), and code checks the Master's facts{s6?.stoppage && <>: a {fmt1(s6.stoppage.stopH)}-hour stop, and {fmt1(s6.stoppage.speedKn)} kn over {fmt1(s6.stoppage.steamingH)} hours steaming gives the distance the Master reported</>}. The cost comes from the VMS hire statement{s6?.offHire && <>: {fmtUsd(s6.offHire.hireUsd)} of hire and {fmtUsd(s6.offHire.bunkersUsd)} for the fuel burnt while stopped, for the owner's account</>}.</p>
         <p>The agent also warns that the owner may blame the fuel, which the charterer supplied. How to answer that is for the operator to decide. On yes, the off-hire entry and an e-mail to the owner's technical managers asking for the engine log extract wait at the gate.</p>
@@ -461,7 +463,7 @@ function Scenes() {
 function Week() {
   const [rules, coded, agent] = weekRows(fleetWeek)
   return (
-    <Section id="week" n="5" title="One operator, 30 ships">
+    <Section id="week" n="5" title="One operator, from 10 ships to 30">
       <div className="measure">
         {rules && agent && <p className="headline">Rules and agents bring the operator about the same number of items. The difference is who writes the follow-up.</p>}
         <div className="prose">
@@ -476,6 +478,19 @@ function Week() {
         <div className="prose">
           {coded && <p>The second rules desk is given the extra coded fields it would need, such as the reason for a stop and who ordered it. It sends less noise ({coded.noise} {coded.raw.noise === 1 ? 'item' : 'items'} not needed, against {rules?.noise}), but the crew fills in those fields, and the follow-up work stays with the operator.</p>}
           <p>Late and missing reports are left out of the count. A timer sends the reminder at either desk, so they show nothing about agents.</p>
+        </div>
+      </div>
+      <div className="measure">
+        <h3 className="h-sub">In steps, not all at once</h3>
+        <div className="prose">
+          <p>No company should hand one operator 30 ships on the first day. The safer path is in steps. Start the assistant on a book of 10 ships, then go to 20, then 30. Take each step only when the last one has proved itself: nothing missed, drafts approved as written, and a day the operator can manage.</p>
+          <p>The recordings show why. In one of Scene 2's five runs the agent said a noon report had been checked when it had not, and the query about the fuel never reached the operator (<a href="#scene-2">Scene 2</a>). In two of Scene 6's runs it said an off-hire entry had been proposed when it had not (<a href="#scene-6">Scene 6</a>). Nothing on the desk showed them; only the log did. With 10 ships someone can read the logs of a week and count misses like these. With 30 ships nobody does it by hand. So each step should come only after the misses at the last step have been counted, explained and fixed in code where they can be. These have been. Code now confirms that every noon report went through its checks, and that what the operator agreed to reached the approval queue.</p>
+        </div>
+      </div>
+      <BookTable />
+      <div className="measure">
+        <div className="prose">
+          <p>With rules alone, the follow-up work grows with the book: the operator writes about as many replies a day as items reach the desk. With the agent desk the same items arrive, but drafted. What grows is the approving, not the writing.</p>
         </div>
         <p className="a-note">Every item, answer key and agent run: <code>eval/runs/fleetweek/</code> and <code>eval/results/fleet-week.json</code>.</p>
       </div>
@@ -645,7 +660,7 @@ function Eval() {
 
 function Cost() {
   const rows: [string, string, Run | undefined][] = [
-    ['Scene 1', 'one noon report', scene1[0]], ['Scene 2', 'two noon reports, per report', scene2[0]], ['Scene 3', 'one e-mail', scene3[0]],
+    ['Scene 1', 'one noon report', scene1[0]], ['Scene 2', 'two noon reports, per report', scene2Shown], ['Scene 3', 'one e-mail', scene3[0]],
     ['Scene 4', 'one forecast run, two ships', scene4[0]], ['Scene 5', 'one e-mail', scene5[0]], ['Scene 6', 'one noon report', scene6[0]],
   ]
   return (
@@ -693,6 +708,7 @@ function Real() {
       </div>
       <ul className="limits measure">
         <li><strong>Runs vary.</strong> The same scene can go slightly differently each time, which is why every run is published. In an early recording one run skipped asking the operator, so that step is now enforced in code, not left to the instructions.</li>
+        <li><strong>A silent miss is the hardest failure to see.</strong> In three of the ten runs of Scenes 2 and 6 an agent reported a step done that never ran: a report checked, an off-hire entry proposed. A wrong draft is caught at approval; a missing one is not. Only the log shows it, which is why the desk should take on more ships in steps, with the logs read at each step. Both misses led to checks in code: every noon report must go through its checks, and what the operator agrees to must reach the approval queue.</li>
         <li><strong>A model can fail on the mechanics.</strong> One large model sent its tool calls in the wrong format and repeated them until its budget ran out. Its results are in the repository and are not used on this page.</li>
         <li><strong>Numbers never come from the model.</strong> Every figure is checked against a tool, and the Number guard stops anything else.</li>
         <li><strong>Systems not built for this project</strong> (voyage optimisation with weather routing, the VMS, the accounts system) appear as simple stand-ins. Their figures say they are made up for this simulation.</li>

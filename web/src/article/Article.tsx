@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { CaretDownIcon, CaretUpIcon, CheckIcon, CodeIcon, MoonIcon, PauseIcon, PlayIcon, SunIcon, XIcon } from '@phosphor-icons/react'
 import { Player, type SceneMeta } from '../player/Player'
 import { sceneRuns } from '../replay/runs'
 import type { Run } from '../replay/types'
 import { deskState, fmt1, fmtUsd, type LonLat } from '../replay/derive'
 import { ADDS, AGENT_EXTRA, DAY, FAQ, INDUSTRY, LINE, PARTS, REAL, RULES, SOURCES, TECH, TOC, WORK, type GroupId } from './content'
-import { BASELINES, NEW_TAB, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, models, planted, runCost, weekItems, weekRows, weekUse, type Results } from './data'
+import { BASELINES, NEW_TAB, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, missRows, models, planted, runCost, weekItems, weekRows, weekUse, type Results } from './data'
 import { BookTable, FleetWeek } from './FleetWeek'
 import { AskDesk } from './AskDesk'
 import { SeaChart } from './SeaChart'
@@ -629,16 +629,20 @@ function Eval() {
       {models.length > 0 && (
         <div className="measure-wide">
           <h3 className="h-sub">What it got wrong</h3>
-          <p className="a-muted a-small">Every miss and every false alarm in the test cases is listed.</p>
+          <p className="a-muted a-small">Every test case a model got wrong, with what it missed or raised when it was not needed.</p>
           <ol className="misses">
-            {models.flatMap((m) => m.tasks.filter((t) => !t.grade.pass).map((t) => (
-              <li key={m.model + t.id}>
-                <span className="a-mono miss-id"><XIcon size={12} weight="bold" aria-hidden /> {t.id}</span>
-                <span><strong>{label(m.model)[0]}:</strong> {t.planted}.</span>
-                <span />
-                <span className="a-muted">{(t.grade.missed ?? []).length > 0 && `Missed: ${t.grade.missed!.join(', ')}. `}{(t.grade.false_alarms ?? []).length > 0 && `Raised without cause: ${t.grade.false_alarms!.join(', ')}. `}{t.error && `The run stopped: ${t.error.slice(0, 120)}`}</span>
+            {missRows(models).map((row) => (
+              <li key={row.id}>
+                <span className="a-mono miss-id"><XIcon size={12} weight="bold" aria-hidden /> {row.kind}</span>
+                <span className="miss-case">{row.planted}.</span>
+                {row.outcomes.map((o) => (
+                  <Fragment key={o.text}>
+                    <span />
+                    <span><strong>{o.models.join(' and ')}</strong> {o.text}.</span>
+                  </Fragment>
+                ))}
               </li>
-            )))}
+            ))}
           </ol>
         </div>
       )}

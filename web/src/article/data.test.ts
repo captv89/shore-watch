@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bookRows, fmtWeek, weekRows, type FleetWeek, type WeekTotals } from './data'
+import { bookRows, fmtWeek, missRows, weekRows, type FleetWeek, type WeekTotals } from './data'
 
 const week = (over: Partial<WeekTotals> = {}): WeekTotals => ({ items: 374, reached: 151, needed: 141, noise: 10, missed: 1, wrong: 6, prepared: 0, to_write: 155, ...over })
 
@@ -54,5 +54,19 @@ describe('bookRows', () => {
   })
   it('renders nothing for a file without books', () => {
     expect(bookRows({ items: 0, desks: [] })).toEqual([])
+  })
+})
+
+describe('missRows', () => {
+  const task = (id: string, grade: { pass: boolean; missed?: string[]; false_alarms?: string[] }) => ({ id, kind: 'forecast', planted: 'storm ahead; the Master has it in hand', key: { topics: [], block: false }, grade })
+  const results = [
+    { model: 'gemma-4-31b-it', set: 'heldout', recorded_at: '', passed: 0, total: 2, tasks: [task('a', { pass: false, false_alarms: ['heavy_weather'] }), task('b', { pass: true })] },
+    { model: 'nvidia/nemotron-3.5-super-vl-120b-a12b', set: 'heldout', recorded_at: '', passed: 0, total: 2, tasks: [task('a', { pass: false, false_alarms: ['heavy_weather'] }), task('b', { pass: false, missed: ['rob_vlsfo', 'eta_notice'] })] },
+  ]
+  it('groups by case, models with the same outcome together, in plain words', () => {
+    expect(missRows(results)).toEqual([
+      { id: 'a', kind: 'A new forecast', planted: 'Storm ahead; the Master has it in hand', outcomes: [{ models: ['Gemma 4 31B', 'Nemotron 3.5 Super'], text: 'raised a heavy-weather note to the Master when it was not needed' }] },
+      { id: 'b', kind: 'A new forecast', planted: 'Storm ahead; the Master has it in hand', outcomes: [{ models: ['Nemotron 3.5 Super'], text: 'missed the query about VLSFO remaining on board and the ETA notice' }] },
+    ])
   })
 })

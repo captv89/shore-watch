@@ -161,6 +161,52 @@ export const KIND_LABEL: Record<string, string> = {
   engine_stop: 'Main engine stopped: off-hire?',
 }
 
+// What each topic in an answer key means, in plain words, for the list of misses.
+const TOPIC_PLAIN: Record<string, string> = {
+  eta: "a query about the Master's ETA",
+  eta_notice: 'the ETA notice',
+  eta_forecast: 'the question about the ETA in the forecast',
+  consumption: 'the query about fuel against the warranty',
+  rob_vlsfo: 'the query about VLSFO remaining on board',
+  rob_mgo: 'the query about MGO remaining on board',
+  speed: 'the query about speed against distance run',
+  position: 'the query about the position',
+  missing_figures: 'the request for the missing figures',
+  payment_change: 'the warning about the payment change',
+  heavy_weather: 'a heavy-weather note to the Master',
+  berth_delay: 'the berth-delay plan',
+  off_hire: 'the off-hire',
+  off_hire_period: 'the right off-hire period',
+  block: 'blocking the e-mail',
+}
+const plainTopics = (ids: string[]) => {
+  const w = ids.map((t) => TOPIC_PLAIN[t] ?? t.replace(/_/g, ' '))
+  return w.length > 1 ? `${w.slice(0, -1).join(', ')} and ${w.at(-1)}` : w.join('')
+}
+
+/** One case some model got wrong, with what each model did, models with the same outcome together. */
+export interface MissRow { id: string; kind: string; planted: string; outcomes: { models: string[]; text: string }[] }
+export function missRows(results: Results[]): MissRow[] {
+  const rows: MissRow[] = []
+  for (const r of results) {
+    for (const t of r.tasks) {
+      if (t.grade.pass) continue
+      const parts = [
+        (t.grade.missed ?? []).length > 0 && `missed ${plainTopics(t.grade.missed!)}`,
+        (t.grade.false_alarms ?? []).length > 0 && `raised ${plainTopics(t.grade.false_alarms!)} when it was not needed`,
+        t.error && 'the run stopped on a provider error',
+      ].filter(Boolean) as string[]
+      const text = parts.join('; ')
+      let row = rows.find((x) => x.id === t.id)
+      if (!row) rows.push(row = { id: t.id, kind: KIND_LABEL[t.kind] ?? t.kind, planted: t.planted.charAt(0).toUpperCase() + t.planted.slice(1), outcomes: [] })
+      const same = row.outcomes.find((o) => o.text === text)
+      if (same) same.models.push(label(r.model)[0])
+      else row.outcomes.push({ models: [label(r.model)[0]], text })
+    }
+  }
+  return rows
+}
+
 // Fleet-week (cmd/fleetweek): rules desks counted on every
 // item, agent desks estimated from a sample.
 export interface WeekTotals { items: number; reached: number; needed: number; noise: number; missed: number; wrong: number; prepared: number; to_write: number }

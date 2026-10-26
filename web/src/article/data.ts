@@ -125,7 +125,7 @@ const resultFiles = import.meta.glob<Results>(['../../../eval/results/heldout-*.
 
 export const BASELINES = ['do-nothing', 'rules-only', 'rules-coded']
 const LABEL: Record<string, [string, string]> = {
-  'do-nothing': ['Do nothing', 'Baseline'],
+  'do-nothing': ['Do nothing', 'Baseline · raises nothing; treats every case as the happy path'],
   'rules-only': ['Rules only', 'Baseline · the same checks as code, no AI'],
   'rules-coded': ['Rules, coded report', 'Baseline · rules with extra coded fields the crew fills in'],
   'nvidia/nemotron-3.5-super-vl-120b-a12b': ['Nemotron 3.5 Super', 'Model · open weights · GPU server · the scenes above'],

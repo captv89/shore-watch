@@ -110,7 +110,7 @@ function Nav({ wide }: { wide: boolean }) {
         {items()}
         <div className="toc-foot">
           <ThemeToggle />
-          <div className="a-mono"><span>Synthetic data</span><span>Recorded runs</span><span>Nothing is sent</span></div>
+          <div className="a-mono"><span>Synthetic data</span><span>Recorded runs</span><span>Operator approves every draft</span></div>
         </div>
       </nav>
     )
@@ -184,7 +184,7 @@ function Hero() {
       <div className="hero-head">
         <h1>Shore Watch</h1>
         <p className="hero-lede">A fleet grows from 10 ships to 30. Can the operator's desk keep up? I built Shore Watch, a desk of AI agents, to find out: what they do, where they stop, and every action on the record.</p>
-        <div className="a-chips"><span className="a-chip">Synthetic data</span><span className="a-chip">Recorded runs</span><span className="a-chip">Nothing is sent</span></div>
+        <div className="a-chips"><span className="a-chip">Synthetic data</span><span className="a-chip">Recorded runs</span><span className="a-chip">Operator approves every draft</span></div>
         <p className="byline">By Vishnu Ravendranathan, independent researcher. Co-developed with Claude Code.</p>
       </div>
       <figure className="figure">

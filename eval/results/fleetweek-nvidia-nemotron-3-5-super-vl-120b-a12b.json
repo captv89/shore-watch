@@ -2,8 +2,8 @@
   "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
   "set": "fleetweek",
   "prompt_version": "staff-17",
-  "recorded_at": "2026-10-25T07:19:50.174048Z",
-  "passed": 33,
+  "recorded_at": "2026-10-25T23:19:46.215677Z",
+  "passed": 34,
   "total": 37,
   "tasks": [
     {
@@ -410,25 +410,24 @@
       "at": "2025-01-22T07:00:00Z",
       "sample": true,
       "decisions": {
-        "topics": null,
+        "topics": [
+          "bunkers",
+          "eta",
+          "eta_notice",
+          "route_change"
+        ],
         "blocked": false
       },
       "grade": {
         "task_id": "fw-0123-reroute",
-        "pass": false,
-        "missed": [
-          "bunkers",
-          "eta_notice",
-          "route_change"
-        ]
+        "pass": true
       },
-      "model_calls": 0,
-      "input_tokens": 0,
-      "output_tokens": 0,
-      "wall_ms": 50573,
+      "model_calls": 22,
+      "input_tokens": 106895,
+      "output_tokens": 9262,
+      "wall_ms": 686535,
       "log": "eval/runs/fleetweek/eval-fw-0123-reroute-fern-estuary-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
-      "prompt_version": "staff-17",
-      "error": "openai: call failed: OpenAI API error: 500 Internal Server Error"
+      "prompt_version": "staff-17"
     },
     {
       "id": "fw-0105-forecast-0122",
@@ -983,13 +982,12 @@
         "task_id": "fw-0109-report-0125",
         "pass": true
       },
-      "model_calls": 10,
-      "input_tokens": 35217,
-      "output_tokens": 3193,
-      "wall_ms": 140510,
+      "model_calls": 20,
+      "input_tokens": 76767,
+      "output_tokens": 5106,
+      "wall_ms": 922732,
       "log": "eval/runs/fleetweek/eval-fw-0109-report-0125-bracken-isle-nvidia-nemotron-3-5-super-vl-120b-a12b-r1.jsonl",
-      "prompt_version": "staff-17",
-      "error": "openai: call failed: OpenAI API error: 429 Too Many Requests"
+      "prompt_version": "staff-17"
     },
     {
       "id": "fw-0120-crane",

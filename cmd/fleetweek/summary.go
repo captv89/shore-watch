@@ -128,6 +128,11 @@ type Desk struct {
 	InputTokens  int    `json:"sample_input_tokens,omitempty"`
 	OutputTokens int    `json:"sample_output_tokens,omitempty"`
 	Errors       int    `json:"sample_errors,omitempty"`
+	// Week*: the sample's model calls and tokens scaled to the week, kind by
+	// kind, as the tallies are.
+	WeekModelCalls   float64 `json:"week_model_calls,omitempty"`
+	WeekInputTokens  float64 `json:"week_input_tokens,omitempty"`
+	WeekOutputTokens float64 `json:"week_output_tokens,omitempty"`
 }
 
 // Summary is eval/results/fleet-week.json, for the page.
@@ -198,6 +203,8 @@ func summarise() error {
 		// The sample's average outcome for each kind.
 		perKind := map[string]Tally{}
 		n := map[string]int{}
+		// The sample's model calls and tokens for each kind.
+		use := map[string][3]float64{}
 		for _, t := range r.Tasks {
 			o := tallyOne(t, true)
 			d.Sample.add(o, 1)
@@ -205,6 +212,8 @@ func summarise() error {
 			k.add(o, 1)
 			perKind[t.Kind] = k
 			n[t.Kind]++
+			u := use[t.Kind]
+			use[t.Kind] = [3]float64{u[0] + float64(t.Calls), u[1] + float64(t.In), u[2] + float64(t.Out)}
 			d.SampleItems++
 			d.ModelCalls += t.Calls
 			d.InputTokens += t.In
@@ -222,6 +231,10 @@ func summarise() error {
 			o.add(avg, 1/float64(n[t.Kind]))
 			o.Items = 1
 			d.Week.add(o, 1)
+			u, w := use[t.Kind], 1/float64(n[t.Kind])
+			d.WeekModelCalls += u[0] * w
+			d.WeekInputTokens += u[1] * w
+			d.WeekOutputTokens += u[2] * w
 			k, dy := d.ByKind[t.Kind], d.ByDay[dayOf(t.At)]
 			k.add(o, 1)
 			dy.add(o, 1)
@@ -233,6 +246,7 @@ func summarise() error {
 	for i := range s.Desks {
 		d := &s.Desks[i]
 		d.Week.round()
+		d.WeekModelCalls, d.WeekInputTokens, d.WeekOutputTokens = math.Round(d.WeekModelCalls), math.Round(d.WeekInputTokens), math.Round(d.WeekOutputTokens)
 		for k, v := range d.ByKind {
 			v.round()
 			d.ByKind[k] = v

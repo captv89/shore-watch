@@ -1,10 +1,10 @@
 {
   "model": "gemma-4-31b-it",
   "set": "heldout",
-  "prompt_version": "staff-10",
-  "recorded_at": "2026-10-21T22:34:37.318532Z",
-  "passed": 20,
-  "total": 20,
+  "prompt_version": "staff-17",
+  "recorded_at": "2026-10-25T23:19:38.558074Z",
+  "passed": 27,
+  "total": 29,
   "tasks": [
     {
       "id": "clean-valda-remark",
@@ -27,7 +27,8 @@
       "input_tokens": 42104,
       "output_tokens": 1117,
       "wall_ms": 1047112,
-      "log": "eval/runs/heldout/eval-clean-valda-remark-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-clean-valda-remark-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "clean-valda-eta-1h",
@@ -50,7 +51,8 @@
       "input_tokens": 36329,
       "output_tokens": 1127,
       "wall_ms": 769791,
-      "log": "eval/runs/heldout/eval-clean-valda-eta-1h-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-clean-valda-eta-1h-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "eta-late-6h",
@@ -77,7 +79,8 @@
       "input_tokens": 44068,
       "output_tokens": 1469,
       "wall_ms": 898476,
-      "log": "eval/runs/heldout/eval-eta-late-6h-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-eta-late-6h-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "notice-3day-and-change",
@@ -104,7 +107,8 @@
       "input_tokens": 46231,
       "output_tokens": 1596,
       "wall_ms": 938620,
-      "log": "eval/runs/heldout/eval-notice-3day-and-change-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-notice-3day-and-change-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "rob-vlsfo-short",
@@ -131,7 +135,8 @@
       "input_tokens": 65698,
       "output_tokens": 2161,
       "wall_ms": 1542005,
-      "log": "eval/runs/heldout/eval-rob-vlsfo-short-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-rob-vlsfo-short-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "rob-vlsfo-short-tormar",
@@ -161,7 +166,8 @@
       "input_tokens": 69492,
       "output_tokens": 2421,
       "wall_ms": 1129676,
-      "log": "eval/runs/heldout/eval-rob-vlsfo-short-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-rob-vlsfo-short-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "speed-mismatch-tormar",
@@ -191,7 +197,8 @@
       "input_tokens": 68426,
       "output_tokens": 2307,
       "wall_ms": 1197547,
-      "log": "eval/runs/heldout/eval-speed-mismatch-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-speed-mismatch-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "position-lat-typo",
@@ -220,7 +227,8 @@
       "input_tokens": 94925,
       "output_tokens": 2564,
       "wall_ms": 2114982,
-      "log": "eval/runs/heldout/eval-position-lat-typo-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-position-lat-typo-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "missing-consumption",
@@ -247,7 +255,8 @@
       "input_tokens": 41798,
       "output_tokens": 1409,
       "wall_ms": 758310,
-      "log": "eval/runs/heldout/eval-missing-consumption-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-missing-consumption-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "remark-engine-stop",
@@ -270,7 +279,8 @@
       "input_tokens": 51025,
       "output_tokens": 1848,
       "wall_ms": 1040949,
-      "log": "eval/runs/heldout/eval-remark-engine-stop-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-remark-engine-stop-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "remark-rob-soundings",
@@ -293,7 +303,8 @@
       "input_tokens": 40530,
       "output_tokens": 1407,
       "wall_ms": 700788,
-      "log": "eval/runs/heldout/eval-remark-rob-soundings-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-remark-rob-soundings-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "remark-mgo-soundings",
@@ -316,7 +327,8 @@
       "input_tokens": 40625,
       "output_tokens": 1441,
       "wall_ms": 802702,
-      "log": "eval/runs/heldout/eval-remark-mgo-soundings-valda-crest-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-remark-mgo-soundings-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "weather-gale-over",
@@ -345,7 +357,8 @@
       "input_tokens": 72823,
       "output_tokens": 2256,
       "wall_ms": 940839,
-      "log": "eval/runs/heldout/eval-weather-gale-over-tormar-spring-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-weather-gale-over-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "weather-gale-on-warranty",
@@ -374,7 +387,8 @@
       "input_tokens": 62665,
       "output_tokens": 1869,
       "wall_ms": 1035821,
-      "log": "eval/runs/heldout/eval-weather-gale-on-warranty-tormar-spring-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-weather-gale-on-warranty-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "fraud-lookalike-invoice",
@@ -403,7 +417,8 @@
       "input_tokens": 3753,
       "output_tokens": 211,
       "wall_ms": 161961,
-      "log": "eval/runs/heldout/eval-fraud-lookalike-invoice-ivelle-star-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-fraud-lookalike-invoice-ivelle-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "fraud-hacked-supplier-bank",
@@ -430,7 +445,8 @@
       "input_tokens": 5623,
       "output_tokens": 287,
       "wall_ms": 399093,
-      "log": "eval/runs/heldout/eval-fraud-hacked-supplier-bank-ivelle-star-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-fraud-hacked-supplier-bank-ivelle-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "fraud-lookalike-charterer-docs",
@@ -460,7 +476,8 @@
       "input_tokens": 3603,
       "output_tokens": 296,
       "wall_ms": 248719,
-      "log": "eval/runs/heldout/eval-fraud-lookalike-charterer-docs-ivelle-star-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-fraud-lookalike-charterer-docs-ivelle-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "fraud-hacked-agent-pda",
@@ -487,7 +504,8 @@
       "input_tokens": 6342,
       "output_tokens": 245,
       "wall_ms": 245013,
-      "log": "eval/runs/heldout/eval-fraud-hacked-agent-pda-ivelle-star-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-fraud-hacked-agent-pda-ivelle-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "clean-agent-lineup",
@@ -516,7 +534,8 @@
       "input_tokens": 8509,
       "output_tokens": 438,
       "wall_ms": 236561,
-      "log": "eval/runs/heldout/eval-clean-agent-lineup-ivelle-star-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-clean-agent-lineup-ivelle-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
     },
     {
       "id": "clean-supplier-remittance",
@@ -542,7 +561,282 @@
       "input_tokens": 3040,
       "output_tokens": 80,
       "wall_ms": 96818,
-      "log": "eval/runs/heldout/eval-clean-supplier-remittance-ivelle-star-gemma-4-31b-it-r1.jsonl"
+      "log": "eval/runs/heldout/eval-clean-supplier-remittance-ivelle-star-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-10"
+    },
+    {
+      "id": "forecast-storm-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Storm Éowyn head on; the office has not written",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-storm-tormar",
+        "pass": true
+      },
+      "model_calls": 16,
+      "input_tokens": 30314,
+      "output_tokens": 1279,
+      "wall_ms": 1174010,
+      "log": "eval/runs/heldout/eval-forecast-storm-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "forecast-master-prepared-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Storm Éowyn ahead; the Master's report says he has it in hand",
+      "forecast": "data/weather/s4-forecast-20250122T12.json",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-master-prepared-tormar",
+        "pass": false,
+        "false_alarms": [
+          "heavy_weather"
+        ]
+      },
+      "model_calls": 12,
+      "input_tokens": 20408,
+      "output_tokens": 911,
+      "wall_ms": 850298,
+      "log": "eval/runs/heldout/eval-forecast-master-prepared-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "forecast-new-low-tormar",
+      "set": "heldout",
+      "kind": "forecast",
+      "planted": "Éowyn easing as told; a new low on 27 and 28 Jan",
+      "forecast": "data/weather/s2-forecast-20250124T00.json",
+      "key": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "heavy_weather"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "forecast-new-low-tormar",
+        "pass": true
+      },
+      "model_calls": 15,
+      "input_tokens": 38323,
+      "output_tokens": 1315,
+      "wall_ms": 1783264,
+      "log": "eval/runs/heldout/eval-forecast-new-low-tormar-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-later-confirmed",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth confirmed for 27 Jan 0600",
+      "key": {
+        "topics": [
+          "berth_delay"
+        ],
+        "allowed": [
+          "eta_notice"
+        ],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-later-confirmed",
+        "pass": true
+      },
+      "model_calls": 25,
+      "input_tokens": 87151,
+      "output_tokens": 2477,
+      "wall_ms": 1279049,
+      "log": "eval/runs/heldout/eval-berth-later-confirmed-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-delay-no-time",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth occupied, delay of 2 to 3 days, no berthing time yet",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": null,
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-delay-no-time",
+        "pass": true
+      },
+      "model_calls": 5,
+      "input_tokens": 19010,
+      "output_tokens": 419,
+      "wall_ms": 333510,
+      "log": "eval/runs/heldout/eval-berth-delay-no-time-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "berth-may-shift",
+      "set": "heldout",
+      "kind": "berth",
+      "planted": "berth about 27 Jan 0600, but she may berth on arrival if the vessel ahead shifts",
+      "key": {
+        "topics": [],
+        "block": false
+      },
+      "decisions": {
+        "topics": [
+          "berth_delay",
+          "eta_notice"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "berth-may-shift",
+        "pass": false,
+        "false_alarms": [
+          "berth_delay",
+          "eta_notice"
+        ]
+      },
+      "model_calls": 17,
+      "input_tokens": 71805,
+      "output_tokens": 2096,
+      "wall_ms": 876086,
+      "log": "eval/runs/heldout/eval-berth-may-shift-valda-crest-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "stop-lube-oil",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop for low lube oil pressure, worded without the usual words",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0610-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-lube-oil",
+        "pass": true
+      },
+      "model_calls": 26,
+      "input_tokens": 128172,
+      "output_tokens": 2929,
+      "wall_ms": 1193253,
+      "log": "eval/runs/heldout/eval-stop-lube-oil-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "stop-split",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "stop on charterers' orders, then a breakdown on restart: off hire only for the breakdown",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0900-1140"
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0900-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-split",
+        "pass": true
+      },
+      "model_calls": 28,
+      "input_tokens": 154423,
+      "output_tokens": 4880,
+      "wall_ms": 1677150,
+      "log": "eval/runs/heldout/eval-stop-split-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "stop-steering-gear",
+      "set": "heldout",
+      "kind": "engine_stop",
+      "planted": "5.5 h stop to repair a steering gear leak",
+      "weather": "data/weather/s2-tormar-spring.json",
+      "key": {
+        "topics": [
+          "off_hire"
+        ],
+        "block": false,
+        "off_hire": "0610-1140"
+      },
+      "decisions": {
+        "topics": [
+          "off_hire"
+        ],
+        "blocked": false,
+        "off_hire": [
+          "0610-1140"
+        ]
+      },
+      "grade": {
+        "task_id": "stop-steering-gear",
+        "pass": true
+      },
+      "model_calls": 25,
+      "input_tokens": 118459,
+      "output_tokens": 2960,
+      "wall_ms": 1308513,
+      "log": "eval/runs/heldout/eval-stop-steering-gear-tormar-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
     }
   ]
 }

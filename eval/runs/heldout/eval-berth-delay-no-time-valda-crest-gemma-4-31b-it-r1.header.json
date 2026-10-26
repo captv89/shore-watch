@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.6",
+  "run_id": "eval-berth-delay-no-time-valda-crest-gemma-4-31b-it-r1",
+  "scene": "eval-berth-delay-no-time",
+  "model": "gemma-4-31b-it",
+  "recorded_at": "2026-10-26T00:00:41.799749Z",
+  "prompt_version": "staff-17",
+  "tool_versions": {
+    "adk-go": "v2.6.0",
+    "network": "Eurostat marnet_plus_5km",
+    "seaRoute": "shorewatch branch"
+  },
+  "seed": 0,
+  "attempt": 1,
+  "total_attempts": 1,
+  "notes": "5 model calls. Synthetic data; operator actions are simulated."
+}

@@ -3,7 +3,7 @@
   "run_id": "eval-fw-0123-reroute-fern-estuary-nvidia-nemotron-3-5-super-vl-120b-a12b-r1",
   "scene": "eval-fw-0123-reroute",
   "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
-  "recorded_at": "2026-10-24T22:00:25.317334Z",
+  "recorded_at": "2026-10-25T20:15:10.43732Z",
   "prompt_version": "staff-17",
   "tool_versions": {
     "adk-go": "v2.6.0",
@@ -13,5 +13,5 @@
   "seed": 0,
   "attempt": 1,
   "total_attempts": 1,
-  "notes": "26 model calls. Synthetic data; operator actions are simulated."
+  "notes": "22 model calls. Synthetic data; operator actions are simulated."
 }

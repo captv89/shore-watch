@@ -3,7 +3,7 @@
   "run_id": "eval-fw-0122-reroute-eyot-spring-gemma-4-31b-it-r1",
   "scene": "eval-fw-0122-reroute",
   "model": "gemma-4-31b-it",
-  "recorded_at": "2026-10-24T23:38:48.663075Z",
+  "recorded_at": "2026-10-26T01:25:05.870622Z",
   "prompt_version": "staff-17",
   "tool_versions": {
     "adk-go": "v2.6.0",
@@ -13,5 +13,5 @@
   "seed": 0,
   "attempt": 1,
   "total_attempts": 1,
-  "notes": "20 model calls. Synthetic data; operator actions are simulated."
+  "notes": "19 model calls. Synthetic data; operator actions are simulated."
 }

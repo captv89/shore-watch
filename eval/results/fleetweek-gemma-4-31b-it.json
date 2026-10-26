@@ -2,9 +2,9 @@
   "model": "gemma-4-31b-it",
   "set": "fleetweek",
   "prompt_version": "staff-17",
-  "recorded_at": "2026-10-25T07:07:01.025007Z",
-  "passed": 32,
-  "total": 35,
+  "recorded_at": "2026-10-26T01:07:21.957545Z",
+  "passed": 35,
+  "total": 37,
   "tasks": [
     {
       "id": "fw-0109-report-0120",
@@ -335,24 +335,98 @@
       "at": "2025-01-22T06:00:00Z",
       "sample": true,
       "decisions": {
-        "topics": null,
+        "topics": [
+          "eta_notice",
+          "route_change"
+        ],
         "blocked": false
       },
       "grade": {
         "task_id": "fw-0121-reroute",
-        "pass": false,
-        "missed": [
+        "pass": true
+      },
+      "model_calls": 25,
+      "input_tokens": 98821,
+      "output_tokens": 2193,
+      "wall_ms": 1354955,
+      "log": "eval/runs/fleetweek/eval-fw-0121-reroute-dunlin-gate-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0122-reroute",
+      "set": "fleetweek",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 6973 nm",
+      "key": {
+        "topics": [
           "eta_notice",
           "route_change"
-        ]
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
       },
-      "model_calls": 0,
-      "input_tokens": 0,
-      "output_tokens": 0,
-      "wall_ms": 152375,
-      "log": "eval/runs/fleetweek/eval-fw-0121-reroute-dunlin-gate-gemma-4-31b-it-r1.jsonl",
-      "prompt_version": "staff-17",
-      "error": "failed to call model: Error 500, Message: Internal error encountered., Status: INTERNAL, Details: []"
+      "ship": "SIM-0122",
+      "at": "2025-01-22T07:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "eta_notice",
+          "route_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0122-reroute",
+        "pass": true
+      },
+      "model_calls": 19,
+      "input_tokens": 81186,
+      "output_tokens": 1786,
+      "wall_ms": 1063936,
+      "log": "eval/runs/fleetweek/eval-fw-0122-reroute-eyot-spring-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
+    },
+    {
+      "id": "fw-0123-reroute",
+      "set": "fleetweek",
+      "kind": "reroute",
+      "planted": "owner declines the Red Sea; the Cape adds 4898 nm, and the VLSFO on board is 26 t short",
+      "key": {
+        "topics": [
+          "bunkers",
+          "eta_notice",
+          "route_change"
+        ],
+        "allowed": [
+          "eta",
+          "other"
+        ],
+        "block": false
+      },
+      "ship": "SIM-0123",
+      "at": "2025-01-22T07:00:00Z",
+      "sample": true,
+      "decisions": {
+        "topics": [
+          "bunkers",
+          "eta_notice",
+          "route_change"
+        ],
+        "blocked": false
+      },
+      "grade": {
+        "task_id": "fw-0123-reroute",
+        "pass": true
+      },
+      "model_calls": 21,
+      "input_tokens": 114943,
+      "output_tokens": 2546,
+      "wall_ms": 1028402,
+      "log": "eval/runs/fleetweek/eval-fw-0123-reroute-fern-estuary-gemma-4-31b-it-r1.jsonl",
+      "prompt_version": "staff-17"
     },
     {
       "id": "fw-0105-forecast-0122",

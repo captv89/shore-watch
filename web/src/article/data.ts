@@ -129,7 +129,7 @@ const LABEL: Record<string, [string, string]> = {
   'rules-only': ['Rules only', 'Baseline · the same checks as code, no AI'],
   'rules-coded': ['Rules, coded report', 'Baseline · rules with extra coded fields the crew fills in'],
   'nvidia/nemotron-3.5-super-vl-120b-a12b': ['Nemotron 3.5 Super', 'Model · open weights · GPU server · the scenes above'],
-  'gemma-4-31b-it': ['Gemma 4 31B', 'Model · open weights · workstation GPU · Round 1 cases only'],
+  'gemma-4-31b-it': ['Gemma 4 31B', 'Model · open weights · workstation GPU'],
 }
 export const label = (model: string) => LABEL[model] ?? [model, 'Model']
 
@@ -164,7 +164,11 @@ export const KIND_LABEL: Record<string, string> = {
 // Fleet-week (cmd/fleetweek): rules desks counted on every
 // item, agent desks estimated from a sample.
 export interface WeekTotals { items: number; reached: number; needed: number; noise: number; missed: number; wrong: number; prepared: number; to_write: number }
-export interface WeekDesk { name: string; estimate: boolean; sample_items?: number; week: WeekTotals }
+export interface WeekDesk {
+  name: string; estimate: boolean; sample_items?: number; week: WeekTotals
+  // The sample's model calls and tokens scaled to the week, as the tallies are.
+  week_model_calls?: number; week_input_tokens?: number; week_output_tokens?: number
+}
 export interface FleetWeek { items: number; desks: WeekDesk[] }
 export interface WeekRow {
   model: string; name: string; note: string; estimate: boolean
@@ -175,13 +179,13 @@ export interface WeekRow {
 /** A count as it is; an estimate rounded, and a zero said to be the sample's. */
 export const fmtWeek = (v: number, estimate: boolean) => (!estimate ? String(Math.round(v)) : Math.round(v) === 0 ? '0 in the sample' : `about ${Math.round(v)}`)
 
-// Gemma's week leaves out the three reroute items (tuning log, 2026-10-25),
-// so it is not a row.
-const WEEK_DESKS = ['rules-only', 'rules-coded', 'nvidia/nemotron-3.5-super-vl-120b-a12b']
+// Nemotron, the scenes' model, is the agent desk the prose quotes (index 2).
+const WEEK_DESKS = ['rules-only', 'rules-coded', 'nvidia/nemotron-3.5-super-vl-120b-a12b', 'gemma-4-31b-it']
 const WEEK_NOTE: Record<string, string> = {
   'rules-only': 'Every item, counted',
   'rules-coded': 'Every item, counted · extra coded fields',
-  'nvidia/nemotron-3.5-super-vl-120b-a12b': 'Estimate from a sample',
+  'nvidia/nemotron-3.5-super-vl-120b-a12b': 'Estimate from a sample · the scenes\' model',
+  'gemma-4-31b-it': 'Estimate from a sample',
 }
 
 export function weekRows(fw: FleetWeek): WeekRow[] {
@@ -199,6 +203,12 @@ export function weekRows(fw: FleetWeek): WeekRow[] {
 
 export const fleetWeek = fleetWeekJson as unknown as FleetWeek
 export const weekItems = fleetWeek.items
+/** Each agent desk's estimated model use over the week, in the chart's order. */
+export const weekUse = WEEK_DESKS.flatMap((m) => {
+  const d = fleetWeek.desks.find((x) => x.name === m)
+  return d?.estimate && d.week_input_tokens ? [{ model: m, calls: d.week_model_calls ?? 0, input: d.week_input_tokens, output: d.week_output_tokens ?? 0 }] : []
+})
+
 export const weekSample = fleetWeek.desks.find((d) => d.name === WEEK_DESKS[2])?.sample_items ?? 0
 
 /**

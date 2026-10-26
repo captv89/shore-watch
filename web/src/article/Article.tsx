@@ -5,7 +5,7 @@ import { sceneRuns } from '../replay/runs'
 import type { Run } from '../replay/types'
 import { deskState, fmt1, fmtUsd, type LonLat } from '../replay/derive'
 import { ADDS, AGENT_EXTRA, DAY, FAQ, INDUSTRY, LINE, PARTS, REAL, RULES, SOURCES, TECH, TOC, WORK, type GroupId } from './content'
-import { BASELINES, NEW_TAB, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, models, planted, runCost, weekRows, type Results } from './data'
+import { BASELINES, NEW_TAB, REPO, SHIP_STYLE, TUNING_LOG, falseAlarms, fleetWeek, fromRun, mergeShips, heldOut, KIND_LABEL, label, models, planted, runCost, weekItems, weekRows, weekUse, type Results } from './data'
 import { FleetWeek } from './FleetWeek'
 import { AskDesk } from './AskDesk'
 import { SeaChart } from './SeaChart'
@@ -206,7 +206,7 @@ function Hero() {
           </div>
         </div>
         <figcaption>
-          Figure 1. Three fictional ships, 21–26 January 2025, drawn from the recorded runs of all six scenes: each ship sits at her last logged position, and nothing moves between positions the log does not hold. Scene 4's forecast arrives as an inbox item, though it is not an e-mail. IVELLE STAR is not on the chart: her scene logs no position, because the e-mail never reaches the agents that work on the voyage.{' '}
+          Figure 1. Three fictional ships in the inbox, two of them on the chart, 21–26 January 2025, drawn from the recorded runs of all six scenes: each ship sits at her last logged position, and nothing moves between positions the log does not hold. Scene 4's forecast arrives as an inbox item, though it is not an e-mail. IVELLE STAR is not on the chart: her scene logs no position, because the e-mail never reaches the agents that work on the voyage.{' '}
           {reduced ? 'Shown as a still frame because your system asks for reduced motion.' : `One loop is the ${Math.round((end - start) / 864e5)} days in ${LOOP_MS / 1000} seconds.`}
         </figcaption>
       </figure>
@@ -568,7 +568,7 @@ function Eval() {
           <p key={m.model} className="headline">{label(m.model)[0]} got {m.passed} of {m.total} test cases right, with {falseAlarms(m)} false {falseAlarms(m) === 1 ? 'alarm' : 'alarms'}.</p>
         )) : <p className="headline">Model results on the test cases are not in yet. The baselines below are.</p>}
         <div className="prose">
-          <p>I wrote {heldOut[0]?.total ?? 20} test cases, like an exam. {heldOut[0] ? heldOut[0].tasks.filter(planted).length : '—'} have a problem hidden in them, such as fuel figures that do not add up or a fraud e-mail. The rest are clean, to see whether the desk raises an alarm when nothing is wrong.</p>
+          <p>I wrote {heldOut[0]?.total ?? 29} test cases, like an exam. {heldOut[0] ? heldOut[0].tasks.filter(planted).length : '—'} have a problem hidden in them, such as fuel figures that do not add up or a fraud e-mail. The rest are clean, to see whether the desk raises an alarm when nothing is wrong.</p>
           <p>The agents never saw these cases while they were tuned. Their instructions were tuned on a separate set, so they could not learn the answers in advance. {heldOut[0]?.total ?? 29} cases give a rough picture, not a precise one: one case moves a score by about {Math.round(100 / (heldOut[0]?.total ?? 29))} points.</p>
         </div>
       </div>
@@ -582,7 +582,7 @@ function Eval() {
             <div className="a-mono a-small"><span>{r.passed} / {r.total} right</span><span className="a-muted">{falseAlarms(r)} false {falseAlarms(r) === 1 ? 'alarm' : 'alarms'}</span></div>
           </div>
         ))}
-        <figcaption>Two baselines to compare against. <strong>Do nothing</strong> never raises anything, so it gets every clean case right and every problem wrong. <strong>Rules only</strong> is the same checks written as ordinary code, with keyword rules for e-mail and no AI: a fair opponent, not a straw man. Gemma 4 ran only the 20 Round 1 cases: on the day the Round 2 cases ran, Google's free Gemma service was overloaded. A stand-in, Poolside Laguna S 2.1, a model built for writing code, got 4 of the 9 Round 2 cases right, mostly by raising things that needed no action. Its runs are in the repo.</figcaption>
+        <figcaption>Two baselines to compare against. <strong>Do nothing</strong> never raises anything, so it gets every clean case right and every problem wrong. <strong>Rules only</strong> is the same checks written as ordinary code, with keyword rules for e-mail and no AI: a fair opponent, not a straw man. A case stopped by a model provider's error is run again until it finishes; only clean runs are scored.</figcaption>
       </figure>
 
       {cols.length > 0 && (
@@ -600,7 +600,7 @@ function Eval() {
 
       <div className="measure">
         <h3 className="h-sub">Beyond the score: what the agents add</h3>
-        <div className="prose"><p>The scores say rules alone do well at checking figures. That is a fair result, and the agents use the same rules. What the score cannot show is the work around the check, which is most of an operator's day:</p></div>
+        <div className="prose"><p>The scores say rules alone do well at checking figures. That is a fair result, and the agents use the same rules. Section 2 lists what an agent adds. Three points from the test itself sit behind the score:</p></div>
         <ol className="rules prose">{AGENT_EXTRA.map(([a, b]) => <li key={a}><strong>{a}</strong> {b}</li>)}</ol>
         <p className="pull">Rules catch the problem. Agents do the work that follows: read, weigh, write and ask.</p>
       </div>
@@ -670,6 +670,16 @@ function Cost() {
         </table>
       </div>
       <p className="a-note measure">These runs used a provider's free tier, which paces requests, so the time includes waiting. The logs record a cost of zero; list prices change, so the table gives tokens rather than a price.</p>
+      {weekUse.length > 0 && (
+        <div className="measure prose">
+          <h3 className="h-sub">Over the fleet-week</h3>
+          <p>Scaled to the fleet-week in Section 5 the same way as the alerts, kind by kind from the sample, the desk's model use over the {weekItems} items comes to about:</p>
+          <ul>{weekUse.map((u) => (
+            <li key={u.model}><strong>{label(u.model)[0]}</strong>: {(Math.round(u.calls / 10) * 10).toLocaleString('en-GB')} model calls, {n1(u.input / 1e6)} million tokens read and {n1(u.output / 1e6)} million written. That is about {Math.round(u.calls / 30 / 7)} calls and {Math.round((u.input + u.output) / 30 / 7 / 1000)} thousand tokens per ship per day.</li>
+          ))}</ul>
+          <p>These are estimates, like the alert figures. Most of it is reading: each call sends the agent its instructions and the case so far again.</p>
+        </div>
+      )}
     </Section>
   )
 }

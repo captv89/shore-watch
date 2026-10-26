@@ -23,8 +23,8 @@ describe('weekRows', () => {
       { name: 'nvidia/nemotron-3.5-super-vl-120b-a12b', estimate: true, sample_items: 37, week: week({ reached: 150.2, prepared: 155.2, to_write: 0 }) },
     ],
   }
-  it('keeps the rules desks and Nemotron, in that order, and leaves Gemma out', () => {
-    expect(weekRows(fw).map((r) => r.model)).toEqual(['rules-only', 'nvidia/nemotron-3.5-super-vl-120b-a12b'])
+  it('keeps the rules desks, then Nemotron, then Gemma', () => {
+    expect(weekRows(fw).map((r) => r.model)).toEqual(['rules-only', 'nvidia/nemotron-3.5-super-vl-120b-a12b', 'gemma-4-31b-it'])
   })
   it('formats the agent row as an estimate', () => {
     const n = weekRows(fw)[1]

@@ -107,15 +107,11 @@ export const RULES: [string, string][] = [
   ['A new agent only for something new:', 'a new judgement, a new level of trust, a new trigger, or enough instructions to crowd another agent.'],
 ]
 
-/** What the agents add beyond the score, each tied to a scene or the test. */
+/** What the test score does not show, each tied to how the test was scored. */
 export const AGENT_EXTRA: [string, string][] = [
-  ['It writes the message, not just the flag.', 'A rule can say an ETA notice is due. The agents draft it, along with the request to the Master for missing fuel figures and the query about extra fuel, ready for the operator to approve (Scenes 1 and 2).'],
-  ['It asks the operator a clear question.', 'When the decision is the operator\'s, it says what it found and proposes a next step: should the Master be asked to resend the fuel figures? (Scene 1)'],
   ['It reads the words around the numbers.', 'A remark such as “ROB corrected after soundings” explains a figure. Fair keyword rules stay quiet on the usual wording too, and in the test cases both score the same here. Where the wording is new, as in the fleet-week, keyword rules raise flags the agents do not (Section 5).'],
-  ['It weighs the evidence together.', 'In Scene 2 it put fuel, real weather and the ETA side by side. On a calm day it queried the Master. In the storm it filed a note, sent nothing, and asked whether the Master should review the ETA.'],
   ['It reads the e-mail as it arrives.', 'Noon reports come in as e-mails. The Reports Agent copies them into fields. In the test, the rules were handed the figures already in fields; in an office, someone has to do that step first.'],
   ['It reads what a fraud e-mail is trying to do.', 'The Security Agent reports the bank change, the pressure to pay and the line addressed to an AI, with quotes. In the tuning cases, keyword rules missed a fraud from a hacked mailbox worded without the usual keywords, and raised a false alarm on a genuine invoice that lists its bank account; the agents did neither. The fair counter-point: checking bank details against the company\'s supplier records in code beats both.'],
-  ['It explains itself.', 'Every step carries the agent\'s reason in plain words, so the operator, and later an auditor, can see why it acted.'],
 ]
 
 /** What others report about where agents help. */

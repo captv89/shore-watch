@@ -57,7 +57,7 @@ export function FleetWeek() {
         <span><span className="wk-key" data-kind="write" /> left for the operator to write</span>
       </div>
       <figcaption>
-        One operator, 30 ships, 20–26 January 2025: {weekItems} items in the week (noon reports, forecasts, e-mails and port news). The rules desks are counted on every item. The agent figures are an estimate, scaled from {weekSample} items the agents ran, chosen across every kind of item; a zero means none in the sample. Gemma 4 is not shown: its week leaves out the three reroute items, whose rerun did not complete.
+        One operator, 30 ships, 20–26 January 2025: {weekItems} items in the week (noon reports, forecasts, e-mails and port news). The rules desks are counted on every item. The agent figures are an estimate, scaled from {weekSample} items the agents ran, chosen across every kind of item; a zero means none in the sample. The agent desk is shown on two models: Nemotron 3.5 Super, which recorded the scenes, and Gemma 4 31B.
       </figcaption>
     </figure>
   )

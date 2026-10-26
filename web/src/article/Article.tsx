@@ -183,7 +183,7 @@ function Hero() {
       <div className="hero-strip a-mono"><span>Independent research note</span><span>October 2026</span><span>Not a product · not for sale</span></div>
       <div className="hero-head">
         <h1>Shore Watch</h1>
-        <p className="hero-lede">An assistant that lets one operator take on more ships, from 10 to 30 in steps: what AI agents do in ship operations, where they stop, and every action on the record.</p>
+        <p className="hero-lede">A fleet grows from 10 ships to 30. Can the operator's desk keep up? I built Shore Watch, a desk of AI agents, to find out: what they do, where they stop, and every action on the record.</p>
         <div className="a-chips"><span className="a-chip">Synthetic data</span><span className="a-chip">Recorded runs</span><span className="a-chip">Nothing is sent</span></div>
         <p className="byline">By Vishnu Ravendranathan, independent researcher. Co-developed with Claude Code.</p>
       </div>
@@ -463,7 +463,7 @@ function Scenes() {
 function Week() {
   const [rules, coded, agent] = weekRows(fleetWeek)
   return (
-    <Section id="week" n="5" title="One operator, from 10 ships to 30">
+    <Section id="week" n="5" title="From 10 ships to 30, in steps">
       <div className="measure">
         {rules && agent && <p className="headline">Rules and agents bring the operator about the same number of items. The difference is who writes the follow-up.</p>}
         <div className="prose">

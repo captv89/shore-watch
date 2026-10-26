@@ -11,7 +11,7 @@ export const TOC: [id: string, n: string, label: string][] = [
   ['scene-4', '4.4', 'Heavy weather ahead'],
   ['scene-5', '4.5', 'Berth not ready'],
   ['scene-6', '4.6', 'Main engine stopped'],
-  ['week', '5', 'One operator, from 10 ships to 30'],
+  ['week', '5', 'From 10 ships to 30, in steps'],
   ['ask', '6', 'One point of access'],
   ['built', '7', "How it's built"],
   ['eval', '8', 'How it was tested'],
